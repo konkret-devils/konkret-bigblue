@@ -229,7 +229,7 @@ sk_SK:
         footer: 'BigBlueButton je open-source webový konferenčný systém. Viac informácií nájdete na stránke https://bigbluebutton.org/.'
   landing:
     about: "%{href} je jednoduchá nadstavba pre Váš open-source webový konferenčný server BigBlueButton. Môžete vytvárať vlastné virtuálne miestnosti pre organizovanie konferencií, alebo sa môžete pripojiť ku konferenciám ostatných užívateľov jednoduchým a pohodlným kliknutím na prijatý odkaz."
-    welcome: Vitajte na servri BigBlueButton.
+    welcome: Vitajte na servri konkret bigBLUE.
     video: "Pozrite si videonávod, ako Greenlight používať"
     upgrade: "Ukážte mi, ako upgradovať na ver. 2.0!"
     version: "Vydali sme novú verziu Greenlight, ale Vaša databáza nie je kompatibilná."

@@ -229,7 +229,7 @@ nb:
         footer: 'BigBlueButton er et open source-konferansesystem. For mer informasjon om BigBlueButton, besøk https://bigbluebutton.org/.'
   landing:
     about: "%{href} er en enkel front-end for BigBlueButton open source web-konferanseserver. Du kan lage dine egne rom for å være vertskap for økter, eller bli med andre ved å bruke en kort og praktisk lenke."
-    welcome: Velkommen til BigBlueButton.
+    welcome: Velkommen til konkret bigBLUE.
     video: Se veiledningen vår om bruk av Greenlight
     upgrade: Vis meg hvordan jeg kan oppgradere til 2.0!
     version: "Vi har gitt ut en ny versjon av Greenlight, men databasen din er ikke kompatibel."

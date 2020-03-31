@@ -83,9 +83,6 @@ a {
   height: auto;
   min-height: calc(100% - #{$header-height} - #{$footer-height});
   display: grid;
-  background-image: url("https://bigblue.konkret-mafo.cloud/b/bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .footer {
@@ -94,7 +91,9 @@ a {
 }
 
 .background {
-  background-color: transparent;
+  background-image: url("https://bigblue.konkret-mafo.cloud/b/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .error-section {
@@ -185,4 +184,10 @@ table {
 
 #delete-confirm:disabled {
   cursor: not-allowed;
+}
+
+#main-text {
+  background-color: #ffffff82;
+  color: black;
+  padding: 5px;
 }

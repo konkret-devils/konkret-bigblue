@@ -259,7 +259,7 @@ zh_CN:
       start: 开始搜索...
   landing:
     about: "%{href} 是开源Web会议服务器BigBluebutton的简易前端。我们可以创建并主持会议，或通过链接加入其他会议。"
-    welcome: 欢迎来到BigBlueButton在线会议系统
+    welcome: 欢迎来到konkret bigBLUE在线会议系统
     video: 请看使用说明
     upgrade: 告诉我怎么升级到 2.0!
     version: 我们发布了新版Greenlight，但您的数据库不兼容。

@@ -259,7 +259,7 @@ nl:
       start: Begin zoekopdracht
   landing:
     about: "%{href} is een eenvoudige front-end voor uw BigBlueButton open-source webconferentieserver. U kunt uw eigen ruimtes maken om sessies te hosten of u kunt via een korte en handige link lid worden van anderen."
-    welcome: Welkom bij BigBlueButton.
+    welcome: Welkom bij konkret bigBLUE.
     video: Bekijk onze tutorial over het gebruik van Greenlight
     upgrade: Laat me zien hoe ik kan upgraden naar 2.0!
     version: "We hebben een nieuwe versie van Greenlight uitgebracht, maar uw database is niet compatibel."
