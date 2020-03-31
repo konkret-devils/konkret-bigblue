@@ -228,7 +228,7 @@ ru:
     designs: Изменение внешнего вида
     authentication: Аутентификация пользователей
   footer:
-    powered_by: "Работает под управлением %{href}."
+    powered_by: "konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020."
   forgot_password:
     subtitle: Забыл пароль
     email: Электронная почта

@@ -200,7 +200,7 @@ nb:
     designs: Tilpass til egen design
     authentication: Brukerautentisering
   footer:
-    powered_by: "Drevet av %{href}."
+    powered_by: "konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020."
   forgot_password:
     subtitle: Glemt passord
     email: e-post

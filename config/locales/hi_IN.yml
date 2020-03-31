@@ -196,7 +196,7 @@ hi_IN:
     designs: कस्टम डिजाइन
     authentication: प्रयोक्ता प्रमाणीकरण
   footer:
-    powered_by: "द्वारा संचालित 1%{href}."
+    powered_by: "konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020."
   forgot_password:
     subtitle: पासवर्ड भूल गए
     email: ईमेल

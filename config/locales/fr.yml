@@ -196,7 +196,7 @@ fr:
     designs: Designs personnalisés
     authentication: Authentification d'utilisateur
   footer:
-    powered_by: "Alimenté par %{href}."
+    powered_by: "konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020."
   forgot_password:
     subtitle: Mot de passe oublié
     email: Email

@@ -229,7 +229,7 @@ en:
     designs: Custom Designs
     authentication: User Authentication
   footer:
-    powered_by: Powered by %{href}.
+    powered_by: konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020.
   forgot_password:
     subtitle: Forgot Password
     email: Email

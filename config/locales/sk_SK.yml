@@ -200,7 +200,7 @@ sk_SK:
     designs: Zákaznícky dizajn
     authentication: Overovanie užívateľov
   footer:
-    powered_by: "Powered by %{href}."
+    powered_by: "konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020."
   forgot_password:
     subtitle: Zabudnuté heslo
     email: Email

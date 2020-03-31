@@ -196,7 +196,7 @@ el:
     designs: Προσαρμοσμένα Σχέδια
     authentication: Έλεγχος ταυτότητας χρήστη
   footer:
-    powered_by: "Υποστηριζόμενο από %{href}"
+    powered_by: "konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020."
   forgot_password:
     subtitle:
     email:

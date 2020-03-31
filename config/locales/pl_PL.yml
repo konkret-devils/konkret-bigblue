@@ -196,7 +196,7 @@ pl_PL:
     designs: Własny Wygląd
     authentication: Uwierzytelnianie Użytkownika
   footer:
-    powered_by: "Zasilany przez %{href}."
+    powered_by: "konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020."
   forgot_password:
     subtitle: Zapomniane hasło
     email: Email

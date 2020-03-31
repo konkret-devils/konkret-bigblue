@@ -196,7 +196,7 @@ sv_SE:
     designs: Anpassade designer
     authentication: Användarautentisering
   footer:
-    powered_by: "Drivs av %{href}."
+    powered_by: "konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020."
   forgot_password:
     subtitle: Glömt ditt lösenord
     email: E-post

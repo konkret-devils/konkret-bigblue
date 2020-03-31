@@ -196,7 +196,7 @@ it:
     designs: Grafiche personalizzate
     authentication: Autenticazione Utente
   footer:
-    powered_by: "Questo progetto utilizza %{href}."
+    powered_by: "konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020."
   forgot_password:
     subtitle: Password dimenticata
     email: Email

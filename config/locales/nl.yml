@@ -228,7 +228,7 @@ nl:
     designs: Aangepaste ontwerpen
     authentication: Gebruikersverificatie
   footer:
-    powered_by: "Mogelijk gemaakt door %{href}."
+    powered_by: "konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020."
   forgot_password:
     subtitle: Wachtwoord vergeten
     email: E-mail
