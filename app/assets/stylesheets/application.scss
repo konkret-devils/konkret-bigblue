@@ -90,10 +90,14 @@ a {
   width: 100%;
 }
 
-.background {
+.bg-landing {
   background-image: url("https://bigblue.konkret-mafo.cloud/b/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.background {
+  background-color: $background-color;
 }
 
 .error-section {
