@@ -1,4 +1,5 @@
 /* BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+/* BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
 *
 * Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
 *
@@ -81,6 +82,10 @@ a {
   position: relative;
   height: auto;
   min-height: calc(100% - #{$header-height} - #{$footer-height});
+  display: grid;
+  background-image: url("https://bigblue.konkret-mafo.cloud/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .footer {
@@ -89,7 +94,7 @@ a {
 }
 
 .background {
-  background-color: $background-color;
+  background-color: transparent;
 }
 
 .error-section {
