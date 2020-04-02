@@ -80,6 +80,10 @@ a {
   padding-top: 3px !important;
 }
 
+.dropdown {
+  padding-top: 3px !important;
+}
+
 .wrapper {
   position: relative;
   height: auto;
@@ -163,6 +167,7 @@ input:focus {
 
 .header .header-nav {
   color: $text-muted !important;
+  padding-top: 3px;
 
   &:hover {
     padding-bottom: 21px;
