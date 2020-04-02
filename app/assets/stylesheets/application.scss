@@ -216,3 +216,11 @@ table {
 .footer {
   padding-top: 7px;
 }
+
+
+element {
+  max-width: 100%;
+}
+.header > .container {
+  max-width: 100% !important;
+}
