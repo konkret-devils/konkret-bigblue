@@ -224,3 +224,20 @@ element {
 .header > .container {
   max-width: 100% !important;
 }
+
+.cookies-banner {
+  height: auto;
+  color: white;
+  background-color: #467FCF;
+}
+
+.cookies-banner-content.py-3 {
+  padding-bottom: 0 !important;
+  margin: 0 !important;
+  height: auto;
+}
+
+.cookies-banner #cookies-agree-button {
+  background-color: green !important;
+  margin-bottom: 14px !important;
+}
