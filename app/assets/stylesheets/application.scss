@@ -76,14 +76,14 @@ a {
 
 .header {
   height: $header-height;
-  padding-bottom: 3px;
-  padding-top: 3px;
+  padding-bottom: 3px !important;
+  padding-top: 3px !important;
 }
 
 .wrapper {
   position: relative;
   height: auto;
-  min-height: calc(100% - #{$header-height} - #{$footer-height} - 6px);
+  min-height: calc(100% - $header-height - $footer-height);
   display: grid;
 }
 
@@ -197,4 +197,16 @@ table {
   text-shadow: 8px 6px 5px black;
   font-weight: bold;
   padding: 5px;
+}
+
+.header-brand-img {
+  height: 40px !important;
+  line-height: 2rem;
+  vertical-align: bottom;
+  margin-right: .5rem;
+  width: auto;
+}
+
+.footer {
+  padding-top: 7px;
 }
