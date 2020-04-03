@@ -60,6 +60,27 @@ module BbbServer
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
   end
 
+  def join_meeting(room, name, options, uid = nil)
+    # Create the meeting, even if it's running
+    start_session(room, options)
+
+    # Determine the password to use when joining.
+    password = options[:user_is_moderator] ? room.moderator_pw : room.attendee_pw
+
+    # Generate the join URL.
+    call_params = {}
+    call_params[:meetingID] = room.bbb_id
+    call_params[:password] = password
+    call_params[:fullName] = name
+    call_params[:userID] = uid if uid
+    call_params[:join_via_html5] = true
+    call_params[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
+    call_params[:redirect] = "FALSE"
+
+    bbb_server.send_api_request(:join, call_params)
+
+  end
+
   # Creates a meeting on the BigBlueButton server.
   def start_session(room, options = {})
     create_options = {

@@ -57,15 +57,17 @@ module Joiner
 
       opts[:require_moderator_approval] = room_settings["requireModeratorApproval"]
       opts[:mute_on_start] = room_settings["muteOnStart"]
+      opts[:redirect] = "FALSE"
 
       if current_user
-        join_response = join_path(@room, current_user.name, opts, current_user.uid)
+        join_response = join_meeting(@room, user.name, opts, current_user.uid)
+            #join_path(@room, current_user.name, opts, current_user.uid)
         if join_response[:returncode] == "SUCCESS"
           redirect_to "https://www.konkret-mafo.de"
         end
       else
         join_name = params[:join_name] || params[@room.invite_path][:join_name]
-        join_response = join_path(@room, join_name, opts)
+        join_response = join_meeting(@room, join_name, opts)
         if join_response[:returncode] == "SUCCESS"
           redirect_to "https://www.google.de"
         end
