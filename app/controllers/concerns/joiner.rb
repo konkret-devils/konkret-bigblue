@@ -59,10 +59,17 @@ module Joiner
       opts[:mute_on_start] = room_settings["muteOnStart"]
 
       if current_user
-        redirect_to join_path(@room, current_user.name, opts, current_user.uid)
+        join_response = join_path(@room, current_user.name, opts, current_user.uid)
+        if join_response[:returncode] == "SUCCESS"
+          redirect_to "https://www.konkret-mafo.de"
+        end
       else
         join_name = params[:join_name] || params[@room.invite_path][:join_name]
-        redirect_to join_path(@room, join_name, opts)
+        join_response = join_path(@room, join_name, opts)
+        if join_response[:returncode] == "SUCCESS"
+          redirect_to "https://www.google.de"
+        end
+        #redirect_to join_path(@room, join_name, opts)
       end
     else
       search_params = params[@room.invite_path] || params
