@@ -77,7 +77,7 @@ module BbbServer
     call_params[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
     call_params[:redirect] = "FALSE"
 
-    bbb_server.send_api_request(:join, call_params)
+    bbb_server.send_api_request("join", call_params)
 
   end
 
