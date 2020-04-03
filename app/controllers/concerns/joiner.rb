@@ -67,7 +67,7 @@ module Joiner
 
       session_token = join_response[:session_token]
 
-      redirect_to "#{root_path}/espace/#{session_token}"
+      redirect_to "#{request.base_url}/espace/#{session_token}"
 
     else
       search_params = params[@room.invite_path] || params
