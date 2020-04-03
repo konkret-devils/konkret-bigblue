@@ -92,7 +92,7 @@ module BbbServer
       muteOnStart: options[:mute_on_start] || false,
       "meta_#{META_LISTED}": options[:recording_default_visibility] || false,
       "meta_bbb-origin-version": Greenlight::Application::VERSION,
-      "meta_bbb-origin": "Greenlight",
+      "meta_bbb-origin": "konkret bigBLUE",
       "meta_bbb-origin-server-name": options[:host]
     }
 
@@ -107,7 +107,7 @@ module BbbServer
           last_session: DateTime.now)
       end
     rescue BigBlueButton::BigBlueButtonException => e
-      puts "BigBlueButton failed on create: #{e.key}: #{e.message}"
+      puts "bigBLUE failed on create: #{e.key}: #{e.message}"
       raise e
     end
   end
