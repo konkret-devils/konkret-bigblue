@@ -65,9 +65,9 @@ module Joiner
         join_response = join_meeting(@room, join_name, opts)
       end
 
-      session_token = join_response[:session_token]
+      bbb_url_returned = join_response[:url]
 
-      redirect_to "#{request.base_url}/espace/#{session_token}"
+      redirect_to "#{bbb_url_returned}"
 
     else
       search_params = params[@room.invite_path] || params
