@@ -18,6 +18,7 @@
 
 Rails.application.routes.draw do
   get '/health_check', to: 'health_check#all'
+  get '/inside', to: 'rooms#inside_room', as: :inside_room
 
   # Error routes.
   match '/401', to: 'errors#unauthorized', via: :all, as: :unauthorized
@@ -108,7 +109,6 @@ Rails.application.routes.draw do
 
   # Join a room by UID
   post '/room/join', to: 'rooms#join_specific_room', as: :join_room
-  get '/room/inside', to: 'rooms#inside_room', as: :inside_room
 
   # Extended room routes.
   scope '/:room_uid' do
