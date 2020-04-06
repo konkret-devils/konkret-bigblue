@@ -16,6 +16,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <script type="text/javascript">
+        if (document.referrer.indexOf('/html5client/join?') !== -1){
+
+            window.top.location.href = window.location.href;
+
+        }
+    </script>
+
     <% if Rails.configuration.google_analytics %>
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="<%= google_analytics_url %>"></script>
