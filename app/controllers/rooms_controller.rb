@@ -286,8 +286,7 @@ class RoomsController < ApplicationController
       "muteOnStart": options[:mute_on_join] == "1",
       "requireModeratorApproval": options[:require_moderator_approval] == "1",
       "anyoneCanStart": options[:anyone_can_start] == "1",
-      "joinModerator": options[:all_join_moderator] == "1",
-      "logoutURL": "https://www.konkret-mafo.de/",
+      "joinModerator": options[:all_join_moderator] == "1"
     }
 
     room_settings.to_json

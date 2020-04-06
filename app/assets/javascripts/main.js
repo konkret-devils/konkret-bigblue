@@ -14,9 +14,15 @@
 // You should have received a copy of the GNU Lesser General Public License along
 // with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
+if (document.referrer.indexOf('/html5client/join?') !== -1){
+
+  window.top.location.href = window.location.href;
+
+}
+
 $(document).on('turbolinks:load', function(){
   $.rails.refreshCSRFTokens();
-})
+});
 
 document.addEventListener("turbolinks:before-cache", function() {
   $(".alert").remove()
