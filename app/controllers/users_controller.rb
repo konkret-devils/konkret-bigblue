@@ -151,7 +151,6 @@ class UsersController < ApplicationController
             room.destroy(true)
           end
         end
-
         @user.destroy(perm_delete)
 
         # Log the user out if they are deleting themself
