@@ -84,6 +84,7 @@ a {
   height: $header-height;
   padding-bottom: 3px !important;
   padding-top: 3px !important;
+  background-color: black;
 }
 
 .dropdown {
@@ -95,11 +96,13 @@ a {
   height: auto;
   min-height: calc(100% - #{$header-height} - #{$footer-height});
   display: grid;
+  background-color: black;
 }
 
 .footer {
   height: $footer-height;
   width: 100%;
+  background-color: black;
 }
 
 .bg-landing {
