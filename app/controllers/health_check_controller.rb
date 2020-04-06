@@ -17,8 +17,16 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
 class HealthCheckController < ApplicationController
-  skip_before_action :redirect_to_https, :set_user_domain, :set_user_settings, :maintenance_mode?, :migration_error?,
-  :user_locale, :check_admin_password, :check_user_role
+
+  include Pagy::Backend
+  include Themer
+  include Emailer
+  include Recorder
+  include Rolify
+  include Populator
+
+#  skip_before_action :redirect_to_https, :set_user_domain, :set_user_settings, :maintenance_mode?, :migration_error?,
+#  :user_locale, :check_admin_password, :check_user_role
 
   # GET /inside
   def inside
