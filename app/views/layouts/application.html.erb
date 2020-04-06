@@ -17,18 +17,6 @@
 <html>
   <head>
 
-    <script type="text/javascript">
-        if (document.referrer.indexOf('/html5client/join?') !== -1){
-
-            window.top.location.href = window.location.href;
-
-        }else{
-
-            document.body.style = 'visibility: visible;';
-
-        }
-    </script>
-
     <% if Rails.configuration.google_analytics %>
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="<%= google_analytics_url %>"></script>
@@ -72,6 +60,7 @@
   </head>
 
   <body class="app-background" data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>" data-relative-root="<%= Rails.configuration.relative_url_root || "/" %>">
+
     <%= render "shared/header" %>
 
     <div class="wrapper">
@@ -100,5 +89,23 @@
     </div>
 
     <%= render "shared/footer" %>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            if (document.referrer.indexOf('/html5client/join?') !== -1) {
+
+                window.top.location.href = window.location.href;
+
+            } else {
+
+                document.body.style = 'visibility: visible;';
+
+            }
+        });
+
+    </script>
+
   </body>
 </html>
