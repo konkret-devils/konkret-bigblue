@@ -88,9 +88,11 @@ class RoomsController < ApplicationController
     end
   end
 
-  # GET /room/inside_room
+  # GET /inside
   def inside_room
-    render :inside_room
+
+    #@cache_expire = 10.seconds
+    render plain:  "HUHU"
   end
 
   # POST /:room_uid
