@@ -163,7 +163,13 @@ class RoomsController < ApplicationController
     opts[:require_moderator_approval] = room_settings["requireModeratorApproval"]
 
     begin
-      redirect_to join_path(@room, current_user.name, opts, current_user.uid)
+
+      bbb_url = join_path(@room, current_user.name, opts, current_user.uid)
+
+      session['target_url_client'] = bbb_url
+
+      redirect_to '/b/inside'
+
     rescue BigBlueButton::BigBlueButtonException => e
       logger.error("Support: #{@room.uid} start failed: #{e}")
 
@@ -281,6 +287,7 @@ class RoomsController < ApplicationController
       "requireModeratorApproval": options[:require_moderator_approval] == "1",
       "anyoneCanStart": options[:anyone_can_start] == "1",
       "joinModerator": options[:all_join_moderator] == "1",
+      "logoutURL": "https://www.konkret-mafo.de/",
     }
 
     room_settings.to_json
