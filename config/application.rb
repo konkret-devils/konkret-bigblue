@@ -46,9 +46,11 @@ module Greenlight
     # The default callback url that bn launcher will redirect to
     config.gl_callback_url = ENV["GL_CALLBACK_URL"]
 
-    # Default credentials (test-install.blindsidenetworks.com/bigbluebutton).
+    # Default credentials
     config.bigbluebutton_endpoint_default = "http://test-install.blindsidenetworks.com/bigbluebutton/api/"
     config.bigbluebutton_secret_default = "8cd8ef52e8e101574e400365b55e11a6"
+
+    config.bbb_server_origin_default = "blue.konkret-mafo.cloud"
 
     # Use standalone BigBlueButton server.
     config.bigbluebutton_endpoint = if ENV["BIGBLUEBUTTON_ENDPOINT"].present?
@@ -61,6 +63,12 @@ module Greenlight
       ENV["BIGBLUEBUTTON_SECRET"]
     else
       config.bigbluebutton_secret_default
+    end
+
+    config.bbb_server_origin = if ENV["BBB_SERVER_ORIGIN"].present?
+       ENV["BBB_SERVER_ORIGIN"]
+    else
+      config.bbb_server_origin_default
     end
 
     # Fix endpoint format if required.
@@ -130,7 +138,18 @@ module Greenlight
     # DEFAULTS
 
     # Default branding image if the user does not specify one
-    config.branding_image_default = "/b/logo_with_text.png"
+    config.branding_image_default = if ENV['LOGO_URL'].present?
+      ENV['LOGO_URL']
+    else
+      "/logo_with_text.png"
+    end
+
+    # Default branding image if the user does not specify one
+    config.background_image = if ENV['BACKGROUND_IMAGE_URL'].present?
+      ENV['BACKGROUND_IMAGE_URL']
+    else
+      "/bgearth.gif"
+    end
 
     # Default primary color if the user does not specify one
     config.primary_color_default = "#467fcf"

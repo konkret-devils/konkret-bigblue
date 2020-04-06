@@ -18,8 +18,6 @@
 
 Rails.application.routes.draw do
   get '/health_check', to: 'health_check#all'
-  get '/inside', to: 'health_check#inside', as: :inside
-
   # Error routes.
   match '/401', to: 'errors#unauthorized', via: :all, as: :unauthorized
   match '/404', to: 'errors#not_found', via: :all, as: :not_found
@@ -33,6 +31,8 @@ Rails.application.routes.draw do
 
   # Redirect to terms page
   match '/terms', to: 'users#terms', via: [:get, :post]
+
+  get '/inside', to: 'main#inside', as: :inside
 
   # Admin resouces
   resources :admins, only: [:index]

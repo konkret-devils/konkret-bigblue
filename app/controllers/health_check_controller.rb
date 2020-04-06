@@ -28,12 +28,6 @@ class HealthCheckController < ApplicationController
 #  skip_before_action :redirect_to_https, :set_user_domain, :set_user_settings, :maintenance_mode?, :migration_error?,
 #  :user_locale, :check_admin_password, :check_user_role
 
-  # GET /inside
-  def inside
-    @cache_expire = 10.seconds
-    @target_url_client = session['target_url_client']
-  end
-
   # GET /health_check
   def all
     response = "success"

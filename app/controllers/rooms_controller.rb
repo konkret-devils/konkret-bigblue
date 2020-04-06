@@ -168,7 +168,7 @@ class RoomsController < ApplicationController
 
       session['target_url_client'] = bbb_url
 
-      redirect_to '/b/inside'
+      redirect_to '/inside'
 
     rescue BigBlueButton::BigBlueButtonException => e
       logger.error("Support: #{@room.uid} start failed: #{e}")

@@ -23,4 +23,11 @@ class MainController < ApplicationController
     # Store invite token
     session[:invite_token] = params[:invite_token] if params[:invite_token] && invite_registration
   end
+
+  # GET /inside
+  def inside
+    @cache_expire = 10.seconds
+    @target_url_client = session['target_url_client']
+  end
+
 end
