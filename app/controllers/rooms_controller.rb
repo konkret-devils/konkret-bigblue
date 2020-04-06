@@ -88,8 +88,9 @@ class RoomsController < ApplicationController
     end
   end
 
+  # GET /room/inside_room
   def inside_room
-    render "rooms/inside", status: 200, formats: :html
+    render :inside_room
   end
 
   # POST /:room_uid

@@ -46,3 +46,11 @@ config/terms.md
 coverage*
 
 /atom-sftp-sync.json
+/vendor/
+/vendor/bundle/ruby/2.6.0/bundler/gems/omniauth-bn-launcher-1b4a5e071531/omniauth-bn-launcher.gemspec
+/vendor/bundle/ruby/2.6.0/bundler/gems/omniauth-bn-launcher-1b4a5e071531/omniauth-bn-launcher.gemspec
+/vendor/bundle/ruby/2.6.0/bundler/gems/omniauth-bn-launcher-1b4a5e071531/omniauth-bn-launcher.gemspec
+/vendor/bundle/ruby/2.6.0/bundler/gems/omniauth-bn-launcher-1b4a5e071531/omniauth-bn-launcher.gemspec
+/vendor/bundle/ruby/2.6.0/bundler/gems/omniauth-bn-office365-d6640b37b5df/Gemfile.lock
+/vendor/bundle/ruby/2.6.0/bundler/gems/omniauth-bn-office365-d6640b37b5df/omniauth-bn-office365.gemspec
+/vendor/bundle/ruby/2.6.0/bundler/gems/tabler-rubygem-4c16e6dc930f/tabler.gemspec
