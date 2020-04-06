@@ -108,7 +108,7 @@ Rails.application.routes.draw do
 
   # Join a room by UID
   post '/room/join', to: 'rooms#join_specific_room', as: :join_room
-  get '/room/inside', to 'rooms#inside_room', as: :inside_room
+  get '/room/inside', to: 'rooms#inside_room', as: :inside_room
 
   # Extended room routes.
   scope '/:room_uid' do
