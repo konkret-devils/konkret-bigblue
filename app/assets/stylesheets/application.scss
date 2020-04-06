@@ -60,6 +60,12 @@ html, body {
   background-color: white;
 }
 
+body {
+
+  visibility: hidden;
+
+}
+
 a {
   text-decoration: none !important;
   cursor: pointer;
