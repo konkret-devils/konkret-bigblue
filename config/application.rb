@@ -37,8 +37,8 @@ module Greenlight
     config.exceptions_app = routes
 
     # Configure I18n localization.
-    config.i18n.available_locales = [:en]
-    config.i18n.default_locale = :de
+    config.i18n.available_locales = [:en, :de_DE]
+    config.i18n.default_locale = :de_DE
 
     # Check if a loadbalancer is configured.
     config.loadbalanced_configuration = ENV["LOADBALANCER_ENDPOINT"].present? && ENV["LOADBALANCER_SECRET"].present?
@@ -130,7 +130,7 @@ module Greenlight
     # DEFAULTS
 
     # Default branding image if the user does not specify one
-    config.branding_image_default = "https://raw.githubusercontent.com/bigbluebutton/greenlight/master/app/assets/images/logo_with_text.png"
+    config.branding_image_default = "/b/logo_with_text.png"
 
     # Default primary color if the user does not specify one
     config.primary_color_default = "#467fcf"

@@ -121,7 +121,7 @@ class AdminsController < ApplicationController
     emails.each do |email|
       invitation = create_or_update_invite(email)
 
-      send_invitation_email(current_user.name, email, invitation.invite_token)
+      send_invitation_email(current_user, email, invitation.invite_token)
     end
 
     redirect_to admins_path

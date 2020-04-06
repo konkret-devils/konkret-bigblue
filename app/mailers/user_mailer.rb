@@ -60,14 +60,16 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: t('mailer.user.demoted.subtitle', role: translated_role_name(role))
   end
 
-  def invite_email(name, email, url, settings)
+  def invite_email(invitor, email, url, settings)
     @settings = settings
-    @name = name
+    @name = invitor.name
     @email = email
     @url = url
     @image = logo_image
     @color = user_color
-    mail to: email, subject: t('mailer.user.invite.subject')
+    @from = "#{invitor.name} ~ via #{Rails.configuration.smtp_sender}"
+    @reply_to = "#{invitor.name} <#{invitor.email}>"
+    mail to: email, subject: t('mailer.user.invite.subject'), 'reply-to': @reply_to
   end
 
   def approve_user(user, url, settings)
