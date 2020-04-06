@@ -20,6 +20,13 @@ class HealthCheckController < ApplicationController
   skip_before_action :redirect_to_https, :set_user_domain, :set_user_settings, :maintenance_mode?, :migration_error?,
   :user_locale, :check_admin_password, :check_user_role
 
+  # GET /inside
+  def inside_room
+    @cache_expire = 10.seconds
+    #@cache_expire = 10.seconds
+    render plain:  "HUHU"
+  end
+
   # GET /health_check
   def all
     response = "success"

@@ -88,13 +88,6 @@ class RoomsController < ApplicationController
     end
   end
 
-  # GET /inside
-  def inside_room
-
-    #@cache_expire = 10.seconds
-    render plain:  "HUHU"
-  end
-
   # POST /:room_uid
   def join
     return redirect_to root_path,
