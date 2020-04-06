@@ -21,10 +21,8 @@ class HealthCheckController < ApplicationController
   :user_locale, :check_admin_password, :check_user_role
 
   # GET /inside
-  def inside_room
+  def inside
     @cache_expire = 10.seconds
-    #@cache_expire = 10.seconds
-    render plain:  "HUHU"
   end
 
   # GET /health_check

@@ -18,7 +18,7 @@
 
 Rails.application.routes.draw do
   get '/health_check', to: 'health_check#all'
-  get '/inside', to: 'health_check#inside_room'
+  get '/inside', to: 'health_check#inside'
 
   # Error routes.
   match '/401', to: 'errors#unauthorized', via: :all, as: :unauthorized
