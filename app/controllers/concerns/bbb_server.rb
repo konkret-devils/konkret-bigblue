@@ -67,16 +67,13 @@ module BbbServer
     password = options[:user_is_moderator] ? room.moderator_pw : room.attendee_pw
 
     # Generate the join URL.
-    call_params = {}
-    call_params[:meetingID] = room.bbb_id
-    call_params[:password] = password
-    call_params[:fullName] = name
-    call_params[:userID] = uid if uid
-    call_params[:join_via_html5] = true
-    call_params[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
-    call_params[:redirect] = "FALSE"
+    join_opts = {}
+    join_opts[:userID] = uid if uid
+    join_opts[:join_via_html5] = true
+    join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
+    #join_opts[:redirect] = "FALSE"
 
-    bbb_server.send_api_request("join", call_params)
+    bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
 
   end
 

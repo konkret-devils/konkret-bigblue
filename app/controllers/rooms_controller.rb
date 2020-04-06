@@ -88,6 +88,10 @@ class RoomsController < ApplicationController
     end
   end
 
+  def inside_room
+    render "rooms/inside", status: 200, formats: :html
+  end
+
   # POST /:room_uid
   def join
     return redirect_to root_path,

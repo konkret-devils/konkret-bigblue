@@ -65,7 +65,7 @@ module Joiner
         join_response = join_meeting(@room, join_name, opts)
       end
 
-      bbb_url_returned = join_response[:url]
+      bbb_url_returned = join_response #[:url]
 
       redirect_to bbb_url_returned
 
