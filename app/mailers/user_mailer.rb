@@ -69,7 +69,7 @@ class UserMailer < ApplicationMailer
     @color = user_color
     @from = "#{invitor.name} ~ via #{Rails.configuration.smtp_sender}"
     @reply_to = "#{invitor.name} <#{invitor.email}>"
-    mail to: email, subject: t('mailer.user.invite.subject'), 'reply-to': @reply_to
+    mail to: email, subject: t('mailer.user.invite.subject'), from: @from, 'reply-to': @reply_to
   end
 
   def approve_user(user, url, settings)
