@@ -46,7 +46,7 @@
             <a href="#" class="nav-link pr-0" data-toggle="dropdown">
               <% if current_user.image.blank? || !valid_url?(current_user.image) %>
                 <span id="user-avatar" class="avatar d-none"><%= current_user.name.first %></span>
-                <%= image_tag("https://robohash.org/set_set2/#{current_user.email}?size=64x64", id: "user-image", class: "avatar") %>
+                <%= image_tag("https://robohash.org/set_set1/#{current_user.email}?size=64x64", id: "user-image", class: "avatar") %>
                 <!-- <span class="avatar"><%= current_user.name.first %></span> -->
               <% else %>
                 <span id="user-avatar" class="avatar d-none"><%= current_user.name.first %></span>
