@@ -115,6 +115,13 @@ a {
   background-color: $background-color;
 }
 
+#client_viewport {
+  border-left: 8px solid black;
+  border-right: 8px solid black;
+  border-top: 0;
+  border-bottom: 0;
+}
+
 .error-section {
   background-color: $error-background-color;
 }
