@@ -96,7 +96,7 @@ a {
   height: auto;
   min-height: calc(100% - #{$header-height} - #{$footer-height});
   display: grid;
-  background-color: black;
+  background-color: white;
 }
 
 .footer {
@@ -238,6 +238,8 @@ element {
 }
 .header > .container {
   max-width: 100% !important;
+  width: 100% !important;
+  min-width: 100% !important;
 }
 
 .cookies-banner {
