@@ -159,7 +159,7 @@ hu_HU:
         uid: Felhasználó ID
         username: Felhasználónév
       title: Felhasználókezelés
-  add_to_google_calendar: "Google Naptár hozzáadása"
+  add_to_google_calendar: "Naptár"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: "Sajnáljuk, hiba történt a találkozó indításakor!"
   cancel: Mégsem

@@ -131,7 +131,7 @@ sk_SK:
         uid: ID Užívateľa
         username: Prihlasovacie meno
       title: Manažment užívateľov
-  add_to_google_calendar: "Pridaj do Google Kalendára"
+  add_to_google_calendar: " Kalendára"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: "Oops, pri štarte konferencie nastala chyba!"
   cancel: Zrušiť

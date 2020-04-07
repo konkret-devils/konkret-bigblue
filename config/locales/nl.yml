@@ -159,7 +159,7 @@ nl:
         uid: Gebruiker ID
         username: Gebruikersnaam
       title: Gebruikers beheren
-  add_to_google_calendar: "Toevoegen aan Google Agenda"
+  add_to_google_calendar: " Agenda"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: "Oeps, er is een fout opgetreden bij het starten van de vergadering!"
   cancel: Annuleren

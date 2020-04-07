@@ -127,7 +127,7 @@ fr:
         uid: ID utilisateur
         username: Nom d'utilisateur
       title: Gérer les utilisateurs
-  add_to_google_calendar: "Ajouter au calendrier Google"
+  add_to_google_calendar: " Calendrier"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: "Oups, une erreur s'est produite lors du démarrage de la réunion !"
   cancel: Annuler

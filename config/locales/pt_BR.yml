@@ -1,4 +1,5 @@
 # BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
 #
 # Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
 #
@@ -131,7 +132,7 @@ pt_BR:
         uid: ID de Usuário
         username: Identificação
       title: Administrar Usuários
-  add_to_google_calendar: "Adicionar ao Google Calendar"
+  add_to_google_calendar: " Calendar"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: "Oops, um erro ocorreu ao iniciar a sala."
   cancel: Cancelar

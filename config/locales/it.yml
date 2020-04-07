@@ -127,7 +127,7 @@ it:
         uid: ID Utente
         username: Nome utente
       title: Gestisci utenti
-  add_to_google_calendar: "Aggiungi a Google Calendar"
+  add_to_google_calendar: " Calendar"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: "Dannazione, c'è stato un errore nell'avvio del meeting!"
   cancel: Annulla

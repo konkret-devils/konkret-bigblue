@@ -127,7 +127,7 @@ pl_PL:
         uid: ID użytkownika
         username: Nazwa użytkownika
       title: Zarządzaj użytkownikami
-  add_to_google_calendar: "Dodaj do Kalendarza Google"
+  add_to_google_calendar: " Kalendarza"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: "Ups, wystąpił błąd podczas rozpoczynania spotkania!"
   cancel: Anuluj

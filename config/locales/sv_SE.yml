@@ -127,7 +127,7 @@ sv_SE:
         uid: Användar ID
         username: Användarnamn
       title: Hantera användare
-  add_to_google_calendar: "Lägg till i Google Kalender"
+  add_to_google_calendar: " Kalender"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: "Oj, det var ett fel när du startade mötet!"
   cancel: Avbryt

@@ -127,7 +127,7 @@ ar:
         uid: معرف المستخدم
         username: اسم المستخدم
       title: إدارة المستخدمين
-  add_to_google_calendar: "إضافة إلى تقويم Google"
+  add_to_google_calendar: "إلى تقويم"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: عفوًا ، حدث خطأ عند بدء الاجتماع
   cancel: إلغاء

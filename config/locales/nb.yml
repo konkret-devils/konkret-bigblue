@@ -131,7 +131,7 @@ nb:
         uid: Bruker-ID
         username: Brukernavn
       title: Administrer brukere
-  add_to_google_calendar: "Legg til Google Kalender"
+  add_to_google_calendar: " Kalender"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: Å nei... det var en feil da du startet møtet!
   cancel: Avbryt

@@ -159,7 +159,7 @@ es_MX:
         uid: Identificador de usuario
         username: Nombre de usuario
       title: Administrar usuarios
-  add_to_google_calendar: "Agregar a calendario de Google"
+  add_to_google_calendar: "Calendario"
   bigbluebutton: konkret bigBLUE
   bigbluebutton_exception: Oh no! Ocurrió un error al iniciar la sesión.
   cancel: Cancelar
