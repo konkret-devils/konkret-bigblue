@@ -148,7 +148,7 @@ module Greenlight
     config.background_image = if ENV['BACKGROUND_IMAGE_URL'].present?
       ENV['BACKGROUND_IMAGE_URL']
     else
-      "/bgearth.gif"
+      "/bg-landing-earth.gif"
     end
 
     # Default primary color if the user does not specify one

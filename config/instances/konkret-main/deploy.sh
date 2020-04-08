@@ -1,7 +1,7 @@
 #!/bin/bash
 
-INSTANCE_NAME="alex-schule"
-CONTAINER_NAME="alex-schule-bigblue"
+INSTANCE_NAME="konkret-main"
+CONTAINER_NAME="konkret-bigblue"
 RELEASE_NAME="release-v2"
 DEPLOY_ROOT_DIR="/opt/grandbleu"
 
