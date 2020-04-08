@@ -24,12 +24,24 @@ $background-color: #94948F;
 $background-color-wrapper: white;
 $error-background-color: #EFE6E6;
 $header-background-color: black;
-$footer-background-color: black;
+$footer-background-color: $header-background-color;
 $button-color-blue: #467FCF;
+
+$cookies-banner-color: white;
+$cookies-banner-background-color: #467FCF;
+$cookies-agree-button-color: inherit;
+$cookies-agree-button-background-color: green;
+
+$main-text-color: white;
+$main-text-text-shadow: 8px 6px 5px black;
+$main-text-font-weight: bold;
 
 $header-height: 46px;
 $footer-height: 40px;
 
+$client-viewport-side-border: 8px solid $header-background-color;
+
+$width-logo: 125px;
 
 
 

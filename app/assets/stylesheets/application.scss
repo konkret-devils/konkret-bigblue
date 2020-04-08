@@ -84,7 +84,7 @@ a {
   height: $header-height;
   padding-bottom: 3px !important;
   padding-top: 3px !important;
-  background-color: black;
+  background-color: $header-background-color;
 }
 
 .dropdown {
@@ -96,16 +96,17 @@ a {
   height: auto;
   min-height: calc(100% - #{$header-height} - #{$footer-height});
   display: grid;
-  background-color: white;
+  background-color: $background-color-wrapper;
 }
 
 .footer {
   height: $footer-height;
   width: 100%;
-  background-color: black;
+  background-color: $footer-background-color;
 }
 
 .bg-landing {
+  background-image: $background-image-landing-page;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -121,8 +122,8 @@ a {
 }
 
 #client_viewport {
-  border-left: 8px solid black;
-  border-right: 8px solid black;
+  border-left: $client-viewport-side-border;
+  border-right: $client-viewport-side-border;
   border-top: 0;
   border-bottom: 0;
 }
@@ -169,12 +170,14 @@ a {
 }
 
 .cookies-banner {
-  height: $footer-height;
-  color: white;
-  background-color: $button-color-blue;
+  height: auto;
+  color: $cookies-banner-color;
+  background-color: $cookies-banner-background-color;
 
   #cookies-agree-button {
-    background-color: green !important;
+    background-color: $cookies-agree-button-background-color !important;
+    color: $cookies-agree-button-color !important;
+    margin-bottom: 14px !important;
   }
 }
 
@@ -219,9 +222,9 @@ table {
 }
 
 #main-text {
-  color: white;
-  text-shadow: 8px 6px 5px black;
-  font-weight: bold;
+  color: $main-text-color;
+  text-shadow: $main-text-text-shadow;
+  font-weight: $main-text-font-weight;
   padding: 5px;
 }
 
@@ -231,7 +234,7 @@ table {
   vertical-align: bottom;
   margin-right: .5rem;
   width: auto;
-  min-width: 125px;
+  min-width: $width-logo;
 }
 
 .footer {
@@ -248,19 +251,8 @@ element {
   min-width: 100% !important;
 }
 
-.cookies-banner {
-  height: auto;
-  color: white;
-  background-color: #467FCF;
-}
-
 .cookies-banner-content.py-3 {
   padding-bottom: 0 !important;
   margin: 0 !important;
   height: auto;
-}
-
-.cookies-banner #cookies-agree-button {
-  background-color: green !important;
-  margin-bottom: 14px !important;
 }
