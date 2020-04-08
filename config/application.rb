@@ -33,6 +33,9 @@ module Greenlight
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.instance_url = ENV['INSTANCE_URL']
+    config.instance_name = ENV['INSTANCE_NAME']
+
     # Use custom error routes.
     config.exceptions_app = routes
 
@@ -141,7 +144,7 @@ module Greenlight
     config.branding_image_default = if ENV['LOGO_URL'].present?
       ENV['LOGO_URL']
     else
-      "/logo_with_text.png"
+      config.instance_url + "logo_with_text.png"
     end
 
     # Default branding image if the user does not specify one
