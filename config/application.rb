@@ -147,6 +147,13 @@ module Greenlight
       config.instance_url + "logo_with_text.png"
     end
 
+    # Default email branding image if the user does not specify one
+    config.branding_image_email = if ENV['LOGO_EMAIL_URL'].present?
+      ENV['LOGO_EMAIL_URL']
+    else
+      config.instance_url + "logo_email.png"
+    end
+
     # Default branding image if the user does not specify one
     config.background_image = if ENV['BACKGROUND_IMAGE_URL'].present?
       ENV['BACKGROUND_IMAGE_URL']

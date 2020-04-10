@@ -22,6 +22,11 @@ module ThemingHelper
     @settings.get_value("Branding Image") || Rails.configuration.branding_image_default
   end
 
+  # Returns the email logo
+  def logo_image_email
+    Rails.configuration.branding_image_email
+  end
+
   # Returns the primary color based on user's provider
   def user_color
     @settings.get_value("Primary Color") || Rails.configuration.primary_color_default
