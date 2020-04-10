@@ -235,6 +235,24 @@ table {
   margin-right: .5rem;
   width: auto;
   min-width: $width-logo;
+  display: none;
+}
+
+.header-brand {
+  height: calc(#{$header-height} - 6px) !important;
+  min-width: $width-logo;
+  width: $width-logo;
+  background-image: $logo-with-text-url;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: calc(#{$width-logo} * 2.5)) {
+  .header-brand {
+    background-image: $logo-url;
+    min-width: calc(#{$header-height} + 10px);
+    width: calc(#{$header-height} + 10px);
+  }
 }
 
 .footer {
