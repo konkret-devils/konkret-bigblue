@@ -233,7 +233,7 @@ en:
     email: Email
     submit: Submit
   go_back: Go back
-  greenlight: konkret bigBLUE
+  greenlight: "%{instance_name}"
   header:
     all_recordings: All Recordings
     dropdown:

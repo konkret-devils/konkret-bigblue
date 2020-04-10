@@ -160,7 +160,7 @@ fa_IR:
         username: نام کاربری
       title: مدیریت کاربران
   add_to_google_calendar: "افزودن تقویم گوگل"
-  bigbluebutton: konkret bigBLUE
+  bigbluebutton: "%{instance_name}"
   bigbluebutton_exception: اوپس، خطایی در هنگام شروع جلسه رخ داده است!
   cancel: لغو
   cookies:
@@ -234,7 +234,7 @@ fa_IR:
     email: ایمیل
     submit: ارسال
   go_back: بازگشت
-  greenlight: konkret bigBLUE
+  greenlight: "%{instance_name}"
   header:
     all_recordings: تمام جلسات ضبط شده
     dropdown:
