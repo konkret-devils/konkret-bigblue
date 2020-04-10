@@ -165,7 +165,7 @@ module Greenlight
     config.default_presentation_url = if ENV['DEFAULT_PRESENTATION_URL'].present?
       ENV['DEFAULT_PRESENTATION_URL']
     else
-      config.instance_url + "default.pdf"
+      config.instance_url + "instance_default.pdf"
     end
 
     # Default primary color if the user does not specify one
