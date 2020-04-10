@@ -21,23 +21,23 @@
       <%= image_tag(@image, height: '70') %>
 
       <h1 style="margin-bottom:30px">
-        <%= t('mailer.user.invite.subject') %>
+        <%= tra('mailer.user.invite.subject') %>
       </h1>
 
       <p>
-        <%= t('mailer.user.invite.info', name: @name) %>
+        <%= t('mailer.user.invite.info', name: @name, instance_name: inst_name) %>
       </p>
 
       <p>
-        <%= t('mailer.user.invite.username', email: @email) %>
+        <%= t('mailer.user.invite.username', email: @email, instance_name: inst_name) %>
       </p>
 
       <p style="margin-bottom:35px;">
-        <%= t('mailer.user.invite.signup_info') %>
+        <%= tra('mailer.user.invite.signup_info') %>
       </p>
 
       <a style="background: <%= @color %>;color: #ffffff; padding: 10px 15px; box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);border: 1px solid transparent;text-decoration:none;" href="<%= @url %>">
-        <%= t('mailer.user.invite.signup_link') %>
+        <%= tra('mailer.user.invite.signup_link') %>
       </a>
     </div>
   </div>

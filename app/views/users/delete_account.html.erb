@@ -13,14 +13,14 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 %>
 <div class="container pt-6">
-  <%= render "shared/components/subtitle", subtitle: t("settings.title"), search: false %>
+  <%= render "shared/components/subtitle", subtitle: tra("settings.title"), search: false %>
 
   <div class="row">
     <div class="col-lg-3 mb-4">
       <%= render "users/components/menu_buttons" %>
     </div>
     <div class="col-lg-9">
-      <%= render "users/components/setting_view", setting_id: "delete", setting_title: t("settings.delete.subtitle") %>
+      <%= render "users/components/setting_view", setting_id: "delete", setting_title: tra("settings.delete.subtitle") %>
     </div>
   </div>
 </div>

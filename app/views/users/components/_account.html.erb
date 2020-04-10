@@ -18,30 +18,30 @@
   <div class="form-group">
     <div class="row">
       <div class="col-6">
-        <%= f.label t("settings.account.fullname"), class: "form-label" %>
+        <%= f.label tra("settings.account.fullname"), class: "form-label" %>
         <div class="input-icon">
-          <%= f.text_field :name, class: "form-control #{form_is_invalid?(@user, :name)}", placeholder: t("settings.account.fullname") %>
+          <%= f.text_field :name, class: "form-control #{form_is_invalid?(@user, :name)}", placeholder: tra("settings.account.fullname") %>
         </div>
       </div>
 
       <div class="col-6">
-        <%= f.label t("email"), class: "form-label" %>
+        <%= f.label tra("email"), class: "form-label" %>
         <div class="input-icon">
-          <%= f.text_field :email, class: "form-control #{form_is_invalid?(@user, :email)}", placeholder: t("email"), readonly: !@user.greenlight_account? %>
+          <%= f.text_field :email, class: "form-control #{form_is_invalid?(@user, :email)}", placeholder: tra("email"), readonly: !@user.greenlight_account? %>
         </div>
       </div>
     </div>
     <br>
-    <%= f.label t("settings.account.provider"), class: "form-label" %>
+    <%= f.label tra("settings.account.provider"), class: "form-label" %>
     <%= f.text_field :provider, class: "form-control", readonly: "" %>
     <br>
-    <%= f.label t("settings.account.language"), class: "form-label" %>
+    <%= f.label tra("settings.account.language"), class: "form-label" %>
     <%= f.select :language, language_options, {}, { class: "form-control custom-select" } %>
 
     <% current_user_role = current_user.highest_priority_role %>
     <br>
     <br>
-    <%= f.label t("settings.account.roles"), class: "form-label" %>
+    <%= f.label tra("settings.account.roles"), class: "form-label" %>
     <div id="role-tag-container" class="tags mb-1">
       <% @user.roles.by_priority.each do |role| %>
         <span id="<%= "user-role-tag_#{role.id}" %>" style="<%= "background-color: #{role_colour(role)};border-color: #{role_colour(role)};" %>" class="tag user-role-tag">
@@ -60,7 +60,7 @@
     <% end %>
     <%= f.hidden_field :role_ids, id: "user_role_ids", value: @user.roles.by_priority.pluck(:id).uniq %>
 
-    <%= f.label t("settings.account.image"), class: "form-label mt-5" %>
+    <%= f.label tra("settings.account.image"), class: "form-label mt-5" %>
     <div class="row">
       <div class="col-2">
         <% if @user.image.blank? %>
@@ -71,12 +71,12 @@
         <% end %>
       </div>
       <div class="col-10 mt-5">
-        <%= f.text_field :image, class: "form-control #{form_is_invalid?(@user, :image)}", placeholder: t("settings.account.image_url") %>
+        <%= f.text_field :image, class: "form-control #{form_is_invalid?(@user, :image)}", placeholder: tra("settings.account.image_url") %>
       </div>
     </div>
   </div>
   <div class="card-footer">
-    <%= f.submit t("update"), class: "btn btn-primary float-right ml-4" %>
+    <%= f.submit tra("update"), class: "btn btn-primary float-right ml-4" %>
 
     <% if can_reset_password %>
       <%= link_to "Reset user password", admin_reset_path(user_uid: @user.uid), class: "btn btn-primary float-right" %>

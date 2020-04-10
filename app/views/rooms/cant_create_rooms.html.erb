@@ -31,7 +31,7 @@
                                 <% end %>
                                 <h2 class="mb-3"><%= current_user.name %></h2>
                                 <%= link_to edit_user_path(current_user), class: "btn btn-outline-primary mt-2" do %>
-                                    <i class="dropdown-icon fas fa-id-card mr-3"></i><%= t("room.no_room.edit_profile") %>
+                                    <i class="dropdown-icon fas fa-id-card mr-3"></i><%= tra("room.no_room.edit_profile") %>
                                 <% end %>
                             </div>
                         </div>
@@ -40,33 +40,33 @@
                         <div class="card h-100">
                             <div class="card-status bg-primary"></div>
                             <div class="card-header cant-create-rooms-title">
-                                <h3 class="card-title"><%= t("room.no_room.title") %></h3>
+                                <h3 class="card-title"><%= tra("room.no_room.title") %></h3>
                             </div>
                             <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                                <p class="w-75"><%= t("room.no_room.description") %></p>
+                                <p class="w-75"><%= tra("room.no_room.description") %></p>
                                 <%= form_for(:join_room, url: join_room_path, html: {class: "w-75"}) do |f| %>
                                     <div class="input-icon mb-2">
                                         <span class="input-icon-addon">
                                             <i class="fas fa-link"></i>
                                         </span>
-                                        <%= f.text_field :url, class: "form-control", value: "", placeholder: t("room.no_room.placeholder"), required: "" %>
+                                        <%= f.text_field :url, class: "form-control", value: "", placeholder: tra("room.no_room.placeholder"), required: "" %>
                                     </div>
                                     <div class="mt-4">
-                                        <%= f.submit t("room.no_room.go_to"), class:"btn btn-primary btn-block" %>
+                                        <%= f.submit tra("room.no_room.go_to"), class:"btn btn-primary btn-block" %>
                                     </div>
                                 <% end %>
                             </div>
                             <hr class="mt-0 mb-0">
                             <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <ul class="list-group w-75 text-center">
-                                <li class="list-group-item active"><%= t("room.no_room.recent_rooms") %></li>
+                                <li class="list-group-item active"><%= tra("room.no_room.recent_rooms") %></li>
                                 <% @recent_rooms.each do |room| %>
                                     <%= link_to room_path(room), class: "list-group-item list-group-item-action dropdown-item"  do %>
                                         <%= room.owner.name + " " + room.name %>
                                     <% end %>
                                 <% end %>
                                 <% if @recent_rooms.count == 0 %>
-                                    <li class="list-group-item"><%= t("room.no_room.no_recent_rooms") %></li>
+                                    <li class="list-group-item"><%= tra("room.no_room.no_recent_rooms") %></li>
                                 <% end %>
                             </ul>
                             </div>

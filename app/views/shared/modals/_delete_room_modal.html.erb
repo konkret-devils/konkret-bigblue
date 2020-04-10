@@ -23,18 +23,18 @@
           </div>
 
           <button type="button" class="btn btn-info my-1 btn-del-room" data-dismiss="modal">
-            <%= t("modal.delete_room.keep") %>
+            <%= tra("modal.delete_room.keep") %>
           </button>
 
           <%= button_to "/", method: :delete, id: "delete-confirm", class: "btn btn-danger my-1 btn-del-room", "data-disable": "" do %>
-            <%= t("modal.delete_room.delete") %>
+            <%= tra("modal.delete_room.delete") %>
           <% end %>
 
         </div>
         <div class="card-footer">
           <p id="delete-footer">
-            <%= t("modal.delete_room.warning").html_safe %>
-            <%= t("modal.delete_room.recording_warning", recordings_num:"").html_safe %>
+            <%= tra("modal.delete_room.warning").html_safe %>
+            <%= t("modal.delete_room.recording_warning", recordings_num:"", instance_name: inst_name).html_safe %>
           </p>
         </div>
       </div>

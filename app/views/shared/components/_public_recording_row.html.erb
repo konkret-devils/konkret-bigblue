@@ -25,7 +25,7 @@
       </text>
     </div>
     <div class="small text-muted">
-      <%= t("recording.recorded_on", date: recording_date(recording[:startTime])) %>
+      <%= t("recording.recorded_on", date: recording_date(recording[:startTime]), instance_name: inst_name) %>
     </div>
   </td>
   <% if recording_thumbnails? %>
@@ -47,9 +47,9 @@
   <td class="text-left">
     <div class="dropdown">
       <% if recording[:metadata][:"gl-listed"] == "true" %>
-        <i class="dropdown-icon fas fa-globe px-2"></i> <%= t("recording.visibility.public") %>
+        <i class="dropdown-icon fas fa-globe px-2"></i> <%= tra("recording.visibility.public") %>
       <% else %>
-        <i class="dropdown-icon fas fa-link px-2"></i> <%= t("recording.visibility.unlisted") %>
+        <i class="dropdown-icon fas fa-link px-2"></i> <%= tra("recording.visibility.unlisted") %>
       <% end %>
     </div>
   </td>
@@ -57,7 +57,7 @@
     <% sorted_formats =  recording[:playbacks].sort_by! {|p| p[:type]} %>
     <% p = recording[:playbacks].find do |p| p.key?(:length) end %>
     <% sorted_formats.each do |p| %>
-      <%= link_to t("recording.format.#{p[:type]}"), p[:url], class: "btn btn-sm btn-primary", target: "_blank" %>
+      <%= link_to tra("recording.format.#{p[:type]}"), p[:url], class: "btn btn-sm btn-primary", target: "_blank" %>
     <% end %>
   </td>
 </tr>

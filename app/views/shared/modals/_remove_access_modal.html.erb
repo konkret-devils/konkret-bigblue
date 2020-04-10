@@ -19,18 +19,18 @@
       <div class="modal-body">
         <div class="card-body p-6">
           <div class="card-title">
-            <h3><%= t("modal.remove_shared.title")%></h3>
+            <h3><%= tra("modal.remove_shared.title")%></h3>
           </div>
 
           <%= button_to "/", method: :delete, id: "remove-shared-confirm", class: "btn btn-danger my-1 btn-del-room" do %>
             <%= hidden_field_tag :user_id, current_user.id %>
-            <%= t("modal.remove_shared.delete") %>
+            <%= tra("modal.remove_shared.delete") %>
           <% end %>
 
         </div>
         <div class="card-footer">
           <p id="delete-footer">
-            <%= t("modal.remove_shared.warning").html_safe %>
+            <%= tra("modal.remove_shared.warning").html_safe %>
           </p>
         </div>
       </div>

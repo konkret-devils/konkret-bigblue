@@ -39,7 +39,7 @@ class PasswordResetsController < ApplicationController
       redirect_to root_path
     rescue
       # User doesn't exist
-      redirect_to root_path, flash: { success: I18n.t("email_sent", email_type: t("reset_password.subtitle")) }
+      redirect_to root_path, flash: { success: I18n.t("email_sent", email_type: tra("reset_password.subtitle"), instance_name: inst_name) }
     end
   end
 
@@ -51,15 +51,15 @@ class PasswordResetsController < ApplicationController
   def update
     # Check if password is valid
     if params[:user][:password].empty?
-      flash.now[:alert] = I18n.t("password_empty_notice")
+      flash.now[:alert] = tra("password_empty_notice")
     elsif params[:user][:password] != params[:user][:password_confirmation]
       # Password does not match password confirmation
-      flash.now[:alert] = I18n.t("password_different_notice")
+      flash.now[:alert] = tra("password_different_notice")
     elsif @user.update_attributes(user_params)
       # Clear the user's social uid if they are switching from a social to a local account
       @user.update_attribute(:social_uid, nil) if @user.social_uid.present?
       # Successfully reset password
-      return redirect_to root_path, flash: { success: I18n.t("password_reset_success") }
+      return redirect_to root_path, flash: { success: tra("password_reset_success") }
     end
 
     render 'edit'
@@ -77,7 +77,7 @@ class PasswordResetsController < ApplicationController
 
   # Checks expiration of reset token.
   def check_expiration
-    redirect_to new_password_reset_url, alert: I18n.t("expired_reset_token") if @user.password_reset_expired?
+    redirect_to new_password_reset_url, alert: tra("expired_reset_token") if @user.password_reset_expired?
   end
 
   # Confirms a valid user.

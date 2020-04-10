@@ -29,10 +29,10 @@
       </script>
     <% end %>
 
-    <title><%= t("bigbluebutton") %></title>
-    <meta property="og:title" content="<%= t("bigbluebutton", locale: :en) %>" />
+    <title><%= tra("bigbluebutton") %></title>
+    <meta property="og:title" content="<%= t("bigbluebutton", instance_name: inst_name, locale: :en) %>" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="<%= t("landing.about", href: "Greenlight", locale: :en) %>" />
+    <meta property="og:description" content="<%= t("landing.about", href: "Greenlight", instance_name: inst_name, locale: :en) %>" />
     <meta property="og:url" content="<%= request.base_url %>" />
     <meta property="og:image" content="<%= logo_image %>" />
 
@@ -68,8 +68,8 @@
         <div class="alert alert-icon alert-danger text-center mb-0">
           <div class="flash alert d-inline">
             <i class="fas fa-exclamation-triangle"></i>
-            <p class="d-inline"><%= t("test_install",
-              href: link_to(t("docs").downcase, "http://docs.bigbluebutton.org/install/greenlight-v2.html#2-install-greenlight", target: "_blank", rel: "noopener")
+            <p class="d-inline"><%= t("test_install", instance_name: inst_name,
+              href: link_to(tra("docs").downcase, "http://docs.bigbluebutton.org/install/greenlight-v2.html#2-install-greenlight", target: "_blank", rel: "noopener")
             ).html_safe %>
           </div>
         </div>

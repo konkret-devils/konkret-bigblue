@@ -17,10 +17,10 @@
 %>
 
 
-<%= t('mailer.user.demoted.subtitle', role: @role) %>
+<%= t('mailer.user.demoted.subtitle', role: @role, instance_name: inst_name) %>
 
-<%= t('mailer.user.demoted.info', url: @url, role: @role) %>
+<%= t('mailer.user.demoted.info', url: @url, role: @role, instance_name: inst_name) %>
 
-<%= t('mailer.user.demoted.more-info') %>
+<%= tra('mailer.user.demoted.more-info') %>
 
 <%= @root_url %>

@@ -20,7 +20,7 @@
         <thead>
           <tr>
             <th data-header="name" data-order="<%= @order_column == "name" ? @order_direction : "none" %>">
-              <%= t("administrator.users.table.name") %>
+              <%= tra("administrator.users.table.name") %>
               <% if @order_column == "name" && @order_direction == "desc" %>
                 ↓
               <% elsif @order_column == "name" && @order_direction == "asc" %>
@@ -28,7 +28,7 @@
               <% end %>
             </th>
             <th data-header="users.name" data-order="<%= @order_column == "users.name" ? @order_direction : "none" %>">
-              <%= t("room.owner") %>
+              <%= tra("room.owner") %>
               <% if @order_column == "users.name" && @order_direction == "desc" %>
                 ↓
               <% elsif @order_column == "users.name" && @order_direction == "asc" %>
@@ -36,7 +36,7 @@
               <% end %>
             </th>
             <th data-header="uid" data-order="<%= @order_column == "uid" ? @order_direction : "none" %>">
-              <%= t("administrator.rooms.table.id") %>
+              <%= tra("administrator.rooms.table.id") %>
               <% if @order_column == "uid" && @order_direction == "desc" %>
                 ↓
               <% elsif @order_column == "uid" && @order_direction == "asc" %>
@@ -44,7 +44,7 @@
               <% end %>
             </th>
             <th>
-              <%= t("administrator.rooms.table.status") %>
+              <%= tra("administrator.rooms.table.status") %>
             </th>
             <th class="text-center"><i class="icon-settings"></i></th>
           </tr>

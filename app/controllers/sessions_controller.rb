@@ -51,7 +51,7 @@ class SessionsController < ApplicationController
   def new
     # Check if the user needs to be invited
     if invite_registration
-      redirect_to root_path, flash: { alert: I18n.t("registration.invite.no_invite") } unless params[:invite_token]
+      redirect_to root_path, flash: { alert: tra("registration.invite.no_invite") } unless params[:invite_token]
 
       session[:invite_token] = params[:invite_token]
     end
@@ -73,20 +73,20 @@ class SessionsController < ApplicationController
     user = User.include_deleted.find_by(email: session_params[:email], provider: @user_domain) unless is_super_admin
 
     # Check user with that email exists
-    return redirect_to(signin_path, alert: I18n.t("invalid_credentials")) unless user
+    return redirect_to(signin_path, alert: tra("invalid_credentials")) unless user
 
     # Check if authenticators have switched
     return switch_account_to_local(user) if !is_super_admin && auth_changed_to_local?(user)
 
     # Check correct password was entered
-    return redirect_to(signin_path, alert: I18n.t("invalid_credentials")) unless user.try(:authenticate,
+    return redirect_to(signin_path, alert: tra("invalid_credentials")) unless user.try(:authenticate,
       session_params[:password])
     # Check that the user is not deleted
-    return redirect_to root_path, flash: { alert: I18n.t("registration.banned.fail") } if user.deleted?
+    return redirect_to root_path, flash: { alert: tra("registration.banned.fail") } if user.deleted?
 
     unless is_super_admin
       # Check that the user is a Greenlight account
-      return redirect_to(root_path, alert: I18n.t("invalid_login_method")) unless user.greenlight_account?
+      return redirect_to(root_path, alert: tra("invalid_login_method")) unless user.greenlight_account?
       # Check that the user has verified their account
       unless user.activated?
         user.create_activation_token
@@ -118,9 +118,9 @@ class SessionsController < ApplicationController
   # POST /auth/failure
   def omniauth_fail
     if params[:message].nil?
-      redirect_to root_path, alert: I18n.t("omniauth_error")
+      redirect_to root_path, alert: tra("omniauth_error")
     else
-      redirect_to root_path, alert: I18n.t("omniauth_specific_error", error: params["message"])
+      redirect_to root_path, alert: I18n.t("omniauth_specific_error", error: params["message"], instance_name: inst_name)
     end
   end
 
@@ -141,7 +141,7 @@ class SessionsController < ApplicationController
 
     result = send_ldap_request(params[:session], ldap_config)
 
-    return redirect_to(ldap_signin_path, alert: I18n.t("invalid_credentials")) unless result
+    return redirect_to(ldap_signin_path, alert: tra("invalid_credentials")) unless result
 
     @auth = parse_auth(result.first, ENV['LDAP_ROLE_FIELD'])
 
@@ -197,14 +197,14 @@ class SessionsController < ApplicationController
     @user_exists = check_user_exists
 
     if !@user_exists && @auth['provider'] == "twitter"
-      return redirect_to root_path, flash: { alert: I18n.t("registration.deprecated.twitter_signup") }
+      return redirect_to root_path, flash: { alert: tra("registration.deprecated.twitter_signup") }
     end
 
     # Check if user is deleted
-    return redirect_to root_path, flash: { alert: I18n.t("registration.banned.fail") } if check_auth_deleted
+    return redirect_to root_path, flash: { alert: tra("registration.banned.fail") } if check_auth_deleted
 
     # If using invitation registration method, make sure user is invited
-    return redirect_to root_path, flash: { alert: I18n.t("registration.invite.no_invite") } unless passes_invite_reqs
+    return redirect_to root_path, flash: { alert: tra("registration.invite.no_invite") } unless passes_invite_reqs
 
     # Switch the user to a social account if they exist under the same email with no social uid
     switch_account_to_social if !@user_exists && auth_changed_to_social?(@auth['info']['email'])
@@ -220,7 +220,7 @@ class SessionsController < ApplicationController
       # Inform admins that a user signed up if emails are turned on
       send_approval_user_signup_email(user)
 
-      return redirect_to root_path, flash: { success: I18n.t("registration.approval.signup") }
+      return redirect_to root_path, flash: { success: tra("registration.approval.signup") }
     end
 
     send_invite_user_signup_email(user) if invite_registration && !@user_exists
@@ -229,9 +229,9 @@ class SessionsController < ApplicationController
 
     if @auth['provider'] == "twitter"
       flash[:alert] = if allow_user_signup? && allow_greenlight_accounts?
-        I18n.t("registration.deprecated.twitter_signin", link: signup_path(old_twitter_user_id: user.id))
+        I18n.t("registration.deprecated.twitter_signin", link: signup_path(old_twitter_user_id: user.id), instance_name: inst_name)
       else
-        I18n.t("registration.deprecated.twitter_signin", link: signin_path(old_twitter_user_id: user.id))
+        I18n.t("registration.deprecated.twitter_signin", link: signin_path(old_twitter_user_id: user.id), instance_name: inst_name)
       end
     end
   end
@@ -245,7 +245,7 @@ class SessionsController < ApplicationController
     send_password_reset_email(user)
 
     # Overwrite the flash with a more descriptive message if successful
-    flash[:success] = I18n.t("reset_password.auth_change") if flash[:success].present?
+    flash[:success] = tra("reset_password.auth_change") if flash[:success].present?
 
     redirect_to signin_path
   end

@@ -35,12 +35,12 @@ class AccountActivationsController < ApplicationController
 
       # Redirect user to root with account pending flash if account is still pending
       return redirect_to root_path,
-        flash: { success: I18n.t("registration.approval.signup") } if @user.has_role?(:pending)
+        flash: { success: tra("registration.approval.signup") } if @user.has_role?(:pending)
 
       # Redirect user to sign in path with success flash
-      redirect_to signin_path, flash: { success: I18n.t("verify.activated") + " " + I18n.t("verify.signin") }
+      redirect_to signin_path, flash: { success: tra("verify.activated") + " " + tra("verify.signin") }
     else
-      redirect_to root_path, flash: { alert: I18n.t("verify.invalid") }
+      redirect_to root_path, flash: { alert: tra("verify.invalid") }
     end
   end
 
@@ -48,7 +48,7 @@ class AccountActivationsController < ApplicationController
   def resend
     if @user.activated?
       # User is already verified
-      flash[:alert] = I18n.t("verify.already_verified")
+      flash[:alert] = tra("verify.already_verified")
     else
       # Resend
       @user.create_activation_token

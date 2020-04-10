@@ -35,9 +35,9 @@
           </div>
           <div class="small text-muted">
             <% if room.sessions > 0 %>
-              <i><%= t("room.last_session", session: recording_date(room.last_session)) %></i>
+              <i><%= t("room.last_session", session: recording_date(room.last_session), instance_name: inst_name) %></i>
             <% else %>
-              <i><%= t("room.no_sessions") %></i>
+              <i><%= tra("room.no_sessions") %></i>
             <% end %>
           </div>
         </td>
@@ -48,16 +48,16 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-md-left">
               <a href="" data-toggle="modal" data-target="#createRoomModal" class="update-room dropdown-item" data-settings-path="<%= room_settings_path(room) %>">
-                <i class="dropdown-icon fas fa-cog"></i> <%= t("room.settings") %>
+                <i class="dropdown-icon fas fa-cog"></i> <%= tra("room.settings") %>
               </a>
               <% if shared_access_allowed %>
                 <a href="" data-toggle="modal" data-target="#shareRoomModal" class="share-room dropdown-item" data-path="<%= room_shared_access_path(room) %>" data-users-path="<%= room_shared_users_path(room) %>">
-                  <i class="dropdown-icon fas fa-users"></i> <%= t("room.share") %>
+                  <i class="dropdown-icon fas fa-users"></i> <%= tra("room.share") %>
                 </a>
               <% end %>
               <% unless room == current_user.main_room %>
                 <a href="" data-toggle="modal" data-target="#deleteRoomModal" data-path="<%= room_path(room) %>" data-name="<%= room.name %>" class="delete-room dropdown-item">
-                  <i class="dropdown-icon far fa-trash-alt"></i> <%= t("delete") %>
+                  <i class="dropdown-icon far fa-trash-alt"></i> <%= tra("delete") %>
                 </a>
               <% end %>
             </div>

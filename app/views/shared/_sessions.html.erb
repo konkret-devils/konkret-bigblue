@@ -16,7 +16,7 @@
 <div class="sessions pb-5">
   <div class="container pt-6">
 
-    <%= render "shared/components/subtitle", subtitle: (only_public ? t("recording.visibility.public") + " " : "") + title, search: true %>
+    <%= render "shared/components/subtitle", subtitle: (only_public ? tra("recording.visibility.public") + " " : "") + title, search: true %>
     <div class="row">
       <div class="col-12">
         <div class="card">
@@ -25,7 +25,7 @@
               <thead>
                 <tr>
                   <th data-header="name" data-order="<%= @order_column == "name" ? @order_direction : "none" %>">
-                    <%= t("recording.table.name") %>
+                    <%= tra("recording.table.name") %>
                     <% if @order_column == "name" && @order_direction == "desc" %>
                       ↓
                     <% elsif @order_column == "name" && @order_direction == "asc" %>
@@ -34,11 +34,11 @@
                   </th>
                   <% if recording_thumbnails? %>
                     <th>
-                      <%= t("recording.table.thumbnails") %>
+                      <%= tra("recording.table.thumbnails") %>
                     </th>
                   <% end %>
                   <th class="text-left" data-header="length" data-order="<%= @order_column == "length" ? @order_direction : "none" %>">
-                    <%= t("recording.table.length") %>
+                    <%= tra("recording.table.length") %>
                     <% if @order_column == "length" && @order_direction == "desc" %>
                       ↓
                     <% elsif @order_column == "length" && @order_direction == "asc" %>
@@ -46,7 +46,7 @@
                     <% end %>
                   </th>
                   <th class="text-left" data-header="users" data-order="<%= @order_column == "users" ? @order_direction : "none" %>">
-                    <%= t("recording.table.users") %>
+                    <%= tra("recording.table.users") %>
                     <% if @order_column == "users" && @order_direction == "desc" %>
                       ↓
                     <% elsif @order_column == "users" && @order_direction == "asc" %>
@@ -54,7 +54,7 @@
                     <% end %>
                   </th>
                   <th class="text-left" data-header="visibility" data-order="<%= @order_column == "visibility" ? @order_direction : "none" %>">
-                    <%= t("recording.table.visibility") %>
+                    <%= tra("recording.table.visibility") %>
                     <% if @order_column == "visibility" && @order_direction == "desc" %>
                       ↓
                     <% elsif @order_column == "visibility" && @order_direction == "asc" %>
@@ -62,7 +62,7 @@
                     <% end %>
                   </th>
                   <th data-header="formats" data-order="<%= @order_column == "formats" ? @order_direction : "none" %>">
-                    <%= t("recording.table.formats") %>
+                    <%= tra("recording.table.formats") %>
                     <% if @order_column == "formats" && @order_direction == "desc" %>
                       ↓
                     <% elsif @order_column == "formats" && @order_direction == "asc" %>
@@ -77,16 +77,16 @@
               <tbody id="recording-table">
                 <tr id="no_recordings_found" style="display: none;">
                   <td colspan="7" class="text-center h4 p-6 font-weight-normal" >
-                    <%= t("recording.no_matched_recordings", inject: only_public ? t("recording.visibility.public").downcase + " "  : "") %>
+                    <%= t("recording.no_matched_recordings", instance_name: inst_name, inject: only_public ? tra("recording.visibility.public").downcase + " "  : "") %>
                   </td>
                 </tr>
                 <% if recordings.empty? %>
                   <tr>
                     <td colspan="7" class="text-center h4 p-6 font-weight-normal">
                       <% if user_recordings %>
-                        <%= t("recording.no_user_recordings") %>
+                        <%= tra("recording.no_user_recordings") %>
                       <% else %>
-                        <%= t("recording.no_recordings", inject: only_public ? t("recording.visibility.public").downcase + " "  : "") %>
+                        <%= t("recording.no_recordings", instance_name: inst_name, inject: only_public ? tra("recording.visibility.public").downcase + " "  : "") %>
                       <% end %>
                     </td>
                   </tr>
@@ -107,7 +107,7 @@
 
                   <% if failed_recordings > 0 %>
                     <div class="alert alert-danger alert-dismissible text-center mb-0">
-                      <%= t("recording.error", count: failed_recordings) %>
+                      <%= t("recording.error", instance_name: inst_name, count: failed_recordings) %>
                     </div>
                   <% end %>
                 <% end %>

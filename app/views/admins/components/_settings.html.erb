@@ -17,12 +17,12 @@
   <div class="row">
     <div class="col-12">
       <div class="mb-6 form-group">
-        <label class="form-label"><%= t("administrator.site_settings.branding.title") %></label>
-        <label class="form-label text-muted"><%= t("administrator.site_settings.branding.info") %></label>
+        <label class="form-label"><%= tra("administrator.site_settings.branding.title") %></label>
+        <label class="form-label text-muted"><%= tra("administrator.site_settings.branding.info") %></label>
         <div class="input-group">
           <input id="branding-url" type="text" class="form-control" value="<%= logo_image %>">
           <span class="input-group-append">
-            <button id="branding-image" onclick="changeBrandingImage('<%= admin_update_settings_path(setting: 'Branding Image') %>')" class="btn btn-primary" type="button"><%= t("administrator.site_settings.branding.change") %></button>
+            <button id="branding-image" onclick="changeBrandingImage('<%= admin_update_settings_path(setting: 'Branding Image') %>')" class="btn btn-primary" type="button"><%= tra("administrator.site_settings.branding.change") %></button>
           </span>
         </div>
       </div>
@@ -31,23 +31,23 @@
   <div class="row">
     <div class="col-12">
       <div class="mb-6 form-group">
-        <label class="form-label"><%= t("administrator.site_settings.color.title") %></label>
-        <label class="form-label text-muted"><%= t("administrator.site_settings.color.info") %></label>
+        <label class="form-label"><%= tra("administrator.site_settings.color.title") %></label>
+        <label class="form-label text-muted"><%= tra("administrator.site_settings.color.info") %></label>
           <div class="color-inputs">
             <input id="coloring-path-regular" type="hidden" value="<%= admin_coloring_path %>">
             <input id="coloring-path-lighten" type="hidden" value="<%= admin_update_settings_path(setting: "Primary Color Lighten") %>">
             <input id="coloring-path-darken" type="hidden" value="<%= admin_update_settings_path(setting: "Primary Color Darken") %>">
 
             <div id="colorinput-regular" class="btn primary-regular mr-3">
-              <%= t("administrator.site_settings.color.regular") %>
+              <%= tra("administrator.site_settings.color.regular") %>
             </div>
 
             <div id="colorinput-lighten" class="btn primary-lighten mr-3">
-              <%= t("administrator.site_settings.color.lighten") %>
+              <%= tra("administrator.site_settings.color.lighten") %>
             </div>
 
             <div id="colorinput-darken" class="btn primary-darken">
-              <%= t("administrator.site_settings.color.darken") %>
+              <%= tra("administrator.site_settings.color.darken") %>
             </div>
           </div>
         </div>
@@ -57,21 +57,21 @@
   <div class="row">
     <div class="mb-6 col-12">
       <div class="form-group">
-        <label class="form-label"><%= t("administrator.site_settings.registration.title") %></label>
-        <label class="form-label text-muted"><%= t("administrator.site_settings.registration.info") %></label>
+        <label class="form-label"><%= tra("administrator.site_settings.registration.title") %></label>
+        <label class="form-label text-muted"><%= tra("administrator.site_settings.registration.info") %></label>
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" id="registrationMethods" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= registration_method_string %>
           </button>
           <div class="dropdown-menu" aria-labelledby="registrationMethods">
             <%= button_to admin_change_registration_path(value: "open"), class: "dropdown-item", "data-disable": "" do %>
-              <%= t("administrator.site_settings.registration.methods.open") %>
+              <%= tra("administrator.site_settings.registration.methods.open") %>
             <% end %>
             <%= button_to admin_change_registration_path(value: "invite"), class: "dropdown-item", "data-disable": "" do %>
-              <%= t("administrator.site_settings.registration.methods.invite") %>
+              <%= tra("administrator.site_settings.registration.methods.invite") %>
             <% end %>
             <%= button_to admin_change_registration_path(value: "approval"), class: "dropdown-item", "data-disable": "" do %>
-              <%= t("administrator.site_settings.registration.methods.approval") %>
+              <%= tra("administrator.site_settings.registration.methods.approval") %>
             <% end %>
           </div>
         </div>
@@ -81,18 +81,18 @@
   <div class="mb-6 row">
     <div class="col-12">
       <div class="form-group">
-        <label class="form-label"><%= t("administrator.site_settings.authentication.title") %></label>
-        <label class="form-label text-muted"><%= t("administrator.site_settings.authentication.info") %></label>
+        <label class="form-label"><%= tra("administrator.site_settings.authentication.title") %></label>
+        <label class="form-label text-muted"><%= tra("administrator.site_settings.authentication.info") %></label>
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" id="room-auth" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= room_authentication_string %>
           </button>
           <div class="dropdown-menu" aria-labelledby="room-auth">
             <%= button_to admin_update_settings_path(setting: "Room Authentication", value: "true"), class: "dropdown-item", "data-disable": "" do %>
-              <%= t("administrator.site_settings.authentication.enabled") %>
+              <%= tra("administrator.site_settings.authentication.enabled") %>
             <% end %>
             <%= button_to admin_update_settings_path(setting: "Room Authentication", value: "false"), class: "dropdown-item", "data-disable": "" do %>
-              <%= t("administrator.site_settings.authentication.disabled") %>
+              <%= tra("administrator.site_settings.authentication.disabled") %>
             <% end %>
           </div>
         </div>
@@ -102,18 +102,18 @@
   <div class="mb-6 row">
     <div class="col-12">
       <div class="form-group">
-        <label class="form-label"><%= t("administrator.site_settings.shared_access.title") %></label>
-        <label class="form-label text-muted"><%= t("administrator.site_settings.shared_access.info") %></label>
+        <label class="form-label"><%= tra("administrator.site_settings.shared_access.title") %></label>
+        <label class="form-label text-muted"><%= tra("administrator.site_settings.shared_access.info") %></label>
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" id="room-auth" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= shared_access_string %>
           </button>
           <div class="dropdown-menu" aria-labelledby="room-auth">
             <%= button_to admin_update_settings_path(setting: "Shared Access", value: "true"), class: "dropdown-item" do %>
-              <%= t("administrator.site_settings.authentication.enabled") %>
+              <%= tra("administrator.site_settings.authentication.enabled") %>
             <% end %>
             <%= button_to admin_update_settings_path(setting: "Shared Access", value: "false"), class: "dropdown-item" do %>
-              <%= t("administrator.site_settings.authentication.disabled") %>
+              <%= tra("administrator.site_settings.authentication.disabled") %>
             <% end %>
           </div>
         </div>
@@ -123,18 +123,18 @@
   <div class="mb-6 row">
     <div class="col-12">
       <div class="form-group">
-        <label class="form-label"><%= t("administrator.site_settings.recording_visibility.title") %></label>
-        <label class="form-label text-muted"><%= t("administrator.site_settings.recording_visibility.info") %></label>
+        <label class="form-label"><%= tra("administrator.site_settings.recording_visibility.title") %></label>
+        <label class="form-label text-muted"><%= tra("administrator.site_settings.recording_visibility.info") %></label>
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" id="room-auth" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= recording_default_visibility_string %>
           </button>
           <div class="dropdown-menu" aria-labelledby="room-auth">
             <%= button_to admin_update_settings_path(setting: "Default Recording Visibility", value: "public"), class: "dropdown-item", "data-disable": "" do %>
-              <%= t("recording.visibility.public") %>
+              <%= tra("recording.visibility.public") %>
             <% end %>
             <%= button_to admin_update_settings_path(setting: "Default Recording Visibility", value: "private"), class: "dropdown-item", "data-disable": "" do %>
-              <%= t("recording.visibility.unlisted") %>
+              <%= tra("recording.visibility.unlisted") %>
             <% end %>
           </div>
         </div>
@@ -144,8 +144,8 @@
   <div class="mb-6 row">
     <div class="col-12">
       <div class="form-group">
-        <label class="form-label"><%= t("administrator.site_settings.rooms.title") %></label>
-        <label class="form-label text-muted"><%= t("administrator.site_settings.rooms.info") %></label>
+        <label class="form-label"><%= tra("administrator.site_settings.rooms.title") %></label>
+        <label class="form-label text-muted"><%= tra("administrator.site_settings.rooms.info") %></label>
         <div class="row gutters-xs">
           <div class="col-auto">
             <label class="colorinput">
@@ -180,48 +180,48 @@
     <div class="row">
       <div class="col-12">
         <div class="mb-6 form-group">
-          <label class="form-label"><%= t("administrator.site_settings.cache.title") %></label>
-          <label class="form-label text-muted"><%= t("administrator.site_settings.cache.info") %></label>
-          <%= button_to t("administrator.site_settings.cache.button"), admin_clear_cache_path, class: "btn btn-primary", "data-disable": "" %>
+          <label class="form-label"><%= tra("administrator.site_settings.cache.title") %></label>
+          <label class="form-label text-muted"><%= tra("administrator.site_settings.cache.info") %></label>
+          <%= button_to tra("administrator.site_settings.cache.button"), admin_clear_cache_path, class: "btn btn-primary", "data-disable": "" %>
         </div>
       </div>
     </div>
     <div class="mb-4 row">
       <div class="col-12">
         <div class="form-group">
-          <label class="form-label"><%= t("administrator.site_settings.clear_auth.title") %></label>
-          <label class="form-label text-muted"><%= t("administrator.site_settings.clear_auth.info") %></label>
-          <%= button_to t("administrator.site_settings.clear_auth.button"), admin_clear_auth_path, class: "btn btn-primary" %>
+          <label class="form-label"><%= tra("administrator.site_settings.clear_auth.title") %></label>
+          <label class="form-label text-muted"><%= tra("administrator.site_settings.clear_auth.info") %></label>
+          <%= button_to tra("administrator.site_settings.clear_auth.button"), admin_clear_auth_path, class: "btn btn-primary" %>
         </div>
       </div>
     </div>
     <div class="mb-4 row">
       <div class="col-12">
         <div class="form-group">
-          <label class="form-label"><%= t("administrator.site_settings.log_level.title") %></label>
-          <label class="form-label text-muted"><%= t("administrator.site_settings.log_level.information") %></label>
+          <label class="form-label"><%= tra("administrator.site_settings.log_level.title") %></label>
+          <label class="form-label text-muted"><%= tra("administrator.site_settings.log_level.information") %></label>
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" id="room-auth" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= log_level_string %>
             </button>
             <div class="dropdown-menu" aria-labelledby="room-auth">
               <%= button_to admin_log_level_path(value: 0), class: "dropdown-item", "data-disable": "" do %>
-                <%= t("administrator.site_settings.log_level.debug") %>
+                <%= tra("administrator.site_settings.log_level.debug") %>
               <% end %>
               <%= button_to admin_log_level_path(value: 1), class: "dropdown-item", "data-disable": "" do %>
-                <%= t("administrator.site_settings.log_level.info") %>
+                <%= tra("administrator.site_settings.log_level.info") %>
               <% end %>
               <%= button_to admin_log_level_path(value: 2), class: "dropdown-item", "data-disable": "" do %>
-                <%= t("administrator.site_settings.log_level.warn") %>
+                <%= tra("administrator.site_settings.log_level.warn") %>
               <% end %>
               <%= button_to admin_log_level_path(value: 3), class: "dropdown-item", "data-disable": "" do %>
-                <%= t("administrator.site_settings.log_level.error") %>
+                <%= tra("administrator.site_settings.log_level.error") %>
               <% end %>
               <%= button_to admin_log_level_path(value: 4), class: "dropdown-item", "data-disable": "" do %>
-                <%= t("administrator.site_settings.log_level.fatal") %>
+                <%= tra("administrator.site_settings.log_level.fatal") %>
               <% end %>
               <%= button_to admin_log_level_path(value: 5), class: "dropdown-item", "data-disable": "" do %>
-                <%= t("administrator.site_settings.log_level.unknown") %>
+                <%= tra("administrator.site_settings.log_level.unknown") %>
               <% end %>
             </div>
           </div>

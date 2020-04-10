@@ -40,6 +40,20 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  # Retrieves the instance name.
+  def inst_name
+    Rails.configuration.instance_name
+  end
+  helper_method :inst_name
+
+  # wrapper for I18n.t which injects instance_name variable automatically.
+  def tra(key_var)
+    I18n.t(key_var, instance_name: inst_name)
+  end
+  helper_method :tra
+
+
+
   def bbb_server
     @bbb_server ||= Rails.configuration.loadbalanced_configuration ? bbb(@user_domain) : bbb("greenlight")
   end
@@ -73,8 +87,8 @@ class ApplicationController < ActionController::Base
       render "errors/greenlight_error", status: 503, formats: :html,
         locals: {
           status_code: 503,
-          message: I18n.t("errors.maintenance.message"),
-          help: I18n.t("errors.maintenance.help"),
+          message: tra("errors.maintenance.message"),
+          help: tra("errors.maintenance.help"),
         }
     end
     if Rails.configuration.maintenance_window.present?
@@ -112,7 +126,7 @@ class ApplicationController < ActionController::Base
        current_user&.greenlight_account? && current_user&.authenticate(Rails.configuration.admin_password_default)
 
       flash.now[:alert] = I18n.t("default_admin",
-        edit_link: edit_user_path(user_uid: current_user.uid) + "?setting=password").html_safe
+        edit_link: edit_user_path(user_uid: current_user.uid) + "?setting=password", instance_name: inst_name).html_safe
     end
   end
 
@@ -120,10 +134,10 @@ class ApplicationController < ActionController::Base
   def check_user_role
     if current_user&.has_role? :denied
       session.delete(:user_id)
-      redirect_to root_path, flash: { alert: I18n.t("registration.banned.fail") }
+      redirect_to root_path, flash: { alert: tra("registration.banned.fail") }
     elsif current_user&.has_role? :pending
       session.delete(:user_id)
-      redirect_to root_path, flash: { alert: I18n.t("registration.approval.fail") }
+      redirect_to root_path, flash: { alert: tra("registration.approval.fail") }
     end
   end
 
@@ -237,18 +251,18 @@ class ApplicationController < ActionController::Base
       @settings = Setting.find_or_create_by(provider: @user_domain)
 
       if e.message.eql? "No user with that id exists"
-        render "errors/greenlight_error", locals: { message: I18n.t("errors.not_found.user_not_found.message"),
-          help: I18n.t("errors.not_found.user_not_found.help") }
+        render "errors/greenlight_error", locals: { message: tra("errors.not_found.user_not_found.message"),
+          help: tra("errors.not_found.user_not_found.help") }
       elsif e.message.eql? "Provider not included."
-        render "errors/greenlight_error", locals: { message: I18n.t("errors.not_found.user_missing.message"),
-          help: I18n.t("errors.not_found.user_missing.help") }
+        render "errors/greenlight_error", locals: { message: tra("errors.not_found.user_missing.message"),
+          help: tra("errors.not_found.user_missing.help") }
       elsif e.message.eql? "That user has no configured provider."
         render "errors/greenlight_error", locals: { status_code: 501,
-          message: I18n.t("errors.no_provider.message"),
-          help: I18n.t("errors.no_provider.help") }
+          message: tra("errors.no_provider.message"),
+          help: tra("errors.no_provider.help") }
       else
-        render "errors/greenlight_error", locals: { status_code: 500, message: I18n.t("errors.internal.message"),
-          help: I18n.t("errors.internal.help"), display_back: true }
+        render "errors/greenlight_error", locals: { status_code: 500, message: tra("errors.internal.message"),
+          help: tra("errors.internal.help"), display_back: true }
       end
     end
   end

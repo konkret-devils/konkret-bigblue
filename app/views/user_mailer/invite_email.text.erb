@@ -16,12 +16,12 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 %>
 
-<%= t('mailer.user.invite.subject') %>
+<%= tra('mailer.user.invite.subject') %>
 
-<%= t('mailer.user.invite.info', name: @name) %>
+<%= t('mailer.user.invite.info', name: @name, instance_name: inst_name) %>
 
-<%= t('mailer.user.invite.username', email: @email) %>
+<%= t('mailer.user.invite.username', email: @email, instance_name: inst_name) %>
 
-<%= t('mailer.user.invite.signup_info') %>
+<%= tra('mailer.user.invite.signup_info') %>
 
 <%= @url %>

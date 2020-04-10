@@ -21,23 +21,23 @@
         <%= image_tag(@image, height: '70') %>
 
         <h1 style="margin-bottom:30px">
-        <%= t('mailer.user.approve.subject') %>
+        <%= tra('mailer.user.approve.subject') %>
         </h1>
 
         <p>
-        <%= t('mailer.user.approve.info') %>
+        <%= tra('mailer.user.approve.info') %>
         </p>
 
         <p>
-        <%= t('mailer.user.approve.username', email: @user.email) %>
+        <%= t('mailer.user.approve.username', email: @user.email, instance_name: inst_name) %>
         </p>
 
         <p style="margin-bottom:35px;">
-        <%= t('mailer.user.approve.signin') %>
+        <%= tra('mailer.user.approve.signin') %>
         </p>
 
         <a style="background: <%= @color %>;color: #ffffff; padding: 10px 15px; box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);border: 1px solid transparent;text-decoration:none;" href="<%= @url %>">
-        <%= t('mailer.user.approve.signin_link') %>
+        <%= tra('mailer.user.approve.signin_link') %>
         </a>
     </div>
 </div>

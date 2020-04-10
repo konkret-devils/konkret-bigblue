@@ -19,7 +19,7 @@
       <div class="modal-body">
         <div class="card-body p-6">
           <div class="card-title">
-            <h3><%= t("modal.create_role.title") %></h3>
+            <h3><%= tra("modal.create_role.title") %></h3>
           </div>
 
           <%= form_for(:role, url: admin_new_role_path) do |f| %>
@@ -27,16 +27,16 @@
               <span class="input-icon-addon">
                 <i class="fas fa-user-tag"></i>
               </span>
-              <%= f.text_field :name, id: "createRoleName", class: "form-control text-center", placeholder: t("modal.create_role.name_placeholder"), autocomplete: :off, required: true %>
-              <div class="invalid-feedback text-left"><%= t("modal.create_role.not_blank") %></div>
+              <%= f.text_field :name, id: "createRoleName", class: "form-control text-center", placeholder: tra("modal.create_role.name_placeholder"), autocomplete: :off, required: true %>
+              <div class="invalid-feedback text-left"><%= tra("modal.create_role.not_blank") %></div>
             </div>
             <div class="mt-4">
-                <%= f.submit t("modal.create_role.create"), class: "btn btn-primary btn-block" %>
+                <%= f.submit tra("modal.create_role.create"), class: "btn btn-primary btn-block" %>
             </div>
           <% end %>
         </div>
         <div class="card-footer">
-          <p><%= t("modal.create_role.footer_text") %></p>
+          <p><%= tra("modal.create_role.footer_text") %></p>
         </div>
       </div>
     </div>

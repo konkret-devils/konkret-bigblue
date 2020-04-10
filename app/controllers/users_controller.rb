@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     render("sessions/new") && return unless valid_user_or_captcha
 
     # Redirect to root if user token is either invalid or expired
-    return redirect_to root_path, flash: { alert: I18n.t("registration.invite.fail") } unless passes_invite_reqs
+    return redirect_to root_path, flash: { alert: tra("registration.invite.fail") } unless passes_invite_reqs
 
     # User has passed all validations required
     @user.save
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       @user.add_role :pending
 
       return redirect_to root_path,
-        flash: { success: I18n.t("registration.approval.signup") } unless Rails.configuration.enable_email_verification
+        flash: { success: tra("registration.approval.signup") } unless Rails.configuration.enable_email_verification
     end
 
     send_registration_email
@@ -109,7 +109,7 @@ class UsersController < ApplicationController
 
       # Notify the user that their account has been updated.
       return redirect_to redirect_path,
-        flash: { success: I18n.t("info_update_success") } if @user.errors.empty? && @user.save
+        flash: { success: tra("info_update_success") } if @user.errors.empty? && @user.save
 
       render :change_password
     else
@@ -119,9 +119,9 @@ class UsersController < ApplicationController
         user_locale(@user)
 
         if update_roles(params[:user][:role_ids])
-          return redirect_to redirect_path, flash: { success: I18n.t("info_update_success") }
+          return redirect_to redirect_path, flash: { success: tra("info_update_success") }
         else
-          flash[:alert] = I18n.t("administrator.roles.invalid_assignment")
+          flash[:alert] = tra("administrator.roles.invalid_assignment")
         end
       end
 
@@ -156,13 +156,13 @@ class UsersController < ApplicationController
         # Log the user out if they are deleting themself
         session.delete(:user_id) if self_delete
 
-        return redirect_to redirect_url, flash: { success: I18n.t("administrator.flash.delete") } unless self_delete
+        return redirect_to redirect_url, flash: { success: tra("administrator.flash.delete") } unless self_delete
       else
-        flash[:alert] = I18n.t("administrator.flash.delete_fail")
+        flash[:alert] = tra("administrator.flash.delete_fail")
       end
     rescue => e
       logger.error "Support: Error in user deletion: #{e}"
-      flash[:alert] = I18n.t(params[:message], default: I18n.t("administrator.flash.delete_fail"))
+      flash[:alert] = I18n.t(params[:message], default: tra("administrator.flash.delete_fail"), instance_name: inst_name)
     end
 
     redirect_to redirect_url

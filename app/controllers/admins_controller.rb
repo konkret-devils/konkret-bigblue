@@ -85,7 +85,7 @@ class AdminsController < ApplicationController
     @user.roles = []
     @user.add_role :denied
 
-    redirect_back fallback_location: admins_path, flash: { success: I18n.t("administrator.flash.banned") }
+    redirect_back fallback_location: admins_path, flash: { success: tra("administrator.flash.banned") }
   end
 
   # POST /admins/unban/:user_uid
@@ -93,7 +93,7 @@ class AdminsController < ApplicationController
     @user.remove_role :denied
     @user.add_role :user
 
-    redirect_back fallback_location: admins_path, flash: { success: I18n.t("administrator.flash.unbanned") }
+    redirect_back fallback_location: admins_path, flash: { success: tra("administrator.flash.unbanned") }
   end
 
   # POST /admins/approve/:user_uid
@@ -102,7 +102,7 @@ class AdminsController < ApplicationController
 
     send_user_approved_email(@user)
 
-    redirect_back fallback_location: admins_path, flash: { success: I18n.t("administrator.flash.approved") }
+    redirect_back fallback_location: admins_path, flash: { success: tra("administrator.flash.approved") }
   end
 
   # POST /admins/approve/:user_uid
@@ -111,7 +111,7 @@ class AdminsController < ApplicationController
     @user.undelete!
     @user.rooms.deleted.each(&:undelete!)
 
-    redirect_back fallback_location: admins_path, flash: { success: I18n.t("administrator.flash.restored") }
+    redirect_back fallback_location: admins_path, flash: { success: tra("administrator.flash.restored") }
   end
 
   # POST /admins/invite
@@ -140,7 +140,7 @@ class AdminsController < ApplicationController
       redirect_path = admins_path
     end
 
-    redirect_to redirect_path, flash: { success: I18n.t("administrator.flash.reset_password") }
+    redirect_to redirect_path, flash: { success: tra("administrator.flash.reset_password") }
   end
 
   # POST /admins/merge/:user_uid
@@ -160,7 +160,7 @@ class AdminsController < ApplicationController
       user_to_merge.rooms.each do |room|
         room.owner = @user
 
-        room.name = "(#{I18n.t('merged')}) #{room.name}"
+        room.name = "(#{tra('merged')}) #{room.name}"
 
         room.save!
       end
@@ -172,10 +172,10 @@ class AdminsController < ApplicationController
       user_to_merge.destroy(true)
     rescue => e
       logger.info "Failed to merge #{uid_to_merge} into #{@user.uid}: #{e}"
-      flash[:alert] = I18n.t("administrator.flash.merge_fail")
+      flash[:alert] = tra("administrator.flash.merge_fail")
     else
       logger.info "#{current_user.uid} successfully merged #{uid_to_merge} into #{@user.uid}"
-      flash[:success] = I18n.t("administrator.flash.merge_success")
+      flash[:success] = tra("administrator.flash.merge_success")
     end
 
     redirect_back fallback_location: admins_path
@@ -187,10 +187,10 @@ class AdminsController < ApplicationController
   def update_settings
     @settings.update_value(params[:setting], params[:value])
 
-    flash_message = I18n.t("administrator.flash.settings")
+    flash_message = tra("administrator.flash.settings")
 
     if params[:value] == "Default Recording Visibility"
-      flash_message += ". " + I18n.t("administrator.site_settings.recording_visibility.warning")
+      flash_message += ". " + tra("administrator.site_settings.recording_visibility.warning")
     end
 
     redirect_to admin_site_settings_path, flash: { success: flash_message }
@@ -201,7 +201,7 @@ class AdminsController < ApplicationController
     @settings.update_value("Primary Color", params[:value])
     @settings.update_value("Primary Color Lighten", color_lighten(params[:value]))
     @settings.update_value("Primary Color Darken", color_darken(params[:value]))
-    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
+    redirect_to admin_site_settings_path, flash: { success: tra("administrator.flash.settings") }
   end
 
   # POST /admins/registration_method/:method
@@ -211,11 +211,11 @@ class AdminsController < ApplicationController
     # Only allow change to Join by Invitation if user has emails enabled
     if !Rails.configuration.enable_email_verification && new_method == Rails.configuration.registration_methods[:invite]
       redirect_to admin_site_settings_path,
-        flash: { alert: I18n.t("administrator.flash.invite_email_verification") }
+        flash: { alert: tra("administrator.flash.invite_email_verification") }
     else
       @settings.update_value("Registration Method", new_method)
       redirect_to admin_site_settings_path,
-        flash: { success: I18n.t("administrator.flash.registration_method_updated") }
+        flash: { success: tra("administrator.flash.registration_method_updated") }
     end
   end
 
@@ -223,7 +223,7 @@ class AdminsController < ApplicationController
   def clear_auth
     User.include_deleted.where(provider: @user_domain).update_all(social_uid: nil)
 
-    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
+    redirect_to admin_site_settings_path, flash: { success: tra("administrator.flash.settings") }
   end
 
   # POST /admins/clear_cache
@@ -231,14 +231,14 @@ class AdminsController < ApplicationController
     Rails.cache.delete("#{@user_domain}/getUser")
     Rails.cache.delete("#{@user_domain}/getUserGreenlightCredentials")
 
-    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
+    redirect_to admin_site_settings_path, flash: { success: tra("administrator.flash.settings") }
   end
 
   # POST /admins/log_level
   def log_level
     Rails.logger.level = params[:value].to_i
 
-    redirect_to admin_site_settings_path, flash: { success: I18n.t("administrator.flash.settings") }
+    redirect_to admin_site_settings_path, flash: { success: tra("administrator.flash.settings") }
   end
 
   # ROLES
@@ -253,7 +253,7 @@ class AdminsController < ApplicationController
   def new_role
     new_role = create_role(params[:role][:name])
 
-    return redirect_to admin_roles_path, flash: { alert: I18n.t("administrator.roles.invalid_create") } if new_role.nil?
+    return redirect_to admin_roles_path, flash: { alert: tra("administrator.roles.invalid_create") } if new_role.nil?
 
     redirect_to admin_roles_path(selected_role: new_role.id)
   end
@@ -263,7 +263,7 @@ class AdminsController < ApplicationController
   # Note: A lower priority role will always get used before a higher priority one
   def change_role_order
     unless update_priority(params[:role])
-      redirect_to admin_roles_path, flash: { alert: I18n.t("administrator.roles.invalid_order") }
+      redirect_to admin_roles_path, flash: { alert: tra("administrator.roles.invalid_order") }
     end
   end
 
@@ -271,7 +271,7 @@ class AdminsController < ApplicationController
   # This method updates the permissions assigned to a role
   def update_role
     role = Role.find(params[:role_id])
-    flash[:alert] = I18n.t("administrator.roles.invalid_update") unless update_permissions(role)
+    flash[:alert] = tra("administrator.roles.invalid_update") unless update_permissions(role)
     redirect_to admin_roles_path(selected_role: role.id)
   end
 
@@ -283,7 +283,7 @@ class AdminsController < ApplicationController
     # Make sure no users are assigned to the role and the role isn't a reserved role
     # before deleting
     if role.users.count.positive?
-      flash[:alert] = I18n.t("administrator.roles.role_has_users", user_count: role.users.count)
+      flash[:alert] = I18n.t("administrator.roles.role_has_users", user_count: role.users.count, instance_name: inst_name)
       return redirect_to admin_roles_path(selected_role: role.id)
     elsif Role::RESERVED_ROLE_NAMES.include?(role) || role.provider != @user_domain ||
           role.priority <= current_user.highest_priority_role.priority
@@ -309,7 +309,7 @@ class AdminsController < ApplicationController
   # Verifies that admin is an administrator of the user in the action
   def verify_admin_of_user
     redirect_to admins_path,
-      flash: { alert: I18n.t("administrator.flash.unauthorized") } unless current_user.admin_of?(@user)
+      flash: { alert: tra("administrator.flash.unauthorized") } unless current_user.admin_of?(@user)
   end
 
   # Creates the invite if it doesn't exist, or updates the updated_at time if it does

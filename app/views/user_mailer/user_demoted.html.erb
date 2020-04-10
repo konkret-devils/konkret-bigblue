@@ -21,19 +21,19 @@
     <%= image_tag(@image, height: '70') %>
 
     <h1 style="margin-bottom:30px">
-      <%= t('mailer.user.demoted.subtitle', role: @role) %>
+      <%= t('mailer.user.demoted.subtitle', role: @role, instance_name: inst_name) %>
     </h1>
 
     <p>
-      <%= t('mailer.user.demoted.info', url: @url, role: @role) %>
+      <%= t('mailer.user.demoted.info', url: @url, role: @role, instance_name: inst_name) %>
     </p>
 
     <p style="margin-bottom:45px;">
-      <%= t('mailer.user.demoted.more-info') %>
+      <%= tra('mailer.user.demoted.more-info') %>
     </p>
 
     <a style="background: <%= @color %>;color: #ffffff; padding: 10px 15px; box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);border: 1px solid transparent;text-decoration:none;" href="<%= @root_url %>">
-      <%= t('mailer.user.demoted.root_link') %>
+      <%= tra('mailer.user.demoted.root_link') %>
     </a>
   </div>
 </div>

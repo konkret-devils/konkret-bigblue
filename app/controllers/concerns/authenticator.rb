@@ -101,7 +101,7 @@ module Authenticator
 
       session["old_twitter_user_id"] = nil
 
-      flash[:success] = I18n.t("registration.deprecated.merge_success")
+      flash[:success] =tra("registration.deprecated.merge_success")
     end
   end
 end

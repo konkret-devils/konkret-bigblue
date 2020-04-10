@@ -28,7 +28,7 @@ class UserMailer < ApplicationMailer
     @url = url
     @image = logo_image
     @color = user_color
-    mail(to: @user.email, subject: t('landing.welcome'))
+    mail(to: @user.email, subject: tra('landing.welcome'))
   end
 
   def password_reset(user, url, settings)
@@ -37,7 +37,7 @@ class UserMailer < ApplicationMailer
     @url = url
     @image = logo_image
     @color = user_color
-    mail to: user.email, subject: t('reset_password.subtitle')
+    mail to: user.email, subject: tra('reset_password.subtitle')
   end
 
   def user_promoted(user, role, url, settings)
@@ -47,7 +47,7 @@ class UserMailer < ApplicationMailer
     @image = logo_image
     @color = user_color
     @role = translated_role_name(role)
-    mail to: user.email, subject: t('mailer.user.promoted.subtitle', role: translated_role_name(role))
+    mail to: user.email, subject: t('mailer.user.promoted.subtitle', role: translated_role_name(role), instance_name: inst_name)
   end
 
   def user_demoted(user, role, url, settings)
@@ -57,7 +57,7 @@ class UserMailer < ApplicationMailer
     @image = logo_image
     @color = user_color
     @role = translated_role_name(role)
-    mail to: user.email, subject: t('mailer.user.demoted.subtitle', role: translated_role_name(role))
+    mail to: user.email, subject: t('mailer.user.demoted.subtitle', role: translated_role_name(role), instance_name: inst_name)
   end
 
   def invite_email(invitor, email, url, settings)
@@ -69,7 +69,7 @@ class UserMailer < ApplicationMailer
     @color = user_color
     @from = "#{invitor.name} ~ via #{Rails.configuration.smtp_sender}"
     @reply_to = "#{invitor.name} <#{invitor.email}>"
-    mail to: email, subject: t('mailer.user.invite.subject'), from: @from, 'reply-to': @reply_to
+    mail to: email, subject: tra('mailer.user.invite.subject'), from: @from, 'reply-to': @reply_to
   end
 
   def approve_user(user, url, settings)
@@ -78,7 +78,7 @@ class UserMailer < ApplicationMailer
     @url = url
     @image = logo_image
     @color = user_color
-    mail to: user.email, subject: t('mailer.user.approve.subject')
+    mail to: user.email, subject: tra('mailer.user.approve.subject')
   end
 
   def approval_user_signup(user, url, admin_emails, settings)
@@ -88,7 +88,7 @@ class UserMailer < ApplicationMailer
     @image = logo_image
     @color = user_color
 
-    mail to: admin_emails, subject: t('mailer.user.approve.signup.subject')
+    mail to: admin_emails, subject: tra('mailer.user.approve.signup.subject')
   end
 
   def invite_user_signup(user, url, admin_emails, settings)
@@ -98,6 +98,6 @@ class UserMailer < ApplicationMailer
     @image = logo_image
     @color = user_color
 
-    mail to: admin_emails, subject: t('mailer.user.invite.signup.subject')
+    mail to: admin_emails, subject: tra('mailer.user.invite.signup.subject')
   end
 end

@@ -26,18 +26,18 @@
           <% if current_user.has_role? :super_admin %>
             <% admins_page = params[:controller] == "admins" && params[:action] == "index" ? "active" : "" %>
             <%= link_to admins_path, class: "px-3 mx-1 mt-1 header-nav #{admins_page}" do %>
-              <i class="fas fa-home pr-1 "></i><span class="d-none d-sm-inline-block"><%= t("header.dropdown.home") %></span>
+              <i class="fas fa-home pr-1 "></i><span class="d-none d-sm-inline-block"><%= tra("header.dropdown.home") %></span>
             <% end %>
           <% else %>
             <% rooms_page = params[:controller] == "rooms" && params[:action] == "show" ? "active" : "" %>
             <%= link_to current_user.main_room, class: "px-3 mx-1 mt-1 header-nav #{rooms_page}" do %>
-              <i class="fas fa-home pr-1 "></i><span class="d-none d-sm-inline-block"><%= t("header.dropdown.home") %></span>
+              <i class="fas fa-home pr-1 "></i><span class="d-none d-sm-inline-block"><%= tra("header.dropdown.home") %></span>
             <% end %>
 
             <% if current_user.highest_priority_role.get_permission("can_create_rooms") %>
               <% all_rec_page = params[:controller] == "users" && params[:action] == "recordings" ? "active" : "" %>
               <%= link_to get_user_recordings_path(current_user), class: "px-3 mx-1 mt-1 header-nav #{all_rec_page}" do %>
-                <i class="fas fa-video pr-1"></i><span class="d-none d-sm-inline-block"><%= t("header.all_recordings") %></span>
+                <i class="fas fa-video pr-1"></i><span class="d-none d-sm-inline-block"><%= tra("header.all_recordings") %></span>
               <% end %>
             <% end %>
           <% end %>
@@ -58,52 +58,52 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end">
               <%= link_to edit_user_path(current_user), class: "dropdown-item"  do %>
-                <i class="dropdown-icon fas fa-id-card mr-3"></i><%= t("header.dropdown.settings") %>
+                <i class="dropdown-icon fas fa-id-card mr-3"></i><%= tra("header.dropdown.settings") %>
               <% end %>
               <% highest_role = current_user.highest_priority_role %>
               <% if highest_role.get_permission("can_manage_users") || highest_role.name == "super_admin" %>
                 <%= link_to admins_path, class: "dropdown-item" do %>
-                  <i class="dropdown-icon fas fa-user-tie mr-3"></i><%= t("header.dropdown.account_settings") %>
+                  <i class="dropdown-icon fas fa-user-tie mr-3"></i><%= tra("header.dropdown.account_settings") %>
                 <% end %>
               <% elsif highest_role.get_permission("can_manage_rooms_recordings")%>
                 <%= link_to admin_rooms_path, class: "dropdown-item" do %>
-                  <i class="dropdown-icon fas fa-user-tie mr-3"></i><%= t("header.dropdown.account_settings") %>
+                  <i class="dropdown-icon fas fa-user-tie mr-3"></i><%= tra("header.dropdown.account_settings") %>
                 <% end %>
               <% elsif highest_role.get_permission("can_edit_site_settings") %>
                 <%= link_to admin_site_settings_path, class: "dropdown-item" do %>
-                  <i class="dropdown-icon fas fa-user-tie mr-3"></i><%= t("header.dropdown.account_settings") %>
+                  <i class="dropdown-icon fas fa-user-tie mr-3"></i><%= tra("header.dropdown.account_settings") %>
                 <% end %>
               <% elsif highest_role.get_permission("can_edit_roles")%>
                 <%= link_to admin_roles_path, class: "dropdown-item" do %>
-                  <i class="dropdown-icon fas fa-user-tie mr-3"></i><%= t("header.dropdown.account_settings") %>
+                  <i class="dropdown-icon fas fa-user-tie mr-3"></i><%= tra("header.dropdown.account_settings") %>
                 <% end %>
               <% end %>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="http://docs.bigbluebutton.org/install/greenlight-v2.html" target="_blank" rel="noopener">
-                <i class="dropdown-icon far fa-question-circle"></i> <%= t("header.dropdown.help") %>
+                <i class="dropdown-icon far fa-question-circle"></i> <%= tra("header.dropdown.help") %>
               </a>
               <% if Rails.configuration.report_issue_url.present? %>
                 <a class="dropdown-item" href="<%= Rails.configuration.report_issue_url %>" target="_blank" rel="noopener">
-                  <i class="dropdown-icon fas fa-exclamation mr-3"></i><%= t("errors.internal.report") %>
+                  <i class="dropdown-icon fas fa-exclamation mr-3"></i><%= tra("errors.internal.report") %>
                 </a>
               <% end %>
               <%= link_to logout_path, class: "dropdown-item" do %>
-                <i class="dropdown-icon fas fa-sign-out-alt"></i> <%= t("header.dropdown.signout") %>
+                <i class="dropdown-icon fas fa-sign-out-alt"></i> <%= tra("header.dropdown.signout") %>
               <% end %>
             </div>
           </div>
         <% else %>
           <% allow_greenlight_accounts = allow_greenlight_accounts? %>
           <% if allow_greenlight_accounts %>
-            <%= link_to t("login"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+            <%= link_to tra("login"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
           <% elsif Rails.configuration.loadbalanced_configuration %>
-            <%= link_to t("login"), omniauth_login_url(:bn_launcher), :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+            <%= link_to tra("login"), omniauth_login_url(:bn_launcher), :class => "btn btn-outline-primary mx-2 sign-in-button" %>
           <% else %>
-            <%= link_to t("login"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+            <%= link_to tra("login"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
           <% end %>
 
           <% if allow_user_signup? && allow_greenlight_accounts %>
-            <%= link_to t("signup.title"), signup_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+            <%= link_to tra("signup.title"), signup_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
           <% end %>
         <% end %>
       </div>

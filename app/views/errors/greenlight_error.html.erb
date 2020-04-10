@@ -26,19 +26,19 @@
     <p class="h4 text-muted font-weight-normal mb-7"><%= help %></p>
     <% if defined?(display_back) && display_back %>
       <a class="btn btn-primary" href="javascript:history.back()">
-        <i class="fas fa-arrow-left mr-2"></i><%= t("go_back") %>
+        <i class="fas fa-arrow-left mr-2"></i><%= tra("go_back") %>
       </a>
     <% end %>
     <% if defined?(report_issue) && report_issue && Rails.configuration.report_issue_url.present? %>
       <a class="btn btn-primary ml-4" href="<%= Rails.configuration.report_issue_url %>" target="_blank" rel="noopener">
-        <i class="fas fa-exclamation mr-2"></i><%= t("errors.internal.report") %>
+        <i class="fas fa-exclamation mr-2"></i><%= tra("errors.internal.report") %>
       </a>
     <% end %>
   <% else %>
-    <h1 class="h2 mb-3"><%= t("errors.not_found.message") %></h1>
-    <p class="h4 text-muted font-weight-normal mb-7"><%= t("errors.not_found.help") %></p>
+    <h1 class="h2 mb-3"><%= tra("errors.not_found.message") %></h1>
+    <p class="h4 text-muted font-weight-normal mb-7"><%= tra("errors.not_found.help") %></p>
     <a class="btn btn-primary" href="javascript:history.back()">
-      <i class="fas fa-arrow-left mr-2"></i><%= t("go_back") %>
+      <i class="fas fa-arrow-left mr-2"></i><%= tra("go_back") %>
     </a>
   <% end %>
 </div>

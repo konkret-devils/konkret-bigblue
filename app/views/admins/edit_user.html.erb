@@ -14,14 +14,14 @@
 %>
 
 <div class="container pt-6">
-  <%= render "shared/components/subtitle", subtitle: t("administrator.title"), search: false %>
+  <%= render "shared/components/subtitle", subtitle: tra("administrator.title"), search: false %>
 
   <div class="row">
     <div class="col-lg-3 mb-4">
       <%= render "admins/components/menu_buttons" %>
     </div>
     <div id="edit_user" class="col-lg-9">
-      <%= render "users/components/setting_view", setting_id: "account", setting_title: t("settings.account.subtitle") %>
+      <%= render "users/components/setting_view", setting_id: "account", setting_title: tra("settings.account.subtitle") %>
     </div>
   </div>
 </div>

@@ -16,12 +16,12 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 %>
 
-<%= t('mailer.user.verify_email.welcome', name: @user[:name]) %>
+<%= t('mailer.user.verify_email.welcome', name: @user[:name], instance_name: inst_name) %>
 
-<%= t('mailer.user.verify_email.success', bigbluebutton: t('bigbluebutton')) %>
+<%= t('mailer.user.verify_email.success', bigbluebutton: tra('bigbluebutton'), instance_name: inst_name) %>
 
-<%= t('mailer.user.verify_email.username', email: @user[:email]) %>
+<%= t('mailer.user.verify_email.username', email: @user[:email], instance_name: inst_name) %>
 
-<%= t('mailer.user.verify_email.verify_text', url: @url) %>
+<%= t('mailer.user.verify_email.verify_text', url: @url, instance_name: inst_name) %>
 
-<%= t('mailer.user.verify_email.thanks') %>
+<%= tra('mailer.user.verify_email.thanks') %>

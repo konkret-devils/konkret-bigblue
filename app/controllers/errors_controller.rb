@@ -25,8 +25,8 @@ class ErrorsController < ApplicationController
     render "errors/greenlight_error", status: 500, formats: :html,
       locals: {
         status_code: 500,
-        message: I18n.t("errors.internal.message"),
-        help: I18n.t("errors.internal.help"),
+        message: tra("errors.internal.message"),
+        help: tra("errors.internal.help"),
         display_back: true,
         report_issue: true
       }
@@ -34,6 +34,6 @@ class ErrorsController < ApplicationController
 
   def unauthorized
     render "errors/greenlight_error", status: 401, formats: :html, locals: { status_code: 401,
-      message: I18n.t("errors.unauthorized.message"), help: I18n.t("errors.unauthorized.help"), display_back: true }
+      message: tra("errors.unauthorized.message"), help: tra("errors.unauthorized.help"), display_back: true }
   end
 end

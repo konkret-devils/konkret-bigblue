@@ -31,53 +31,53 @@ module AdminsHelper
 
   def room_authentication_string
     if @settings.get_value("Room Authentication") == "true"
-      I18n.t("administrator.site_settings.authentication.enabled")
+      tra("administrator.site_settings.authentication.enabled")
     else
-      I18n.t("administrator.site_settings.authentication.disabled")
+      tra("administrator.site_settings.authentication.disabled")
     end
   end
 
   def shared_access_string
     if @settings.get_value("Shared Access") == "true"
-      I18n.t("administrator.site_settings.authentication.enabled")
+      tra("administrator.site_settings.authentication.enabled")
     else
-      I18n.t("administrator.site_settings.authentication.disabled")
+      tra("administrator.site_settings.authentication.disabled")
     end
   end
 
   def recording_default_visibility_string
     if @settings.get_value("Default Recording Visibility") == "public"
-      I18n.t("recording.visibility.public")
+      tra("recording.visibility.public")
     else
-      I18n.t("recording.visibility.unlisted")
+      tra("recording.visibility.unlisted")
     end
   end
 
   def registration_method_string
     case @settings.get_value("Registration Method")
     when Rails.configuration.registration_methods[:open]
-        I18n.t("administrator.site_settings.registration.methods.open")
+        tra("administrator.site_settings.registration.methods.open")
     when Rails.configuration.registration_methods[:invite]
-        I18n.t("administrator.site_settings.registration.methods.invite")
+        tra("administrator.site_settings.registration.methods.invite")
     when Rails.configuration.registration_methods[:approval]
-        I18n.t("administrator.site_settings.registration.methods.approval")
+        tra("administrator.site_settings.registration.methods.approval")
       end
   end
 
   def log_level_string
     case Rails.logger.level
     when 0
-      t("administrator.site_settings.log_level.debug")
+      tra("administrator.site_settings.log_level.debug")
     when 1
-      t("administrator.site_settings.log_level.info")
+      tra("administrator.site_settings.log_level.info")
     when 2
-      t("administrator.site_settings.log_level.warn")
+      tra("administrator.site_settings.log_level.warn")
     when 3
-      t("administrator.site_settings.log_level.error")
+      tra("administrator.site_settings.log_level.error")
     when 4
-      t("administrator.site_settings.log_level.fatal")
+      tra("administrator.site_settings.log_level.fatal")
     when 5
-      t("administrator.site_settings.log_level.unknown")
+      tra("administrator.site_settings.log_level.unknown")
     end
   end
 

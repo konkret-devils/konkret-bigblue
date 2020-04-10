@@ -18,7 +18,7 @@
     <div class="col col-4 offset-4">
       <div class="card">
         <div class="card-header background">
-          <h4 class="mt-2"><%= t("reset_password.subtitle") %></h4>
+          <h4 class="mt-2"><%= tra("reset_password.subtitle") %></h4>
         </div>
         <div class="card-body background">
           <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>

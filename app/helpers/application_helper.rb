@@ -74,13 +74,13 @@ module ApplicationHelper
 
   def translated_role_name(role)
     if role.name == "denied"
-      I18n.t("roles.banned")
+      tra("roles.banned")
     elsif role.name == "pending"
-      I18n.t("roles.pending")
+      tra("roles.pending")
     elsif role.name == "admin"
-      I18n.t("roles.admin")
+      tra("roles.admin")
     elsif role.name == "user"
-      I18n.t("roles.user")
+      tra("roles.user")
     else
       role.name
     end

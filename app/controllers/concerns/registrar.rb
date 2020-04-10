@@ -68,7 +68,7 @@ module Registrar
   def check_if_twitter_account(log_out = false)
     unless params[:old_twitter_user_id].nil? && session[:old_twitter_user_id].nil?
       logout if log_out
-      flash.now[:alert] = I18n.t("registration.deprecated.new_signin")
+      flash.now[:alert] = tra("registration.deprecated.new_signin")
       session[:old_twitter_user_id] = params[:old_twitter_user_id] unless params[:old_twitter_user_id].nil?
     end
   end

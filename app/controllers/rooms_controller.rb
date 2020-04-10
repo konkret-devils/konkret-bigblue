@@ -40,7 +40,7 @@ class RoomsController < ApplicationController
     return redirect_to root_path unless current_user
 
     # Check if the user has not exceeded the room limit
-    return redirect_to current_user.main_room, flash: { alert: I18n.t("room.room_limit") } if room_limit_exceeded
+    return redirect_to current_user.main_room, flash: { alert: tra("room.room_limit") } if room_limit_exceeded
 
     # Create room
     @room = Room.new(name: room_params[:name], access_code: room_params[:access_code])
@@ -48,13 +48,13 @@ class RoomsController < ApplicationController
     @room.room_settings = create_room_settings_string(room_params)
 
     # Save the room and redirect if it fails
-    return redirect_to current_user.main_room, flash: { alert: I18n.t("room.create_room_error") } unless @room.save
+    return redirect_to current_user.main_room, flash: { alert: tra("room.create_room_error") } unless @room.save
 
     logger.info "Support: #{current_user.email} has created a new room #{@room.uid}."
 
     # Redirect to room is auto join was not turned on
     return redirect_to @room,
-      flash: { success: I18n.t("room.create_room_success") } unless room_params[:auto_join] == "1"
+      flash: { success: tra("room.create_room_success") } unless room_params[:auto_join] == "1"
 
     # Start the room if auto join was turned on
     start
@@ -82,7 +82,7 @@ class RoomsController < ApplicationController
         render :cant_create_rooms
       end
     else
-      return redirect_to root_path, flash: { alert: I18n.t("room.invalid_provider") } if incorrect_user_domain
+      return redirect_to root_path, flash: { alert: tra("room.invalid_provider") } if incorrect_user_domain
 
       show_user_join
     end
@@ -91,12 +91,12 @@ class RoomsController < ApplicationController
   # POST /:room_uid
   def join
     return redirect_to root_path,
-      flash: { alert: I18n.t("administrator.site_settings.authentication.user-info") } if auth_required
+      flash: { alert: tra("administrator.site_settings.authentication.user-info") } if auth_required
 
     unless @room.owned_by?(current_user) || room_shared_with_user
       # Don't allow users to join unless they have a valid access code or the room doesn't have an access code
       if @room.access_code && !@room.access_code.empty? && @room.access_code != session[:access_code]
-        return redirect_to room_path(room_uid: params[:room_uid]), flash: { alert: I18n.t("room.access_code_required") }
+        return redirect_to room_path(room_uid: params[:room_uid]), flash: { alert: tra("room.access_code_required") }
       end
 
       # Assign join name if passed.
@@ -121,12 +121,12 @@ class RoomsController < ApplicationController
   def destroy
     begin
       # Don't delete the users home room.
-      raise I18n.t("room.delete.home_room") if @room == @room.owner.main_room
+      raise tra("room.delete.home_room") if @room == @room.owner.main_room
       @room.destroy
     rescue => e
-      flash[:alert] = I18n.t("room.delete.fail", error: e)
+      flash[:alert] = I18n.t("room.delete.fail", error: e, instance_name: inst_name)
     else
-      flash[:success] = I18n.t("room.delete.success")
+      flash[:success] = tra("room.delete.success")
     end
 
     # Redirect to home room if the redirect_back location is the deleted room
@@ -143,7 +143,7 @@ class RoomsController < ApplicationController
     begin
       @room = Room.find_by!(uid: room_uid)
     rescue ActiveRecord::RecordNotFound
-      return redirect_to current_user.main_room, alert: I18n.t("room.no_room.invalid_room_uid")
+      return redirect_to current_user.main_room, alert: tra("room.no_room.invalid_room_uid")
     end
 
     redirect_to room_path(@room)
@@ -173,7 +173,7 @@ class RoomsController < ApplicationController
     rescue BigBlueButton::BigBlueButtonException => e
       logger.error("Support: #{@room.uid} start failed: #{e}")
 
-      redirect_to room_path, alert: I18n.t(e.key.to_s.underscore, default: I18n.t("bigbluebutton_exception"))
+      redirect_to room_path, alert: I18n.t(e.key.to_s.underscore, default: tra("bigbluebutton_exception"), instance_name: inst_name)
     end
 
     # Notify users that the room has started.
@@ -196,10 +196,10 @@ class RoomsController < ApplicationController
         access_code: options[:access_code]
       )
 
-      flash[:success] = I18n.t("room.update_settings_success")
+      flash[:success] = tra("room.update_settings_success")
     rescue => e
       logger.error "Support: Error in updating room settings: #{e}"
-      flash[:alert] = I18n.t("room.update_settings_error")
+      flash[:alert] = tra("room.update_settings_error")
     end
 
     redirect_back fallback_location: room_path(@room)
@@ -224,10 +224,10 @@ class RoomsController < ApplicationController
         SharedAccess.create(room_id: @room.id, user_id: id)
       end
 
-      flash[:success] = I18n.t("room.shared_access_success")
+      flash[:success] = tra("room.shared_access_success")
     rescue => e
       logger.error "Support: Error in updating room shared access: #{e}"
-      flash[:alert] = I18n.t("room.shared_access_error")
+      flash[:alert] = tra("room.shared_access_error")
     end
 
     redirect_back fallback_location: room_path
@@ -237,10 +237,10 @@ class RoomsController < ApplicationController
   def remove_shared_access
     begin
       SharedAccess.find_by!(room_id: @room.id, user_id: params[:user_id]).destroy
-      flash[:success] = I18n.t("room.remove_shared_access_success")
+      flash[:success] = tra("room.remove_shared_access_success")
     rescue => e
       logger.error "Support: Error in removing room shared access: #{e}"
-      flash[:alert] = I18n.t("room.remove_shared_access_error")
+      flash[:alert] = tra("room.remove_shared_access_error")
     end
 
     redirect_to current_user.main_room
@@ -274,7 +274,7 @@ class RoomsController < ApplicationController
   def login
     session[:access_code] = room_params[:access_code]
 
-    flash[:alert] = I18n.t("room.access_code_required") if session[:access_code] != @room.access_code
+    flash[:alert] = tra("room.access_code_required") if session[:access_code] != @room.access_code
 
     redirect_to room_path(@room.uid)
   end
@@ -328,12 +328,12 @@ class RoomsController < ApplicationController
   end
 
   def verify_room_owner_verified
-    redirect_to root_path, alert: t("room.unavailable") unless @room.owner.activated?
+    redirect_to root_path, alert: tra("room.unavailable") unless @room.owner.activated?
   end
 
   # Check to make sure the room owner is not pending or banned
   def verify_room_owner_valid
-    redirect_to root_path, alert: t("room.owner_banned") if @room.owner.has_role?(:pending) || @room.owner.has_role?(:denied)
+    redirect_to root_path, alert: tra("room.owner_banned") if @room.owner.has_role?(:pending) || @room.owner.has_role?(:denied)
   end
 
   def verify_user_not_admin

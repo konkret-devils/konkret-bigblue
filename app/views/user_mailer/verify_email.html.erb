@@ -21,27 +21,27 @@
       <%= image_tag(@image, height: '70') %>
 
       <h1 style="margin-bottom:30px">
-        <%= t('mailer.user.verify_email.welcome', name: @user[:name]) %>
+        <%= t('mailer.user.verify_email.welcome', name: @user[:name], instance_name: inst_name) %>
       </h1>
 
       <p>
-        <%= t('mailer.user.verify_email.success', bigbluebutton: t('bigbluebutton')) %>
+        <%= t('mailer.user.verify_email.success', bigbluebutton: tra('bigbluebutton'), instance_name: inst_name) %>
       </p>
 
       <p>
-        <%= t('mailer.user.verify_email.username', email: @user[:email]) %>
+        <%= t('mailer.user.verify_email.username', email: @user[:email], instance_name: inst_name) %>
       </p>
 
       <p style="margin-bottom:45px;">
-        <%= t('mailer.user.verify_email.verify') %>
+        <%= tra('mailer.user.verify_email.verify') %>
       </p>
 
       <a style="background: <%= @color %>;color: #ffffff; padding: 10px 15px; box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);border: 1px solid transparent;text-decoration:none;" href="<%= @url %>">
-        <%= t('mailer.user.verify_email.verify_link') %>
+        <%= tra('mailer.user.verify_email.verify_link') %>
       </a>
 
       <p style="margin-top:45px;">
-        <%= t('mailer.user.verify_email.thanks') %>
+        <%= tra('mailer.user.verify_email.thanks') %>
       </p>
 
     </div>

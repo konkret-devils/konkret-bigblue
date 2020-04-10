@@ -42,7 +42,7 @@
           <thead>
             <tr>
               <th data-header="name" data-order="<%= @order_column == "name" ? @order_direction : "none" %>">
-                <%= t("administrator.users.table.name") %>
+                <%= tra("administrator.users.table.name") %>
                 <% if @order_column == "name" && @order_direction == "desc" %>
                  ↓
                 <% elsif @order_column == "name" && @order_direction == "asc" %>
@@ -50,7 +50,7 @@
                 <% end %>
               </th>
               <th data-header="email" data-order="<%= @order_column == "email" ? @order_direction : "none" %>">
-                <%= t("administrator.users.table.username") %>
+                <%= tra("administrator.users.table.username") %>
                 <% if @order_column == "email" && @order_direction == "desc" %>
                  ↓
                 <% elsif @order_column == "email" && @order_direction == "asc" %>
@@ -58,7 +58,7 @@
                 <% end %>
               </th>
               <th class="text-left" data-header="provider" data-order="<%= @order_column == "provider" ? @order_direction : "none" %>">
-                <%= t("administrator.users.table.authenticator") %>
+                <%= tra("administrator.users.table.authenticator") %>
                 <% if @order_column == "provider" && @order_direction == "desc" %>
                  ↓
                 <% elsif @order_column == "provider" && @order_direction == "asc" %>
@@ -66,7 +66,7 @@
                 <% end %>
               </th>
               <th class="text-center">
-                <%= t("administrator.users.table.role") %>
+                <%= tra("administrator.users.table.role") %>
               </th>
               <th class="text-center">
               </th>
@@ -75,7 +75,7 @@
           <tbody id="users-table">
             <tr id="no_users_found" style="display: none;">
               <td colspan="7" class="text-center h4 p-6 font-weight-normal" >
-                <%= t("administrator.users.table.not_found") %>
+                <%= tra("administrator.users.table.not_found") %>
               </td>
             </tr>
             <% if @users %>
@@ -84,7 +84,7 @@
                   <tr data-user-uid="<%= user.uid %>">
                     <td>
                       <div><%= user.name %></div>
-                      <div class="small text-muted"><%= [t("administrator.users.table.created"), ": ", user.created_at].join %></div>
+                      <div class="small text-muted"><%= [tra("administrator.users.table.created"), ": ", user.created_at].join %></div>
                     </td>
                     <td class="user-email"><%= user.email && user.email != "" ? user.email : user.username%></td>
                     <td><%= user.provider %></td>
@@ -101,37 +101,37 @@
                           <div class="dropdown-menu dropdown-menu">
                             <% if user.deleted? %>
                               <%= button_to admin_undelete_path(user_uid: user.uid), class: "dropdown-item", "data-disable": "" do %>
-                                <i class="dropdown-icon fas fa-recycle"></i> <%= t("administrator.users.settings.undelete") %>
+                                <i class="dropdown-icon fas fa-recycle"></i> <%= tra("administrator.users.settings.undelete") %>
                               <% end %>
                               <button class="delete-user dropdown-item" data-path="<%= delete_user_path(user_uid: user.uid, permanent: "true") %>" data-toggle="modal" data-target="#deleteAccountModal">
-                                <i class="dropdown-icon fas fa-skull-crossbones"></i> <%= t("administrator.users.settings.perm_delete") %>
+                                <i class="dropdown-icon fas fa-skull-crossbones"></i> <%= tra("administrator.users.settings.perm_delete") %>
                               </button>
                             <% elsif roles.include?("denied") %>
                               <%= button_to admin_unban_path(user_uid: user.uid), class: "dropdown-item", "data-disable": "" do %>
-                                <i class="dropdown-icon fas fa-lock-open"></i> <%= t("administrator.users.settings.unban") %>
+                                <i class="dropdown-icon fas fa-lock-open"></i> <%= tra("administrator.users.settings.unban") %>
                               <% end %>
                               <button class= "delete-user dropdown-item" data-path="<%= delete_user_path(user_uid: user.uid) %>" data-delete="temp-delete" data-toggle="modal" data-target="#deleteAccountModal">
-                                <i class="dropdown-icon fas fa-user-minus"></i> <%= t("administrator.users.settings.delete") %>
+                                <i class="dropdown-icon fas fa-user-minus"></i> <%= tra("administrator.users.settings.delete") %>
                               </button>
                             <% elsif roles.include?("pending") %>
                               <%= button_to admin_approve_path(user_uid: user.uid), class: "dropdown-item", "data-disable": "" do %>
-                                <i class="dropdown-icon far fa-check-circle"></i> <%= t("administrator.users.settings.approve") %>
+                                <i class="dropdown-icon far fa-check-circle"></i> <%= tra("administrator.users.settings.approve") %>
                               <% end %>
                               <%= button_to admin_ban_path(user_uid: user.uid), class: "dropdown-item", "data-disable": "" do %>
-                                <i class="dropdown-icon far fa-times-circle"></i> <%= t("administrator.users.settings.decline") %>
+                                <i class="dropdown-icon far fa-times-circle"></i> <%= tra("administrator.users.settings.decline") %>
                               <% end %>
                             <% else %>
                               <%= link_to admin_edit_user_path(user_uid: user.uid), class: "dropdown-item" do %>
-                                <i class="dropdown-icon fas fa-user-edit"></i> <%= t("administrator.users.settings.edit") %>
+                                <i class="dropdown-icon fas fa-user-edit"></i> <%= tra("administrator.users.settings.edit") %>
                               <% end %>
                               <button class= "merge-user dropdown-item" data-path="<%= merge_user_path(user_uid: user.uid) %>" data-info="<%= user.slice(:name, :email, :uid).to_json %>" data-toggle="modal" data-target="#mergeUserModal">
-                                <i class="dropdown-icon fas fa-user-friends"></i> <%= t("administrator.users.settings.merge") %>
+                                <i class="dropdown-icon fas fa-user-friends"></i> <%= tra("administrator.users.settings.merge") %>
                               </button>
                               <%= button_to admin_ban_path(user_uid: user.uid), class: "dropdown-item", "data-disable": "" do %>
-                                <i class="dropdown-icon fas fa-lock"></i> <%= t("administrator.users.settings.ban") %>
+                                <i class="dropdown-icon fas fa-lock"></i> <%= tra("administrator.users.settings.ban") %>
                               <% end %>
                               <button class= "delete-user dropdown-item" data-path="<%= delete_user_path(user_uid: user.uid) %>" data-delete="temp-delete" data-toggle="modal" data-target="#deleteAccountModal">
-                                <i class="dropdown-icon fas fa-user-minus"></i> <%= t("administrator.users.settings.delete") %>
+                                <i class="dropdown-icon fas fa-user-minus"></i> <%= tra("administrator.users.settings.delete") %>
                               </button>
                             <% end %>
                           </div>
@@ -144,7 +144,7 @@
             <% else %>
               <tr>
                 <td colspan="7" class="text-center h4 p-6 font-weight-normal" >
-                  <%= t("administrator.users.table.no_users") %>
+                  <%= tra("administrator.users.table.no_users") %>
                 </td>
               </tr>
             <% end %>

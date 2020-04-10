@@ -20,7 +20,7 @@
         <thead>
           <tr>
             <th data-header="name" data-order="<%= @order_column == "name" ? @order_direction : "none" %>">
-              <%= t("recording.table.name") %>
+              <%= tra("recording.table.name") %>
               <% if @order_column == "name" && @order_direction == "desc" %>
                 ↓
               <% elsif @order_column == "name" && @order_direction == "asc" %>
@@ -28,7 +28,7 @@
               <% end %>
             </th>
             <th class="text-left" data-header="length" data-order="<%= @order_column == "length" ? @order_direction : "none" %>">
-              <%= t("recording.table.length") %>
+              <%= tra("recording.table.length") %>
               <% if @order_column == "length" && @order_direction == "desc" %>
                 ↓
               <% elsif @order_column == "length" && @order_direction == "asc" %>
@@ -36,7 +36,7 @@
               <% end %>
             </th>
             <th class="text-left" data-header="users" data-order="<%= @order_column == "users" ? @order_direction : "none" %>">
-              <%= t("recording.table.users") %>
+              <%= tra("recording.table.users") %>
               <% if @order_column == "users" && @order_direction == "desc" %>
                 ↓
               <% elsif @order_column == "users" && @order_direction == "asc" %>
@@ -44,7 +44,7 @@
               <% end %>
             </th>
             <th class="text-left" data-header="visibility" data-order="<%= @order_column == "visibility" ? @order_direction : "none" %>">
-              <%= t("recording.table.visibility") %>
+              <%= tra("recording.table.visibility") %>
               <% if @order_column == "visibility" && @order_direction == "desc" %>
                 ↓
               <% elsif @order_column == "visibility" && @order_direction == "asc" %>
@@ -52,7 +52,7 @@
               <% end %>
             </th>
             <th data-header="formats" data-order="<%= @order_column == "formats" ? @order_direction : "none" %>">
-              <%= t("recording.table.formats") %>
+              <%= tra("recording.table.formats") %>
               <% if @order_column == "formats" && @order_direction == "desc" %>
                 ↓
               <% elsif @order_column == "formats" && @order_direction == "asc" %>
@@ -65,13 +65,13 @@
         <tbody id="recording-table">
           <tr id="no_recordings_found" style="display: none;">
             <td colspan="7" class="text-center h4 p-6 font-weight-normal" >
-              <%= t("recording.no_matched_recordings", inject:"") %>
+              <%= t("recording.no_matched_recordings", inject:"", instance_name: inst_name) %>
             </td>
           </tr>
           <% if @recordings.empty? %>
             <tr>
               <td colspan="7" class="text-center h4 p-6 font-weight-normal">
-                <%= t("administrator.recordings.no_recordings") %>
+                <%= tra("administrator.recordings.no_recordings") %>
               </td>
             </tr>
           <% else %>
@@ -87,7 +87,7 @@
 
             <% if failed_recordings > 0 %>
               <div class="alert alert-danger alert-dismissible text-center mb-0">
-                <%= t("recording.error", count: failed_recordings) %>
+                <%= t("recording.error", count: failed_recordings, instance_name: inst_name) %>
               </div>
             <% end %>
           <% end %>

@@ -24,7 +24,7 @@
       </text>
     </div>
     <div class="small text-muted">
-      <%= [t("administrator.users.table.created"), ": ", room.created_at].join %>
+      <%= [tra("administrator.users.table.created"), ": ", room.created_at].join %>
     </div>
   </td>
   <td class="text-left">
@@ -36,9 +36,9 @@
   <td class="text-left">
     <% running = room_is_running(room.bbb_id) %>
     <% if running %>
-      <%= t("administrator.rooms.running") %>
+      <%= tra("administrator.rooms.running") %>
     <% else %>
-      <%= t("administrator.rooms.not_running") %>
+      <%= tra("administrator.rooms.not_running") %>
     <% end %>
   </td>
   <td class="text-center">
@@ -48,22 +48,22 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <%= link_to room_path(room), class: "dropdown-item" do %>
-          <i class="dropdown-icon far fa-eye"></i> <%= t("administrator.rooms.view") %>
+          <i class="dropdown-icon far fa-eye"></i> <%= tra("administrator.rooms.view") %>
         <% end %>
         <%= button_to start_room_path(room), class: "dropdown-item", "data-disable": "" do %>
-          <i class="dropdown-icon fas fa-door-open"></i> <%= running ? t("room.join") : t("room.start") %>
+          <i class="dropdown-icon fas fa-door-open"></i> <%= running ? tra("room.join") : tra("room.start") %>
         <% end %>
         <a href="" data-toggle="modal" data-target="#createRoomModal" class="update-room dropdown-item" data-settings-path="<%= room_settings_path(room) %>">
-          <i class="dropdown-icon fas fa-cog"></i> <%= t("room.settings") %>
+          <i class="dropdown-icon fas fa-cog"></i> <%= tra("room.settings") %>
         </a>
         <% if shared_access_allowed %>
           <a href="" data-toggle="modal" data-target="#shareRoomModal" class="share-room dropdown-item" data-path="<%= room_shared_access_path(room) %>" data-users-path="<%= room_shared_users_path(room) %>">
-            <i class="dropdown-icon fas fa-users"></i> <%= t("room.share") %>
+            <i class="dropdown-icon fas fa-users"></i> <%= tra("room.share") %>
           </a>
         <% end %>
         <% if room.id != room.owner.room_id %>
           <a href="" data-toggle="modal" data-target="#deleteRoomModal" data-path="<%= room_path(room) %>" data-name="<%= room.name %>" class="delete-room dropdown-item">
-            <i class="dropdown-icon far fa-trash-alt"></i> <%= t("delete") %>
+            <i class="dropdown-icon far fa-trash-alt"></i> <%= tra("delete") %>
           </a>
         <% end %>
       </div>
