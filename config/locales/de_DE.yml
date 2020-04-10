@@ -82,7 +82,7 @@ de_DE:
       shared_access:
         info: "Wenn diese Option deaktiviert wird, wird dadurch der Button aus den Raumoptionen entfernt und verhindert, dass Nutzer Räume teilen können"
         title: Nutzern erlauben Räume zu teilen
-      subtitle: %{instance_name} individuell anpassen
+      subtitle: "%{instance_name} individuell anpassen"
       title: Seiteneinstellungen
     flash:
       approved: Teilnehmer wurde erfolgreich genehmigt
@@ -192,8 +192,7 @@ de_DE:
     migration_error:
       contact_admin: "Wenn Sie kein Administrator sind, kontaktieren Sie bitte einen."
       continue: Ich möchte bleiben und 1.0 verwenden.
-      notice: >
-        %{instance_name} hat einen Datenbankmigrationsfehler bemerkt.<br> Dies kann auftreten, weil Sie noch nicht auf %{instance_name} 2.0. upgedatet haben.
+      notice: "%{instance_name} hat einen Datenbankmigrationsfehler bemerkt.<br> Dies kann auftreten, weil Sie noch nicht auf %{instance_name} 2.0. upgedatet haben."
       upgrade: "Zeigen Sie mir, wie ich auf Version 2.0. update!"
       version: "Wir haben eine neue Version von %{instance_name} veröffentlicht, aber Ihre Datenbank ist damit nicht kompatibel."
     messages:
@@ -259,8 +258,8 @@ de_DE:
       start: Beginne die Suche...
   landing:
     about: "%{href} ist ein einfacher Frontend für Ihren quelloffenen BigBlueButton Webkonferenzserver. Sie können ihre eigenen Räume erstellen, um Konferenzen abzuhalten oder Sie können bestehenden Konferenzen über einen praktischen Kurzlink beitreten."
-    welcome: Willkommen zu %{instance_name}.
-    video: Schauen Sie sich unsere Anleitung zur Verwendung von %{instance_name} an
+    welcome: "Willkommen zu %{instance_name}."
+    video: "Schauen Sie sich unsere Anleitung zur Verwendung von %{instance_name} an"
     upgrade: "Zeigen Sie mir, wie ich auf Version 2.0. update!"
     version: "Wir haben eine neue Version von %{instance_name} veröffentlicht, aber Ihre Datenbank ist damit nicht kompatibel."
   language_default: Voreinstellung (Browsersprache)
@@ -274,10 +273,10 @@ de_DE:
         signin: "Um auf Ihre persönlichen Räume zuzugreifen, klicken Sie bitte auf den unten stehenden Button und loggen Sie sich ein. "
         signin_link: Einloggen
         signup:
-          info: Ein neuer Nutzer hat sich bei %{instance_name} angemeldet.
+          info: "Ein neuer Nutzer hat sich bei %{instance_name} angemeldet."
           more-info: "Um diesem Nutzer Zugriff auf %{instance_name} zu geben, müssen Sie seinen Account in den Organisationseinstellungen genehmigen."
           admins_link: Organisationsseite besuchen
-          subject: Neue %{instance_name} Nutzerregistrierung
+          subject: "Neue %{instance_name} Nutzerregistrierung"
           username: "Der Nutzer hat sich mit dem Namen %{name} und der Email %{email} registriert."
         subject: Account genehmigt
         username: "Ihr Nutzername ist %{email}."
@@ -291,11 +290,11 @@ de_DE:
         signup_info: "Um sich mit Ihrer Email anzumelden, klicken Sie den untenstehenden Button und folgen Sie den Schritten."
         signup_link: Registrieren
         signup:
-          info: Ein eingeladener Nutzer hat sich bei %{instance_name} registriert.
+          info: "Ein eingeladener Nutzer hat sich bei %{instance_name} registriert."
           admins_link: Organisationsseite besuchen
-          subject: Registrierung neuer %{instance_name}-Nutzer
+          subject: "Registrierung neuer %{instance_name}-Nutzer"
           username: "Der Nutzer hat sich mit dem Namen %{name} und der Email %{email} registriert."
-        subject: Einladung zur Teilnahme an %{instance_name}
+        subject: "Einladung zur Teilnahme an %{instance_name}"
         username: "Ihr Nutzername ist %{email}."
       password_reset:
         title: 'Passwort zurücksetzen'
