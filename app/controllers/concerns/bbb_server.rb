@@ -88,7 +88,7 @@ module BbbServer
       muteOnStart: options[:mute_on_start] || false,
       "meta_#{META_LISTED}": options[:recording_default_visibility] || false,
       "meta_bbb-origin-version": Greenlight::Application::VERSION,
-      "meta_bbb-origin": "konkret bigBLUE",
+      "meta_bbb-origin": Rails.configuration.instance_name,
       "meta_bbb-origin-server-name": options[:host]
     }
 
@@ -96,7 +96,9 @@ module BbbServer
 
     # Send the create request.
     begin
-      meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options)
+      modules = BigBlueButton::BigBlueButtonModules.new
+      modules.add_presentation(:url, Rails.configuration.default_presentation_url)
+      meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options, modules)
       # Update session info.
       unless meeting[:messageKey] == 'duplicateWarning'
        room.update_attributes(sessions: room.sessions + 1,

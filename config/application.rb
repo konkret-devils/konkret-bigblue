@@ -158,7 +158,14 @@ module Greenlight
     config.background_image = if ENV['BACKGROUND_IMAGE_URL'].present?
       ENV['BACKGROUND_IMAGE_URL']
     else
-      "/bg-landing-earth.gif"
+      config.instance_url + "bg-landing-earth.gif"
+    end
+
+    # Default branding image if the user does not specify one
+    config.default_presentation_url = if ENV['DEFAULT_PRESENTATION_URL'].present?
+      ENV['DEFAULT_PRESENTATION_URL']
+    else
+      config.instance_url + "default.pdf"
     end
 
     # Default primary color if the user does not specify one
