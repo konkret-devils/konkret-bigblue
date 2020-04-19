@@ -98,7 +98,7 @@ module BbbServer
     begin
       modules = BigBlueButton::BigBlueButtonModules.new
       modules.add_presentation(:url, Rails.configuration.default_presentation_url, "default_inst.pdf")
-      puts "modules :" + modules.to_xml
+      logger.info "MODULES = #{modules.to_xml}"
       meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options, modules)
       # Update session info.
       unless meeting[:messageKey] == 'duplicateWarning'
