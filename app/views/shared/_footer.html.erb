@@ -13,8 +13,13 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 %>
 
+<script src="https://togetherjs.com/togetherjs-min.js"></script>
+
 <footer class="footer pt-3">
-  <p class="text-center mb-1"><%= t("footer.powered_by", href: link_to(tra("greenlight"), "https://bigbluebutton.org/2018/07/09/greenlight-2-0/", target: "_blank", rel: "noopener"), instance_name: inst_name).html_safe %> <%= Greenlight::Application::VERSION %></p>
+
+  <button onclick="TogetherJS(this); return false;">Start TogetherJS</button>
+
+  <p class="text-center mb-1"><%= t("footer.powered_by", href: link_to(tra("greenlight"), "https://bigbluebutton.org/2018/07/09/greenlight-2-0/", target: "_blank", rel: "noopener"), instance_name: inst_name).html_safe %> </p>
 </footer>
 
 <%= render "shared/components/cookie_warning" %>
