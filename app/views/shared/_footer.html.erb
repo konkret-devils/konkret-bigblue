@@ -13,16 +13,8 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 %>
 
-<script type="text/javascript">
-    var TogetherJSConfig_hubBase = "https://togohub.oopswrong.world";
-</script>
-
-<script src="https://togetherjs.com/togetherjs-min.js"></script>
 
 <footer class="footer pt-3">
-
-  <button onclick="TogetherJS(this); return false;">Start TogetherJS</button>
-
   <p class="text-center mb-1"><%= t("footer.powered_by", href: link_to(tra("greenlight"), "https://bigbluebutton.org/2018/07/09/greenlight-2-0/", target: "_blank", rel: "noopener"), instance_name: inst_name).html_safe %> </p>
 </footer>
 
