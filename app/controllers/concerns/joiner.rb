@@ -69,7 +69,7 @@ module Joiner
 
       session['target_url_client'] = bbb_url_returned
 
-      redirect_to '/inside'
+      redirect_to bbb_url_returned#'/inside'
 
     else
       search_params = params[@room.invite_path] || params
