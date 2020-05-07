@@ -80,6 +80,10 @@ class Room < ApplicationRecord
     ActionCable.server.broadcast("#{uid}_waiting_channel", action: "started")
   end
 
+  def notify_co_browsing
+    ActionCable.server.broadcast("#{uid}_co_browsing_channel", action: "share")
+  end
+
   private
 
   # Generates a uid for the room and BigBlueButton.

@@ -179,6 +179,7 @@ class RoomsController < ApplicationController
     # Notify users that the room has started.
     # Delay 5 seconds to allow for server start, although the request will retry until it succeeds.
     NotifyUserWaitingJob.set(wait: 5.seconds).perform_later(@room)
+    NotifyCoBrowsingJob.set(wait: 20.seconds).perform_later(@room)
   end
 
   # POST /:room_uid/update_settings
