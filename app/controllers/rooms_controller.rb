@@ -167,6 +167,7 @@ class RoomsController < ApplicationController
       bbb_url = join_path(@room, current_user.name, opts, current_user.uid)
 
       session['target_url_client'] = bbb_url
+      session['current_room_inside'] = @room.uid
 
       redirect_to '/inside'
 
