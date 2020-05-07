@@ -68,6 +68,7 @@ module Joiner
       bbb_url_returned = join_response #[:url]
 
       session['target_url_client'] = bbb_url_returned
+      session['current_room_inside'] = @room.uid
 
       redirect_to '/inside'
 
