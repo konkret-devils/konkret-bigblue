@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License along
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
-class WaitingChannel < ApplicationCable::Channel
+class CoBrowsingChannel < ApplicationCable::Channel
   def subscribed
     stream_from "#{params[:roomuid]}_co_browsing_channel"
   end
