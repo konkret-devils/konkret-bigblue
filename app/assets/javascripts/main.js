@@ -25,13 +25,13 @@ $(document).on('turbolinks:load', function(){
 });
 
 document.addEventListener("turbolinks:before-cache", function() {
-  $(".alert").remove()
-})
+  $(".alert").remove();
+});
 
 // Gets the localized string
 function getLocalizedString(key) {
-  var keyArr = key.split(".")
-  var translated = I18n
+  var keyArr = key.split(".");
+  var translated = I18n;
 
   // Search current language for the key
   try {
@@ -46,10 +46,10 @@ function getLocalizedString(key) {
 
   // If key is not found, search the fallback language for the key
   if (translated === null || translated === undefined) { 
-    translated = I18nFallback
+    translated = I18nFallback;
 
     keyArr.forEach(function(k) {
-      translated = translated[k]
+      translated = translated[k];
     })
   }
 

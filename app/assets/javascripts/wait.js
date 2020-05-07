@@ -67,4 +67,4 @@ var request_to_join_meeting = function(){
       join_attempts++;
     }
   });
-}
+};
