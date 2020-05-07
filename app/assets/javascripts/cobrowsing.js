@@ -19,7 +19,7 @@ $(document).on("turbolinks:load", function(){
   var controller = $("body").data('controller');
   var action = $("body").data('action');
 
-  if(controller == "inside_room" && action == "inside"){
+  if(true || (controller == "inside_room" && action == "inside")){
     App.waiting = App.cable.subscriptions.create({
       channel: "CoBrowsingChannel",
       roomuid: $(".background").attr("room"),
