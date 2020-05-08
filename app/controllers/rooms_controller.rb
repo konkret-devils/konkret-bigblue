@@ -136,6 +136,25 @@ class RoomsController < ApplicationController
     redirect_back fallback_location: current_user.main_room
   end
 
+  # GET /neelz/gate
+  def neelz_gate
+    co_browsing_url = params[:u]
+    interviewer_name = params[:i]
+    name_of_study = params[:s]
+    session['neelz_co_browsing_url'] = co_browsing_url
+    session['neelz_interviewer_name'] = interviewer_name
+    session['neelz_name_of_study'] = name_of_study
+    redirect_to '/neelz/'
+  end
+
+  # GET /neelz/
+  def neelz_preform
+    @cache_expire = 10.seconds
+    @neelz_co_browsing_url = session['neelz_co_browsing_url']
+    @neelz_interviewer_name = session['neelz_interviewer_name']
+    @neelz_name_of_study = session['neelz_name_of_study']
+  end
+
   # POST /room/join
   def join_specific_room
     room_uid = params[:join_room][:url].split('/').last

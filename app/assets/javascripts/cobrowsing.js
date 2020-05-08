@@ -16,14 +16,15 @@
 
 // Handle client request to join when meeting starts.
 $(document).on("turbolinks:load", function(){
-  var controller = $("body").data('controller');
-  var action = $("body").data('action');
-
-  if(controller == "inside_room" && action == "inside"){
+  let body = $("body"),
+             controller = body.data('controller'),
+             action = body.data('action');
+  if(controller === "inside_room" && action === "inside"){
+    let bg = $('.background');
     App.waiting = App.cable.subscriptions.create({
       channel: "CoBrowsingChannel",
-      roomuid: $(".background").attr("room"),
-      useruid: $(".background").attr("user")
+      roomuid: bg.attr("room"),
+      useruid: bg.attr("user")
     }, {
       connected: function() {
         console.log("connected");
@@ -40,34 +41,13 @@ $(document).on("turbolinks:load", function(){
 
       received: function(data){
         console.log(data);
-        if(data.action = "share"){
+        if(data.action === "share"){
           startCoBrowsing("https://www.konkret-mafo.de");
         }
       }
     });
   }
 });
-
-var join_attempts = 0;
-
-var request_to_join_meeting = function(){
-  $.ajax({
-    url: window.location.pathname,
-    type: 'POST',
-    data: {
-      join_name: $(".background").attr("join-name")
-    },
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-    },
-    success: function(){
-      // Enqueue another trial just incase they didn't actually join.
-      if(join_attempts < 4){ setTimeout(request_to_join_meeting, 10000); }
-      join_attempts++;
-    }
-  });
-};
 
 var startCoBrowsing = function(url){
   alert(url);

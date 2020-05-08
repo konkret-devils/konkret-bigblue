@@ -80,6 +80,12 @@ Rails.application.routes.draw do
     post '/resend', to: 'account_activations#resend', as: :resend_email
   end
 
+  scope '/neelz' do
+    get '/', to: 'rooms#neelz_preform', as: :neelz_preform
+    get '/gate', to: 'rooms#neelz_gate', param: [:u, :i, :s, :c], as: :neelz_gate
+    post '/enter_room', to: 'rooms#neelz_enter_room', as: :neelz_enter_room
+  end
+
   # User resources.
   scope '/u' do
     # Handles login of greenlight provider accounts.
