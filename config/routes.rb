@@ -81,9 +81,9 @@ Rails.application.routes.draw do
   end
 
   scope '/neelz' do
-    get '/', to: 'rooms#neelz_preform', as: :neelz_preform
-    get '/gate', to: 'rooms#neelz_gate', param: [:u, :i, :s, :c], as: :neelz_gate
-    post '/enter_room', to: 'rooms#neelz_enter_room', as: :neelz_enter_room
+    get '/', to: 'neelz#preform', as: :neelz_preform
+    get '/gate', to: 'neelz#gate', param: [:u, :i, :s, :c], as: :neelz_gate
+    post '/enter_room', to: 'neelz#enter_room', as: :neelz_enter_room
   end
 
   # User resources.
