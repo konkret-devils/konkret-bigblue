@@ -31,11 +31,11 @@
               </div>
             </div>
             <div class="form-group">
-              <div class="input-icon">
-                <span id="copy_message_template" onclick="copy_message_template()" class="input-icon-addon btn btn-primary" style="pointer-events: all;color:white;">
-                  <i class="fas fa-clipboard"></i>
+              <div class="input-icon" style="background-color: darkgray;">
+                <span id="copy_message_template" onclick="copy_message_template()" style="top:40%;bottom: 40%;" class="input-icon-addon btn btn-primary" style="pointer-events: all;color:white;">
+                  <i class="far fa-clipboard"></i>
                 </span>
-                <textarea id="message_template" readonly style="resize: none;"  data-content="Text in die Zwischenablagde kopieren" data-original="Text in die Zwischenablagde kopieren" data-success="Text kopiert!">
+                <textarea id="message_template" readonly style="padding: 0.8rem;border:none;resize: none;height:15rem;width:calc(100% - 2.5rem);margin-left:2.5rem;"  data-content="Text in die Zwischenablagde kopieren" data-original="Text in die Zwischenablagde kopieren" data-success="Text kopiert!">
 <%= @neelz_interviewer_name %> hat Sie zur Teilnahme an einem Interview
 im Rahmen der Studie <%= @neelz_name_of_study %> eingeladen.
 
@@ -60,6 +60,8 @@ Vielen Dank f&uuml;r Ihr Interesse an unserer Studie!
                       copyText.setSelectionRange(0, 99999); /*For mobile devices*/
                       /* Copy the text inside the text field */
                       document.execCommand("copy");
+                      $('.fa-clipboard').removeClass('fa-clipboard').addClass('fa-clipboard-check');
+                      $('.signin-button').prop('disabled',false);
                   }
                 </script>
               </div>
@@ -67,6 +69,9 @@ Vielen Dank f&uuml;r Ihr Interesse an unserer Studie!
             <div class="card-footer px-0">
               <%= f.submit "Weiter", class: "btn btn-primary btn-block signin-button" %>
             </div>
+            <script type="text/javascript">
+              $('.signin-button').prop('disabled',true);
+            </script>
           <% end %>
         </div>
       </div>
