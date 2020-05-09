@@ -26,8 +26,10 @@ module Joiner
       current_user.name
     elsif cookies.encrypted[:greenlight_name]
       cookies.encrypted[:greenlight_name]
+    elsif session['__join_name']
+      session['__join_name']
     else
-      ""
+              ""
     end
 
     @search, @order_column, @order_direction, pub_recs =

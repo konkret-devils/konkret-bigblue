@@ -31,6 +31,7 @@ class NeelzController < ApplicationController
     session['neelz_url_proband'] = params[:url_proband] if params[:url_proband]
     session['neelz_interviewer_personal_nr'] = params[:interviewer_personal_nr]
     session['neelz_interviewer_name'] = params[:interviewer_name]
+    session['__join_name'] = params[:interviewer_name]
     session['neelz_proband_readonly'] = true if params[:proband_readonly]
     session['neelz_name_of_study'] = params[:studie_name]
     @neelz_room = get_room
@@ -50,7 +51,7 @@ class NeelzController < ApplicationController
     return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
     session['neelz_room_uid'] = @neelz_room.uid
     session['neelz_proband_qvid'] = qvid_proband_encoded
-    cookies.encrypted[:greenlight_name] = @neelz_room.attendee_pw[12..-1]
+    session['__join_name'] = @neelz_room.attendee_pw[12..-1]
     redirect_to '/'+@neelz_room.uid
   end
 
