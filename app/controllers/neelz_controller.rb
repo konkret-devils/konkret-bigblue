@@ -63,9 +63,6 @@ class NeelzController < ApplicationController
     @neelz_room_access_code = session['neelz_room_access_code']
     @neelz_proband_name = session['neelz_proband_name'] || ''
     @neelz_proband_email = session['neelz_proband_email'] || ''
-    if session['neelz_mail_delivery_error']
-      flash[:alert] = "Fehler bei der E-Mail-Zustellung an die Adresse #{@neelz_proband_email}"
-    end
   end
 
   # POST /neelz/waiting
@@ -79,15 +76,9 @@ class NeelzController < ApplicationController
     @neelz_room_access_code = session[:access_code]
     @neelz_interviewer_name = session['neelz_interviewer_name']
     @neelz_name_of_study = session['neelz_name_of_study']
-    if send_neelz_participation_email(
-                                   @neelz_proband_email,@neelz_proband_access_url,
+    send_neelz_participation_email(@neelz_proband_email,@neelz_proband_access_url,
                                    @neelz_room_access_code,@neelz_interviewer_name,
-                                   @neelz_proband_name,@neelz_name_of_study)===false
-      session['neelz_mail_delivery_error'] = true
-      redirect_to '/neelz'
-    else
-      session['neelz_mail_delivery_error'] = true
-    end
+                                   @neelz_proband_name,@neelz_name_of_study)
   end
 
   private
