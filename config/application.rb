@@ -194,5 +194,18 @@ module Greenlight
 
     # Default admin password
     config.admin_password_default = ENV['ADMIN_PASSWORD'] || 'administrator'
+
+    config.neelz_email = if ENV['NEELZ_EMAIL'].present?
+       ENV['NEELZ_EMAIL']
+     else
+       config.smtp_sender
+     end
+
+    config.neelz_email_password = if ENV['NEELZ_EMAIL_PASSWORD'].present?
+      ENV['NEELZ_EMAIL_PASSWORD']
+    else
+      ''
+    end
+
   end
 end

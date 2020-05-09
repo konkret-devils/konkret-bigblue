@@ -82,7 +82,14 @@ Rails.application.routes.draw do
 
   scope '/neelz' do
     get '/', to: 'neelz#preform', as: :neelz_preform
-    get '/gate', to: 'neelz#gate', param: [:u, :i, :s, :c], as: :neelz_gate
+    get '/gate', to: 'neelz#gate', param: [:qvid,
+                                           :url_interviewer,
+                                           :url_proband,
+                                           :interviewer_personal_nr,
+                                           :interviewer_name,
+                                           :proband_readonly,
+                                           :studie_name,
+                                           :cs], as: :neelz_gate
     post '/enter_room', to: 'neelz#enter_room', as: :neelz_enter_room
   end
 

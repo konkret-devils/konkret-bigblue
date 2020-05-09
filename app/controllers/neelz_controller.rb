@@ -24,21 +24,78 @@ class NeelzController < ApplicationController
 
   # GET /neelz/gate
   def gate
-    co_browsing_url = params[:u]
-    interviewer_name = params[:i]
-    name_of_study = params[:s]
-    session['neelz_co_browsing_url'] = co_browsing_url
-    session['neelz_interviewer_name'] = interviewer_name
-    session['neelz_name_of_study'] = name_of_study
-    redirect_to '/neelz/'
+    session['neelz_qvid'] = params[:qvid].to_i(10)
+    session['neelz_url_interviewer'] = params[:url_interviewer] if params[:url_interviewer]
+    session['neelz_url_proband'] = params[:url_proband] if params[:url_proband]
+    session['neelz_interviewer_personal_nr'] = params[:interviewer_personal_nr]
+    session['neelz_interviewer_name'] = params[:interviewer_name]
+    session['neelz_proband_readonly'] = true if params[:proband_readonly]
+    session['neelz_name_of_study'] = params[:studie_name]
+    @neelz_room = get_room
+    session['neelz_room_uid'] = @neelz_room.uid
+    session['neelz_room_access_code'] = @neelz_room.access_code
+    session['neelz_proband_qvid'] = qvid_proband_encoded
+    redirect_to '/neelz'
   end
 
-  # GET /neelz/
+  # GET /neelz
   def preform
     @cache_expire = 10.seconds
-    @neelz_co_browsing_url = session['neelz_co_browsing_url']
     @neelz_interviewer_name = session['neelz_interviewer_name']
     @neelz_name_of_study = session['neelz_name_of_study']
+    @neelz_proband_url = Rails.configuration.instance_url + 'c_gate/' + session['neelz_proband_qvid']
+    @neelz_room_access_code = session['neelz_room_access_code']
+    @neelz_proband_name = session['neelz_proband_name'] || ''
+    @neelz_proband_email = session['neelz_proband_email'] || ''
+  end
+
+  private
+
+  def get_room
+    #find function user
+    @neelz_user = User.include_deleted.find_by(email: Rails.configuration.neelz_email)
+    if @neelz_user
+      room_uid = 'kon-survey-' + qvid_interviewer_encoded
+      @neelz_room = Room.include_deleted.find_by(uid: room_uid)
+      @neelz_room = create_room(@neelz_user) unless @neelz_room
+      @neelz_room
+    end
+  end
+
+  def create_room(owner)
+    room_uid = 'kon-survey-' + qvid_interviewer_encoded
+    room = Room.new(name: session['neelz_name_of_study'] + ' - SURVEY ' + qvid_proband_encoded)
+    room.uid = room_uid
+    room.owner = owner
+    room.access_code = rand(10000...99999).to_s
+    room.room_settings = create_room_settings_string
+    room.save
+    room
+  end
+
+  def create_room_settings_string
+    room_settings = {
+        "muteOnStart": false,
+        "requireModeratorApproval": false,
+        "anyoneCanStart": true,
+        "joinModerator": true
+    }
+    room_settings.to_json
+  end
+
+  def qvid_interviewer_encoded
+    val = (session['neelz_qvid'] + 93) * 2 + 11
+    val.to_s(36)
+  end
+
+  def qvid_proband_encoded
+    val = (session['neelz_qvid'] + 117) * 3 + 213
+    'k' + val.to_s(24)
+  end
+
+  def decode_proband_qvid(proband_qvid)
+    p_qvid = proband_qvid[1..-1].to_i(24)
+    ((p_qvid - 213) / 3) - 117
   end
 
 end
