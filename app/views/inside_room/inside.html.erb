@@ -52,7 +52,7 @@
       function check_orientation() {
           if ($(window).width() > $(window).height()) {
             if (orientation_dim.dim === 'vertical'){
-                $('.inside_frame_vertical')
+                $('#inside_video_frame, #inside_external_frame')
                     .removeClass('inside_frame_vertical')
                     .removeClass('half_height')
                     .addClass('inside_frame_horizontal')
@@ -61,7 +61,7 @@
             }
           } else {
               if (orientation_dim.dim === 'horizontal'){
-                  $('.inside_frame_horizontal')
+                  $('#inside_video_frame, #inside_external_frame')
                       .removeClass('inside_frame_horizontal')
                       .removeClass('half_width')
                       .addClass('inside_frame_vertical')
