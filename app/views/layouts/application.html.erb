@@ -57,6 +57,46 @@
       window.I18n = <%= current_translations.to_json.html_safe %>
       window.I18nFallback = <%= fallback_translations.to_json.html_safe %>
     </script>
+
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous">
+    </script>
+
+    <style>
+      #inside_parent{
+        position:absolute;
+        height:100%;
+        margin:0;
+        padding:0;
+        width:100%;
+      }
+      #inside_external_frame{
+        position:relative;
+        background-color:#A2A;
+      }
+      #inside_video_frame{
+        position:relative;
+        background-color:#9FA;
+      }
+      .inside_frame_vertical{
+        max-height: 100%;
+        min-height: 25%;
+        width:100%;
+      }
+      .inside_frame_horizontal{
+        max-width: 100%;
+        min-width: 25%;
+        height:100%;
+      }
+      .half_height{
+        height: 50%;
+      }
+      .half_width{
+        width: 50%;
+      }
+    </style>
   </head>
 
   <body class="app-background" data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>" data-relative-root="<%= Rails.configuration.relative_url_root || "/" %>">

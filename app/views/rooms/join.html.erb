@@ -45,7 +45,7 @@
             %>
         <span class="input-group-append">
           <button type="submit" class="btn btn-primary btn-sm px-7 form-control join-form">
-            <%= (!@room_running && @anyone_can_start) ? tra("room.start") : tra("room.join") %>
+            <%= (!@room_running && (@anyone_can_start || session['is_moderator'])) ? tra("room.start") : tra("room.join") %>
           </button>
         </span>
       </div>
