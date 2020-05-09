@@ -70,8 +70,11 @@ class NeelzController < ApplicationController
     @cache_expire = 10.seconds
     @neelz_proband_name = params[:session][:name_proband]
     @neelz_proband_email = params[:session][:email_proband]
+    @room = get_room
+    return redirect_to '/neelz' unless @room
     session['neelz_proband_name'] = @neelz_proband_name
     session['neelz_proband_email'] = @neelz_proband_email
+    @room.attendee_pw = @room.attendee_pw[0..11] + @neelz_proband_name
     @neelz_proband_access_url = proband_access_url
     @neelz_room_access_code = session[:access_code]
     @neelz_interviewer_name = session['neelz_interviewer_name']
