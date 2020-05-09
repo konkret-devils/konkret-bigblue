@@ -126,9 +126,11 @@ module Emailer
       NeelzMailer.participation_invite_email(email,url,code,interviewer_name,proband_name,study_name).deliver_now
     rescue => e
       logger.error "Support: Error in email delivery: #{e}"
-      flash[:alert] = I18n.t(params[:message], default: I18n.t("delivery_error"), instance_name: inst_name)
+      flash[:alert] = "Fehler bei der E-Mail-Zustellung an die Adresse #{email}"
+      false
     else
-      flash[:success] = I18n.t("email_sent", email_type: "Zugangsdaten zum Interview", instance_name: inst_name)
+      flash[:success] = "Die Zugangsdaten zum Interview wurden erfolgreich an die E-Mail-Adresse #{email} zugestellt."
+      true
     end
   end
 

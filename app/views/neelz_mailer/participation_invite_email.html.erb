@@ -20,28 +20,37 @@
     <div style="display:inline-block; background-color:#F5F7FB; border:1px solid #d3d3d3; padding: 25px 70px">
       <%= image_tag(@image, height: '70') %>
 
-      <h1><%= @interviewer_name %> hat Sie zu einem Interview im Rahmen der Studie <%= @study_name %> eingeladen.</h1>
+      <h1><%= @interviewer_name %> hat Sie zu einem Interview im Rahmen der Studie <i><%= @study_name %></i> eingeladen.</h1>
       <br>
       <br>
       <p>
-        Bitte &uuml;ffnen Sie daf&uuml;r folgenden Link in Ihrem Webbrowser[*]:
-        <br>
-        <br>
-        <b><a href="<%= @url %>"><%= @url %></a></b>
-        <br>
-        <br>
-        Ihr f&uuml;nfstelliger Zugangscode lautet:
-        <br>
-        <br>
-        <b><%= @code %></b>
-        <br>
-        <br>
-        <br>
-        Vielen Dank f&uuml;r Ihr Interesse an unserer Studie!
-        <br>
-        <br>
-        [*] Hinweis: Am Besten funktioniert es mit dem Mozilla Firefox, Google Chrome oder Opera.
+      <h3>Bitte &ouml;ffnen Sie daf&uuml;r folgenden Link in Ihrem Webbrowser[*]:</h3>
+      <br>
+      <br>
+      <h3><b><a href="<%= @url %>"><%= @url %></a></b></h3>
+      <br>
+      <br>
+      <h3>Ihr f&uuml;nfstelliger Zugangscode lautet:</h3>
+      <br>
+      <br>
+      <h3><b><%= @code %></b></h3>
+      <br>
+      <br>
+      <br>
+      <h3>Vielen Dank f&uuml;r Ihr Interesse an unserer Studie!</h3>
+      <br>
+      <br>
+      <h3>Ihr Team von konkret Marktforschung Bremen</h3>
+      <br>
+      <h4>[*] Hinweis: Am Besten funktioniert es mit dem Mozilla Firefox, Google Chrome oder Opera.</h4>
       </p>
+      <br>
+      <hr>
+      <sub>
+        konkret Institut f&uuml;r innovative Markt- und Meinungsforschung GmbH, Obernstra&szlig;e 76, D-28195 Bremen, Germany<br>
+        Gesch&auml;ftsf&uuml;hrender Gesellschafter: Robert Schulze<br>
+        Bitte beachten Sie, dass diese Mail und alle mit ihr uebertragenen Dateien vertraulich und ausschliesslich fuer den benannten Empfaenger bestimmt sind. Wenn Sie nicht der richtige Empfaenger sind, informieren Sie bitte den Absender und vernichten Sie diese Mail. Aufgrund der begrenzten Sicherheit im Internet besteht ausserdem die Moeglichkeit, dass der Absendername dieser Mail gefaelscht wurde. Zudem kann der Zugriff von Dritten auf E-Mails grundsaetzlich nicht ausgeschlossen werden. Bitte treffen Sie darum wichtige Entscheidungen aufgrund von E-Mails nur dann, wenn Ihnen die Echtheit vom Absender auf anderem Weg (z.B. per Telefon) bestaetigt wurde.
+      </sub>
 
     </div>
   </div>

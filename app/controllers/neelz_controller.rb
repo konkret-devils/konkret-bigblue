@@ -59,10 +59,13 @@ class NeelzController < ApplicationController
     @cache_expire = 10.seconds
     @neelz_interviewer_name = session['neelz_interviewer_name']
     @neelz_name_of_study = session['neelz_name_of_study']
-    @neelz_proband_url = Rails.configuration.instance_url + 'c_gate/' + session['neelz_proband_qvid']
+    @neelz_proband_access_url = proband_access_url
     @neelz_room_access_code = session['neelz_room_access_code']
     @neelz_proband_name = session['neelz_proband_name'] || ''
     @neelz_proband_email = session['neelz_proband_email'] || ''
+    if session['neelz_mail_delivery_error']
+      flash[:alert] = "Fehler bei der E-Mail-Zustellung an die Adresse #{@neelz_proband_email}"
+    end
   end
 
   # POST /neelz/waiting
@@ -72,11 +75,19 @@ class NeelzController < ApplicationController
     @neelz_proband_email = params[:session][:email_proband]
     session['neelz_proband_name'] = @neelz_proband_name
     session['neelz_proband_email'] = @neelz_proband_email
-    @neelz_proband_url = session['neelz_url_proband']
+    @neelz_proband_access_url = proband_access_url
     @neelz_room_access_code = session[:access_code]
     @neelz_interviewer_name = session['neelz_interviewer_name']
     @neelz_name_of_study = session['neelz_name_of_study']
-    send_neelz_participation_email(@neelz_proband_email,@neelz_proband_url,@neelz_room_access_code,@neelz_interviewer_name,@neelz_proband_name,@neelz_name_of_study)
+    if send_neelz_participation_email(
+                                   @neelz_proband_email,@neelz_proband_access_url,
+                                   @neelz_room_access_code,@neelz_interviewer_name,
+                                   @neelz_proband_name,@neelz_name_of_study)===false
+      session['neelz_mail_delivery_error'] = true
+      redirect_to '/neelz'
+    else
+      session['neelz_mail_delivery_error'] = true
+    end
   end
 
   private
@@ -126,6 +137,10 @@ class NeelzController < ApplicationController
   def decode_proband_qvid(proband_qvid)
     p_qvid = proband_qvid[1..-1].to_i(24)
     ((p_qvid - 213) / 3) - 117
+  end
+
+  def proband_access_url
+    Rails.configuration.instance_url + 'c_gate/' + session['neelz_proband_qvid']
   end
 
 end
