@@ -24,10 +24,10 @@ module Joiner
     # Get users name
     @name = if current_user
       current_user.name
-    elsif cookies.encrypted[:greenlight_name]
-      cookies.encrypted[:greenlight_name]
     elsif session['__join_name']
       session['__join_name']
+    elsif cookies.encrypted[:greenlight_name]
+      cookies.encrypted[:greenlight_name]
     else
               ""
     end
