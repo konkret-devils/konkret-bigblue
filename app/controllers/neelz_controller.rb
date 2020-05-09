@@ -68,8 +68,8 @@ class NeelzController < ApplicationController
   # POST /neelz/waiting
   def waiting
     @cache_expire = 10.seconds
-    @neelz_proband_name = params['session[name_proband]']
-    @neelz_proband_email = params['session[email_proband]']
+    @neelz_proband_name = params[:session][:name_proband]
+    @neelz_proband_email = params[:session][:email_proband]
     session['neelz_proband_name'] = @neelz_proband_name
     session['neelz_proband_email'] = @neelz_proband_email
     @neelz_proband_url = session['neelz_url_proband']
