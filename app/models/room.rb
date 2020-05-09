@@ -77,11 +77,12 @@ class Room < ApplicationRecord
 
   # Notify waiting users that a meeting has started.
   def notify_waiting
-    ActionCable.server.broadcast("#{uid}_waiting_channel", action: "started")
+    logger.info("room :: notify_waiting .. #{self.uid}")
+    ActionCable.server.broadcast("#{self.uid}_waiting_channel", action: "started")
   end
 
   def notify_co_browsing
-    ActionCable.server.broadcast("#{uid}_co_browsing_channel", {action: "share", url: "#{uid}"})
+    ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "share", url: "#{uid}"})
   end
 
   def get_attendee_pw

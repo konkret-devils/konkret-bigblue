@@ -74,6 +74,9 @@ module Joiner
 
       redirect_to '/inside'
 
+      NotifyUserWaitingJob.set(wait: 5.seconds).perform_later(@room)
+      NotifyCoBrowsingJob.set(wait: 20.seconds).perform_later(@room)
+
     else
       search_params = params[@room.invite_path] || params
       @search, @order_column, @order_direction, pub_recs =
