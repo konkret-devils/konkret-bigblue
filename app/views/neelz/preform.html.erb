@@ -43,7 +43,7 @@ Bitte &ouml;ffnen Sie daf&uuml;r folgenden Link in Ihrem Webbrowser[*] :
 
 <%= @neelz_proband_url %>
 
-Geben Sie bitte anschlie&szlig; diesen f&uuml;nfstelligen Zugangscode ein :
+Geben Sie bitte anschlie&szlig;end diesen f&uuml;nfstelligen Zugangscode ein :
 
 <%= @neelz_room_access_code %>
 
@@ -61,16 +61,16 @@ Vielen Dank f&uuml;r Ihr Interesse an unserer Studie!
                       /* Copy the text inside the text field */
                       document.execCommand("copy");
                       $('.fa-clipboard').removeClass('fa-clipboard').addClass('fa-clipboard-check');
-                      $('.signin-button').prop('disabled',false);
+                      $('#start-button').prop('disabled',false);
                   }
                 </script>
               </div>
             </div>
             <div class="card-footer px-0">
-              <%= f.submit "Weiter", class: "btn btn-primary btn-block signin-button" %>
+              <%= f.submit "Weiter", class: "btn btn-primary btn-block signin-button", id: "start-button" %>
             </div>
             <script type="text/javascript">
-              $('.signin-button').prop('disabled',true);
+              $('#start-button').prop('disabled',true);
             </script>
           <% end %>
         </div>
