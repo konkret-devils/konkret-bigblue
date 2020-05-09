@@ -131,7 +131,7 @@ class NeelzController < ApplicationController
   end
 
   def proband_access_url
-    Rails.configuration.instance_url + 'c_gate/' + session['neelz_proband_qvid']
+    Rails.configuration.instance_url + 'neelz/cgate/' + session['neelz_proband_qvid']
   end
 
 end
