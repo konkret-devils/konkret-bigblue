@@ -84,6 +84,18 @@ class Room < ApplicationRecord
     ActionCable.server.broadcast("#{uid}_co_browsing_channel", action: "share")
   end
 
+  def get_attendee_pw
+    self.attendee_pw
+  end
+
+  def get_moderator_pw
+    self.moderator_pw
+  end
+
+  def set_attendee_pw(password)
+    self.attendee_pw = password
+  end
+
   private
 
   # Generates a uid for the room and BigBlueButton.
@@ -91,7 +103,7 @@ class Room < ApplicationRecord
     self.uid = random_room_uid unless self.uid
     self.bbb_id = Digest::SHA1.hexdigest(Rails.application.secrets[:secret_key_base] + Time.now.to_i.to_s).to_s
     self.moderator_pw = RandomPassword.generate(length: 12)
-    self.attendee_pw = RandomPassword.generate(length: 12) unless self.attendee_pw
+    self.attendee_pw = RandomPassword.generate(length: 12)
   end
 
   # Generates a three character uid chunk.
