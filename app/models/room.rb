@@ -81,7 +81,7 @@ class Room < ApplicationRecord
   end
 
   def notify_co_browsing
-    ActionCable.server.broadcast("#{uid}_co_browsing_channel", action: "share")
+    ActionCable.server.broadcast("#{uid}_co_browsing_channel", {action: "share", url: "#{uid}"})
   end
 
   def get_attendee_pw
