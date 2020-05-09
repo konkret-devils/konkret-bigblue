@@ -30,7 +30,6 @@ class NeelzMailer < ApplicationMailer
     @proband_name = proband_name
     @study_name = study_name
     @image = logo_image_email
-    @color = user_color
     @from = "#{interviewer_name} ~ via #{Rails.configuration.smtp_sender}"
     @reply_to = "#{interviewer_name} <#{Rails.configuration.neelz_email}>"
     mail to: email, subject: "Einladung zum Interview", from: @from
