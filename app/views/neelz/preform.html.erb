@@ -2,10 +2,10 @@
   <div class="row pt-7">
     <div class="col col-lg-6 offset-lg-3">
       <div class="card">
-        <div class="card-header background">
+        <div class="card-header background" style="display: block;">
           <h4 class="mt-2">Hallo <%= @neelz_interviewer_name %></h4>
           <div>
-            <b>Sie starten eine Befragung im Rahmen unserer Studie <%= @neelz_name_of_study %>.</b> <br>
+            <b>Sie starten eine Befragung im Rahmen unserer Studie <%= @neelz_name_of_study %>.</b> <br><br>
             Entweder k&ouml;nnen Sie unten die E-Mail-Adresse Ihrer/s Proband/in eintragen
             (dann wird automatisch eine Mail mit dem Link zur Befragung und dem Zugangscode an diese Adresse gesendet),
             oder Sie kopieren den untenstehenden Vorlagetext mit dem Link und dem Zugangscode in die Zwischenablage und
@@ -31,26 +31,27 @@
               </div>
             </div>
             <div class="form-group">
-              <textarea id="message_template" readonly style="resize: none;"  data-content="Text in die Zwischenablagde kopieren" data-original="Text in die Zwischenablagde kopieren" data-success="Text kopiert!">
-                  <%= @neelz_interviewer_name %> hat Sie zur Teilnahme an einem Interview
-                  im Rahmen der Studie <%= @neelz_name_of_study %> eingeladen.
-
-                  Bitte &ouml;ffnen Sie daf&uuml;r folgenden Link in Ihrem Webbrowser[*] :
-
-                  <%= @neelz_proband_url %>
-
-                  Geben Sie bitte anschlie&szlig; diesen f&uuml;nfstelligen Zugangscode ein :
-
-                  <%= @neelz_room_access_code %>
-
-                  Vielen Dank f&uuml;r Ihr Interesse an unserer Studie!
-
-                  [*] Hinweis: Am Besten funktioniert es mit dem Mozilla Firefox, Google Chrome oder Opera.
-              </textarea>
-              <button id="copy_message_template" onclick="copy_message_template()">
+              <div class="input-icon">
+                <span id="copy_message_template" onclick="copy_message_template()" class="input-icon-addon btn btn-primary" style="pointer-events: all;color:white;">
                   <i class="fas fa-clipboard"></i>
-              </button>
-              <script type="text/javascript">
+                </span>
+                <textarea id="message_template" readonly style="resize: none;"  data-content="Text in die Zwischenablagde kopieren" data-original="Text in die Zwischenablagde kopieren" data-success="Text kopiert!">
+<%= @neelz_interviewer_name %> hat Sie zur Teilnahme an einem Interview
+im Rahmen der Studie <%= @neelz_name_of_study %> eingeladen.
+
+Bitte &ouml;ffnen Sie daf&uuml;r folgenden Link in Ihrem Webbrowser[*] :
+
+<%= @neelz_proband_url %>
+
+Geben Sie bitte anschlie&szlig; diesen f&uuml;nfstelligen Zugangscode ein :
+
+<%= @neelz_room_access_code %>
+
+Vielen Dank f&uuml;r Ihr Interesse an unserer Studie!
+
+[*] Hinweis: Am Besten funktioniert es mit dem Mozilla Firefox, Google Chrome oder Opera.
+                </textarea>
+                <script type="text/javascript">
                   function copy_message_template() {
                       /* Get the text field */
                       let copyText = document.getElementById("message_template");
@@ -60,10 +61,11 @@
                       /* Copy the text inside the text field */
                       document.execCommand("copy");
                   }
-              </script>
+                </script>
+              </div>
             </div>
             <div class="card-footer px-0">
-              <%= f.submit tra("login"), class: "btn btn-primary btn-block signin-button" %>
+              <%= f.submit "Weiter", class: "btn btn-primary btn-block signin-button" %>
             </div>
           <% end %>
         </div>
