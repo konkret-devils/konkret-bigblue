@@ -63,6 +63,8 @@ class NeelzController < ApplicationController
     @neelz_room_access_code = session['neelz_room_access_code']
     @neelz_proband_name = session['neelz_proband_name'] || ''
     @neelz_proband_email = session['neelz_proband_email'] || ''
+    flash[:success] = nil
+    flash[:alert] = nil
     if session['neelz_mail_delivery_error']
       flash[:alert] = "Fehler bei der E-Mail-Zustellung an die Adresse #{@neelz_proband_email}"
     end
