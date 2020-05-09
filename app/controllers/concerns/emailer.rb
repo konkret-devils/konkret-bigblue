@@ -128,8 +128,6 @@ module Emailer
       logger.error "Support: Error in email delivery: #{e}"
       flash[:alert] = "Fehler bei der E-Mail-Zustellung an die Adresse #{email}"
       redirect_to '/neelz'
-    else
-      flash[:success] = "Die Zugangsdaten zum Interview wurden erfolgreich an die E-Mail-Adresse #{email} zugestellt."
     end
   end
 
