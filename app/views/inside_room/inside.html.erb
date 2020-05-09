@@ -47,11 +47,11 @@
     </div>
 
     <script type="text/javascript">
-      var orientation_dim = {dim: 'horizontal'};
+      var orientation_dim = {dim: 'unset'};
 
       function check_orientation() {
           if ($(window).width() > $(window).height()) {
-            if (orientation_dim.dim === 'vertical'){
+            if (orientation_dim.dim === 'vertical' || orientation_dim.dim === 'unset'){
                 $('#inside_video_frame, #inside_external_frame')
                     .removeClass('inside_frame_vertical')
                     .removeClass('half_height')
@@ -60,7 +60,7 @@
                 orientation_dim.dim = 'horizontal'
             }
           } else {
-              if (orientation_dim.dim === 'horizontal'){
+              if (orientation_dim.dim === 'horizontal' || orientation_dim.dim === 'unset'){
                   $('#inside_video_frame, #inside_external_frame')
                       .removeClass('inside_frame_horizontal')
                       .removeClass('half_width')
