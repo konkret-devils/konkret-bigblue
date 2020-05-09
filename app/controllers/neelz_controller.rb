@@ -51,7 +51,7 @@ class NeelzController < ApplicationController
     return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
     session['neelz_room_uid'] = @neelz_room.uid
     session['neelz_proband_qvid'] = qvid_proband_encoded
-    session['__join_name'] = @neelz_room.attendee_pw[12..-1]
+    session['__join_name'] = @neelz_room.get_attendee_pw[12..-1]
     redirect_to '/'+@neelz_room.uid
   end
 
@@ -75,7 +75,7 @@ class NeelzController < ApplicationController
     return redirect_to '/neelz' unless @room
     session['neelz_proband_name'] = @neelz_proband_name
     session['neelz_proband_email'] = @neelz_proband_email
-    @room.set_attendee_pw(@room.attendee_pw[0..11] + @neelz_proband_name)
+    @room.set_attendee_pw(@room.get_attendee_pw[0..11] + @neelz_proband_name)
     @room.save
     @neelz_proband_access_url = proband_access_url
     @neelz_room_access_code = session[:access_code]
