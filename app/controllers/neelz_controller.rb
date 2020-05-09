@@ -119,7 +119,7 @@ class NeelzController < ApplicationController
     room_settings = {
         "muteOnStart": false,
         "requireModeratorApproval": false,
-        "anyoneCanStart": true,
+        "anyoneCanStart": false,
         "joinModerator": false
     }
     room_settings.to_json
