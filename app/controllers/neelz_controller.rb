@@ -21,9 +21,11 @@ class NeelzController < ApplicationController
   include Recorder
   include Joiner
   include Populator
+  include Emailer
 
   # GET /neelz/gate
   def gate
+    @cache_expire = 10.seconds
     session['neelz_qvid'] = params[:qvid].to_i(10)
     session['neelz_url_interviewer'] = params[:url_interviewer] if params[:url_interviewer]
     session['neelz_url_proband'] = params[:url_proband] if params[:url_proband]
@@ -34,8 +36,22 @@ class NeelzController < ApplicationController
     @neelz_room = get_room
     session['neelz_room_uid'] = @neelz_room.uid
     session['neelz_room_access_code'] = @neelz_room.access_code
+    session[:access_code] = @neelz_room.access_code
     session['neelz_proband_qvid'] = qvid_proband_encoded
+    cookies.encrypted[:greenlight_name] = params[:interviewer_name]
     redirect_to '/neelz'
+  end
+
+  # GET /neelz/cgate/:proband_qvid
+  def cgate
+    @cache_expire = 10.seconds
+    session['neelz_qvid'] = decode_proband_qvid(params[:proband_qvid])
+    @neelz_room = get_room
+    return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
+    session['neelz_room_uid'] = @neelz_room.uid
+    session['neelz_proband_qvid'] = qvid_proband_encoded
+    cookies.encrypted[:greenlight_name] = @neelz_room.attendee_pw[12..-1]
+    redirect_to '/'+@neelz_room.uid
   end
 
   # GET /neelz
@@ -47,6 +63,20 @@ class NeelzController < ApplicationController
     @neelz_room_access_code = session['neelz_room_access_code']
     @neelz_proband_name = session['neelz_proband_name'] || ''
     @neelz_proband_email = session['neelz_proband_email'] || ''
+  end
+
+  # POST /neelz/waiting
+  def waiting
+    @cache_expire = 10.seconds
+    @neelz_proband_name = params['session[name_proband]']
+    @neelz_proband_email = params['session[email_proband]']
+    session['neelz_proband_name'] = @neelz_proband_name
+    session['neelz_proband_email'] = @neelz_proband_email
+    @neelz_proband_url = session['neelz_url_proband']
+    @neelz_room_access_code = session[:access_code]
+    @neelz_interviewer_name = session['neelz_interviewer_name']
+    @neelz_name_of_study = session['neelz_name_of_study']
+    send_neelz_participation_email(@neelz_proband_email,@neelz_proband_url,@neelz_room_access_code,@neelz_interviewer_name,@neelz_proband_name,@neelz_name_of_study)
   end
 
   private
@@ -64,7 +94,7 @@ class NeelzController < ApplicationController
 
   def create_room(owner)
     room_uid = 'kon-survey-' + qvid_interviewer_encoded
-    room = Room.new(name: session['neelz_name_of_study'] + ' - SURVEY ' + qvid_proband_encoded)
+    room = Room.new(name: session['neelz_name_of_study'] + ' - Interview #' + qvid_proband_encoded)
     room.uid = room_uid
     room.owner = owner
     room.access_code = rand(10000...99999).to_s

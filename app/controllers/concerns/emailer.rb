@@ -121,6 +121,17 @@ module Emailer
     end
   end
 
+  def send_neelz_participation_email(email,url,code,interviewer_name,proband_name,study_name)
+    begin
+      NeelzMailer.participation_invite_email(email,url,code,interviewer_name,proband_name,study_name).deliver_now
+    rescue => e
+      logger.error "Support: Error in email delivery: #{e}"
+      flash[:alert] = I18n.t(params[:message], default: I18n.t("delivery_error"), instance_name: inst_name)
+    else
+      flash[:success] = I18n.t("email_sent", email_type: "Zugangsdaten zum Interview", instance_name: inst_name)
+    end
+  end
+
   private
 
   # Returns the link the user needs to click to verify their account

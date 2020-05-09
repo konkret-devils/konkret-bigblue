@@ -91,7 +91,7 @@ class Room < ApplicationRecord
     self.uid = random_room_uid unless self.uid
     self.bbb_id = Digest::SHA1.hexdigest(Rails.application.secrets[:secret_key_base] + Time.now.to_i.to_s).to_s
     self.moderator_pw = RandomPassword.generate(length: 12)
-    self.attendee_pw = RandomPassword.generate(length: 12)
+    self.attendee_pw = RandomPassword.generate(length: 12) unless self.attendee_pw
   end
 
   # Generates a three character uid chunk.

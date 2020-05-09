@@ -3,9 +3,9 @@
     <div class="col col-lg-6 offset-lg-3">
       <div class="card">
         <div class="card-header background" style="display: block;">
-          <h4 class="mt-2">Hallo <%= @neelz_interviewer_name %></h4>
+          <h4 class="mt-2">Hallo <%= @neelz_interviewer_name %>,</h4>
           <div>
-            <b>Sie starten eine Befragung im Rahmen unserer Studie <%= @neelz_name_of_study %>.</b> <br><br>
+            <b>Sie starten eine Befragung im Rahmen unserer Studie:<br><i><%= @neelz_name_of_study %></i>.</b> <br><br>
             Entweder k&ouml;nnen Sie unten die E-Mail-Adresse Ihrer/s Proband/in eintragen
             (dann wird automatisch eine Mail mit dem Link zur Befragung und dem Zugangscode an diese Adresse gesendet),
             oder Sie kopieren den untenstehenden Vorlagetext mit dem Link und dem Zugangscode in die Zwischenablage und
@@ -13,13 +13,13 @@
           </div>
         </div>
         <div class="card-body background">
-          <%= form_for(:session, url: '/neelz/enter_room') do |f| %>
+          <%= form_for(:session, url: '/neelz/waiting') do |f| %>
             <div class="form-group">
               <div class="input-icon">
                 <span class="input-icon-addon">
                   <i class="fas fa-user"></i>
                 </span>
-                <%= f.text_field :name_proband, class: "form-control", placeholder: "(Vor-)Name des Probanden", value: @neelz_proband_name %>
+                <%= f.text_field :name_proband, onchange: "updateState()", class: "form-control", placeholder: "(Vor-)Name des Probanden", value: @neelz_proband_name %>
               </div>
             </div>
             <div class="form-group">
@@ -27,7 +27,7 @@
                 <span class="input-icon-addon">
                   <i class="fas fa-at"></i>
                 </span>
-                <%= f.text_field :email_proband, class: "form-control", placeholder: "E-Mail-Adresse des Probanden (optional)", value: @neelz_proband_email %>
+                <%= f.email_field :email_proband, onchange: "updateState()", class: "form-control", placeholder: "E-Mail-Adresse des Probanden (optional)", value: @neelz_proband_email %>
               </div>
             </div>
             <div class="form-group">
@@ -54,6 +54,20 @@ Vielen Dank f&uuml;r Ihr Interesse an unserer Studie!
 
 [*] Hinweis: Am Besten funktioniert es mit dem Mozilla Firefox, Google Chrome oder Opera.</textarea>
                 <script type="text/javascript">
+
+                  var copied = {done: false};
+
+                  function updateState() {
+                      if (($('#session_name_proband').val().length >= 2)
+                          && (
+                          (copied.done===true) ||
+                          ($('#session_email_proband').val().length >= 7))) {
+                          $('#start-button').prop('disabled',false);
+                      }else{
+                          $('#start-button').prop('disabled',true);
+                      }
+                  }
+
                   function copy_message_template() {
                       /* Get the text field */
                       let copyText = document.getElementById("message_template");
@@ -64,7 +78,8 @@ Vielen Dank f&uuml;r Ihr Interesse an unserer Studie!
                       document.execCommand("copy");
                       $('.fa-clipboard').removeClass('fa-clipboard').removeClass('far')
                           .addClass('fas').addClass('fa-clipboard-check');
-                      $('#start-button').prop('disabled',false);
+                      copied.done = true;
+                      updateState();
                   }
                 </script>
               </div>
@@ -73,7 +88,7 @@ Vielen Dank f&uuml;r Ihr Interesse an unserer Studie!
               <%= f.submit "Weiter", class: "btn btn-primary btn-block signin-button", id: "start-button" %>
             </div>
             <script type="text/javascript">
-              $('#start-button').prop('disabled',true);
+
             </script>
           <% end %>
         </div>

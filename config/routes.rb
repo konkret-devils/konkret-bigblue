@@ -90,7 +90,8 @@ Rails.application.routes.draw do
                                            :proband_readonly,
                                            :studie_name,
                                            :cs], as: :neelz_gate
-    post '/enter_room', to: 'neelz#enter_room', as: :neelz_enter_room
+    post '/waiting', to: 'neelz#waiting', as: :neelz_waiting
+    get '/cgate/:proband_qvid', to: 'neelz#cgate', as: :neelz_cgate
   end
 
   # User resources.
