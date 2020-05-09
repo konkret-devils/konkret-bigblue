@@ -52,10 +52,10 @@ module Joiner
   def join_room(opts)
     room_settings = JSON.parse(@room[:room_settings])
 
-    if room_running?(@room.bbb_id) || @room.owned_by?(current_user) || room_settings["anyoneCanStart"]
+    if room_running?(@room.bbb_id) || @room.owned_by?(current_user) || room_settings["anyoneCanStart"] || session["is_moderator"]
 
       # Determine if the user needs to join as a moderator.
-      opts[:user_is_moderator] = @room.owned_by?(current_user) || room_settings["joinModerator"]
+      opts[:user_is_moderator] = @room.owned_by?(current_user) || room_settings["joinModerator"] || session["is_moderator"]
 
       opts[:require_moderator_approval] = room_settings["requireModeratorApproval"]
       opts[:mute_on_start] = room_settings["muteOnStart"]

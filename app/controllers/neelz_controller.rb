@@ -39,6 +39,7 @@ class NeelzController < ApplicationController
     session['neelz_room_access_code'] = @neelz_room.access_code
     session[:access_code] = @neelz_room.access_code
     session['neelz_proband_qvid'] = qvid_proband_encoded
+    session['is_moderator'] = true
     cookies.encrypted[:greenlight_name] = params[:interviewer_name]
     redirect_to '/neelz'
   end
@@ -51,7 +52,8 @@ class NeelzController < ApplicationController
     return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
     session['neelz_room_uid'] = @neelz_room.uid
     session['neelz_proband_qvid'] = qvid_proband_encoded
-    session['__join_name'] = @neelz_room.get_attendee_pw[12..-1]
+    session['__join_name'] = @neelz_room.get_attendee_pw
+    session['is_moderator'] = false
     redirect_to '/'+@neelz_room.uid
   end
 
@@ -75,7 +77,7 @@ class NeelzController < ApplicationController
     return redirect_to '/neelz' unless @room
     session['neelz_proband_name'] = @neelz_proband_name
     session['neelz_proband_email'] = @neelz_proband_email
-    @room.set_attendee_pw(@room.get_attendee_pw[0..11] + @neelz_proband_name)
+    #@room.set_attendee_pw(@room.get_attendee_pw[0..11] + @neelz_proband_name)
     @room.save
     @neelz_proband_access_url = proband_access_url
     @neelz_room_access_code = session[:access_code]
@@ -84,6 +86,7 @@ class NeelzController < ApplicationController
     send_neelz_participation_email(@neelz_proband_email,@neelz_proband_access_url,
                                    @neelz_room_access_code,@neelz_interviewer_name,
                                    @neelz_proband_name,@neelz_name_of_study)
+    redirect_to '/'+@room.uid
   end
 
   private
@@ -115,7 +118,7 @@ class NeelzController < ApplicationController
         "muteOnStart": false,
         "requireModeratorApproval": false,
         "anyoneCanStart": true,
-        "joinModerator": true
+        "joinModerator": false
     }
     room_settings.to_json
   end
