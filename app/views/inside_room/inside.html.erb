@@ -47,7 +47,7 @@
     </div>
 
     <script type="text/javascript">
-      var orientation_dim = {dim: 'unset'};
+      var orientation_dim = {dim: 'unset', parent_height: 0, parent_width: 0};
 
       function check_orientation() {
           if ($(window).width() > $(window).height()) {
@@ -55,6 +55,7 @@
                 $('#inside_video_frame, #inside_external_frame')
                     .removeClass('inside_frame_vertical')
                     .removeClass('half_height')
+                    .css('height','100%')
                     .addClass('inside_frame_horizontal')
                     .addClass('half_width');
                 orientation_dim.dim = 'horizontal'
@@ -64,6 +65,7 @@
                   $('#inside_video_frame, #inside_external_frame')
                       .removeClass('inside_frame_horizontal')
                       .removeClass('half_width')
+                      .css('width','100%')
                       .addClass('inside_frame_vertical')
                       .addClass('half_height');
                   orientation_dim.dim = 'vertical'
@@ -71,24 +73,40 @@
           }
       }
 
-      $('#inside_external_frame').resizable();
-      $('#inside_external_frame').resize(function () {
+      var inside_parent = $("#inside_parent");
+      var inside_video_frame = $('#inside_video_frame');
+      var inside_external_frame = $("#inside_external_frame");
+
+      inside_external_frame.resizable();
+      inside_external_frame.resize(function () {
         if (orientation_dim.dim === 'vertical'){
-            $('#inside_video_frame').height($("#inside_parent").height()-$("#inside_external_frame").height());
+            inside_video_frame.height(orientation_dim.parent_height-inside_external_frame.height());
         }else{
-            $('#inside_video_frame').width($("#inside_parent").width()-$("#inside_external_frame").width());
+            inside_video_frame.width(orientation_dim.parent_width-inside_external_frame.width());
         }
       });
+
+      function cache_parent_dim(){
+          orientation_dim.parent_width = inside_parent.width();
+          orientation_dim.parent_height = inside_parent.height();
+      }
+
       $(window).resize(function(){
           check_orientation();
+          cache_parent_dim();
           if (orientation_dim.dim === 'vertical') {
-              $('#inside_video_frame').height($("#inside_parent").height() - $("#inside_external_frame").height());
-              $('#inside_external_frame').width($("#inside_parent").width());
+              inside_video_frame.height(orientation_dim.parent_height - inside_external_frame.height());
+              inside_external_frame.width(orientation_dim.parent_width);
           }else{
-              $('#inside_video_frame').width($("#inside_parent").width() - $("#inside_external_frame").width());
-              $('#inside_external_frame').height($("#inside_parent").height());
+              inside_video_frame.width(orientation_dim.parent_width - inside_external_frame.width());
+              inside_external_frame.height(orientation_dim.parent_height);
           }
       });
-      check_orientation();
+
+      $(document).ready(function () {
+          check_orientation();
+          cache_parent_dim();
+      });
+
     </script>
 </div>
