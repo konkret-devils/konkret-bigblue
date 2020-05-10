@@ -15,7 +15,7 @@
 
 <div class="background pb-1" is_moderator="<%= @is_moderator ? "yes" : "no" %>" is_neelz_room="<%= @is_neelz_room ? "yes" : "no" %>" room="<%= @current_room_inside %>" user="<%= current_user ? current_user.uid : "anonymous" %>">
 
-  <% if @is_neelz_room %>
+  <% if @is_neelz_room && @user_browses %>
     <div id="inside_parent">
         <div id="inside_external_frame" style="display: block;">
             <% unless @is_moderator %>
@@ -46,7 +46,7 @@
 
             </iframe>
 
-  <% if @is_neelz_room %>
+  <% if @is_neelz_room && @user_browses %>
         </div>
 
     </div>
