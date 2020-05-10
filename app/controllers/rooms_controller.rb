@@ -82,6 +82,7 @@ class RoomsController < ApplicationController
         render :cant_create_rooms
       end
     else
+      session['is_neelz_room'] = @room.is_neelz_room?
       return redirect_to root_path, flash: { alert: tra("room.invalid_provider") } if incorrect_user_domain
 
       show_user_join
