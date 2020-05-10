@@ -23,7 +23,7 @@
       <div class="d-flex ml-auto">
         <% if params[:controller] == "neelz" %>
           NEELZ
-        <% elsif params[:controller] == "inside" && session["is_neelz_room"] %>
+        <% elsif (params[:controller] == "inside_room" || (params[:controller] == "rooms" && params[:action] == "show")) && session["is_neelz_room"] %>
           <% if session['is_moderator'] %>
             MODERATOR
           <% else %>
