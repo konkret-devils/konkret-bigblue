@@ -29,7 +29,7 @@ module Joiner
     elsif cookies.encrypted[:greenlight_name]
       cookies.encrypted[:greenlight_name]
     else
-              ""
+      ""
     end
 
     @search, @order_column, @order_direction, pub_recs =
@@ -71,6 +71,7 @@ module Joiner
 
       session['target_url_client'] = bbb_url_returned
       session['current_room_inside'] = @room.uid
+      session['is_neelz_room'] = @room.is_neelz_room?
 
       redirect_to '/inside'
 

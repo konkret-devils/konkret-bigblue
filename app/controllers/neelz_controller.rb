@@ -40,6 +40,7 @@ class NeelzController < ApplicationController
     session[:access_code] = @neelz_room.access_code
     session['neelz_proband_qvid'] = qvid_proband_encoded
     session['is_moderator'] = true
+    session['moderator_for'] = @neelz_room.uid
     cookies.encrypted[:greenlight_name] = session['__join_name']
     redirect_to '/neelz'
   end
@@ -55,6 +56,7 @@ class NeelzController < ApplicationController
     session['__join_name'] = @neelz_room.get_attendee_pw[12..-1]
     cookies.encrypted[:greenlight_name] = session['__join_name']
     session['is_moderator'] = false
+    session['moderator_for'] = ''
     redirect_to '/'+@neelz_room.uid
   end
 

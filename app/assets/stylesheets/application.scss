@@ -63,6 +63,7 @@ html, body {
 body {
 
   visibility: hidden;
+  overflow: auto;
 
 }
 
@@ -273,4 +274,46 @@ element {
   padding-bottom: 0 !important;
   margin: 0 !important;
   height: auto;
+}
+
+#inside_parent{
+  position:absolute;
+  height:100%;
+  margin:0;
+  padding:0;
+  width:100%;
+}
+#inside_external_frame{
+  position:relative;
+  background-color:#A2A;
+}
+#inside_video_frame{
+  position:relative;
+  background-color:#9FA;
+}
+.inside_frame_vertical{
+  max-height: 100%;
+  min-height: 25%;
+  width:100%;
+  overflow-y: auto;
+}
+.inside_frame_horizontal{
+  max-width: 100%;
+  min-width: 25%;
+  float: left;
+  height:100%;
+  overflow-x: auto;
+}
+
+#external_viewport,
+#client_viewport {
+  width: 100%;
+  height: 100%;
+}
+
+.half_height{
+  height: 50%;
+}
+.half_width{
+  width: 50%;
 }

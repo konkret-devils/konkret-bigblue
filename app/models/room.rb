@@ -81,6 +81,10 @@ class Room < ApplicationRecord
     ActionCable.server.broadcast("#{self.uid}_waiting_channel", action: "started")
   end
 
+  def is_neelz_room?
+    self.uid && self.uid[0..10] == 'kon-survey-'
+  end
+
   def notify_co_browsing
     ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "share", url: "#{uid}"})
   end

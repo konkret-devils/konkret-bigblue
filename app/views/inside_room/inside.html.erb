@@ -13,12 +13,12 @@
   # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 %>
 
-<div class="background pb-1"  room="<%= @current_room_inside %>" user="<%= current_user ? current_user.uid : "anonymous" %>">
+<div class="background pb-1" is_moderator="<%= @is_moderator ? "yes" : "no" %>" is_neelz_room="<%= @is_neelz_room ? "yes" : "no" %>" room="<%= @current_room_inside %>" user="<%= current_user ? current_user.uid : "anonymous" %>">
 
+  <% if @is_neelz_room %>
     <div id="inside_parent">
-
-        <div id="inside_external_frame" style="display: inherit;">
-            <iframe title="Fragebogen" id="external_viewport" src="https://www.konkret-mafo.de/" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" style="width: 100%; height: 100%;" importance="high" referrer-policy="unsafe-url">
+        <div id="inside_external_frame" style="display: block;">
+            <iframe title="Fragebogen" id="external_viewport" src="https://www.konkret-mafo.de/" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
 
             </iframe>
 
@@ -37,58 +37,55 @@
         </div>
 
         <div id="inside_video_frame">
+  <% end %>
 
-            <iframe title="<%= @current_room_inside %>" id="client_viewport" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" src="<%= @target_url_client %>" width="100%" height="100%" style="width: 100%; height: 100%;" importance="high" referrer-policy="unsafe-url">
+            <iframe title="<%= @current_room_inside %>" id="client_viewport" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" src="<%= @target_url_client %>" width="100%" height="100%" importance="high" referrer-policy="unsafe-url">
 
             </iframe>
 
+  <% if @is_neelz_room %>
         </div>
 
     </div>
 
     <script type="text/javascript">
       var orientation_dim = {dim: 'unset', parent_height: 0, parent_width: 0};
+      var inside_parent = $("#inside_parent");
+      var inside_video_frame = $('#inside_video_frame');
+      var inside_external_frame = $("#inside_external_frame");
 
       function check_orientation() {
-          if ($(window).width() > $(window).height()) {
+          if (inside_parent.width() > inside_parent.height()) {
             if (orientation_dim.dim === 'vertical' || orientation_dim.dim === 'unset'){
                 $('#inside_video_frame, #inside_external_frame')
-                    .removeClass('inside_frame_vertical')
-                    .removeClass('half_height')
-                    .css('height','100%')
                     .addClass('inside_frame_horizontal')
-                    .addClass('half_width');
-                $('#inside_external_frame')
-                    .css('resize','horizontal');
+                    .addClass('half_width')
+                    .removeClass('inside_frame_vertical')
+                    .css('height','100%')
+                    .removeClass('half_height');
                 orientation_dim.dim = 'horizontal'
             }
           } else {
               if (orientation_dim.dim === 'horizontal' || orientation_dim.dim === 'unset'){
                   $('#inside_video_frame, #inside_external_frame')
-                      .removeClass('inside_frame_horizontal')
-                      .removeClass('half_width')
-                      .css('width','100%')
                       .addClass('inside_frame_vertical')
-                      .addClass('half_height');
-                  $('#inside_external_frame')
-                      .css('resize','vertical');
+                      .addClass('half_height')
+                      .removeClass('inside_frame_horizontal')
+                      .css('width','100%')
+                      .removeClass('half_width');
+
                   orientation_dim.dim = 'vertical'
               }
           }
       }
 
-      var inside_parent = $("#inside_parent");
-      var inside_video_frame = $('#inside_video_frame');
-      var inside_external_frame = $("#inside_external_frame");
-
-      //inside_external_frame.resizable({grid: [50,50], ghost: true});
-      inside_external_frame.resize(function () {
+      /*inside_external_frame.resize(function () {
         if (orientation_dim.dim === 'vertical'){
             inside_video_frame.height(orientation_dim.parent_height-inside_external_frame.height());
         }else{
             inside_video_frame.width(orientation_dim.parent_width-inside_external_frame.width());
         }
-      });
+      });*/
 
       function cache_parent_dim(){
           orientation_dim.parent_width = inside_parent.width();
@@ -113,4 +110,5 @@
       });
 
     </script>
+  <% end %>
 </div>
