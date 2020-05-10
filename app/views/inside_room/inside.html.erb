@@ -58,6 +58,8 @@
                     .css('height','100%')
                     .addClass('inside_frame_horizontal')
                     .addClass('half_width');
+                $('#inside_external_frame')
+                    .css('resize','horizontal');
                 orientation_dim.dim = 'horizontal'
             }
           } else {
@@ -68,6 +70,8 @@
                       .css('width','100%')
                       .addClass('inside_frame_vertical')
                       .addClass('half_height');
+                  $('#inside_external_frame')
+                      .css('resize','vertical');
                   orientation_dim.dim = 'vertical'
               }
           }
@@ -77,7 +81,7 @@
       var inside_video_frame = $('#inside_video_frame');
       var inside_external_frame = $("#inside_external_frame");
 
-      inside_external_frame.resizable({grid: [50,50], ghost: true});
+      //inside_external_frame.resizable({grid: [50,50], ghost: true});
       inside_external_frame.resize(function () {
         if (orientation_dim.dim === 'vertical'){
             inside_video_frame.height(orientation_dim.parent_height-inside_external_frame.height());
@@ -96,10 +100,10 @@
           cache_parent_dim();
           if (orientation_dim.dim === 'vertical') {
               inside_video_frame.height(orientation_dim.parent_height - inside_external_frame.height());
-              inside_external_frame.width(orientation_dim.parent_width);
+              //inside_external_frame.width(orientation_dim.parent_width);
           }else{
               inside_video_frame.width(orientation_dim.parent_width - inside_external_frame.width());
-              inside_external_frame.height(orientation_dim.parent_height);
+              //inside_external_frame.height(orientation_dim.parent_height);
           }
       });
 
