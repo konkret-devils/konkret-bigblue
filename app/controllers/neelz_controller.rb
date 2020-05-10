@@ -84,7 +84,7 @@ class NeelzController < ApplicationController
     return redirect_to '/neelz' unless @room
     session['neelz_proband_name'] = @neelz_proband_name
     session['neelz_proband_email'] = @neelz_proband_email
-    @room.set_attendee_pw(@room.get_attendee_pw[0..11] + (session['neelz_interviewer_browses']) + (session['neelz_proband_co_browses']) + @neelz_proband_name)
+    @room.set_attendee_pw(@room.get_attendee_pw[0..11] + (session['neelz_interviewer_browses'].to_s(10)) + (session['neelz_proband_co_browses'].to_s(10)) + @neelz_proband_name)
     @room.save
     @neelz_proband_access_url = proband_access_url
     @neelz_room_access_code = session[:access_code]
