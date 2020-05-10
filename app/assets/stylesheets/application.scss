@@ -326,23 +326,54 @@ element {
   width: 50%;
 }
 
+.one_third_height{
+  height: 34%;
+}
+.one_third_width{
+  width: 34%;
+}
+
+.two_thirds_height{
+  height: 66%;
+}
+.two_thirds_width{
+  width: 66%;
+}
+
 .neelz-button-toggle{
   padding: 0;
   vertical-align: top;
+  border: 0 !important;
+}
+
+.neelz-button-toggle.neelz_screen_split_btn_down {
+  background-color: blueviolet !important;
 }
 
 .neelz_header_section_headline {
   padding: 0;
   margin: 0;
   font-size: 0.8em;
-  line-height: 1em;
+  line-height: 1.2em;
   color: white;
+  text-align: center;
 }
 
 .neelz_co_browsing_div,
 .neelz_screen_split_div {
-  padding-left: 10px;
-  border: 1px solid whitesmoke;
+  padding-left: 2px;
+  padding-right: 2px;
   border-radius: 2px;
+}
+
+.neelz_co_browsing_div{
+  background-color: darkorange !important;
+  color: darkblue !important;
+}
+
+.neelz_screen_split_div{
+  background-color: darkblue !important;
+  color: white !important;
+  margin-left: 7px;
 }
 

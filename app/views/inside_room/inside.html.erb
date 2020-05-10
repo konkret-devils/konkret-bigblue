@@ -49,32 +49,68 @@
     </div>
 
     <script type="text/javascript">
-      var orientation_dim = {dim: 'unset', parent_height: 0, parent_width: 0};
+      var orientation_dim = {dim: 'unset', parent_height: 0, parent_width: 0, classh1: 'unset', classh2: 'unset',classv1: 'unset', classv2: 'unset'};
       var inside_parent = $("#inside_parent");
       var inside_video_frame = $('#inside_video_frame');
       var inside_external_frame = $("#inside_external_frame");
 
+      function set_screen_split_layout(layout,no_update){
+          switch (layout) {
+            case 2:
+                orientation_dim.classh1 = 'half_width';
+                orientation_dim.classh2 = 'half_width';
+                orientation_dim.classv1 = 'half_height';
+                orientation_dim.classv2 = 'half_height';
+                break;
+            case 1:
+                orientation_dim.classh1 = 'one_third_width';
+                orientation_dim.classh2 = 'two_thirds_width';
+                orientation_dim.classv1 = 'one_third_height';
+                orientation_dim.classv2 = 'two_thirds_height';
+                break;
+            case 3:
+                orientation_dim.classh2 = 'one_third_width';
+                orientation_dim.classh1 = 'two_thirds_width';
+                orientation_dim.classv2 = 'one_third_height';
+                orientation_dim.classv1 = 'two_thirds_height';
+                break;
+          }
+          if (!no_update) update_layout();
+          $('.neelz-button-toggle').removeClass('neelz_screen_split_btn_down');
+          $('#neelz_btn_split_'+layout).addClass('neelz_screen_split_btn_down');
+      }
+
+      function update_layout(){
+          $('#inside_video_frame, #inside_external_frame')
+              .removeClass('half_width').removeClass('half_height')
+              .removeClass('one_third_width').removeClass('one_third_height')
+              .removeClass('two_thirds_width').removeClass('two_thirds_height');
+          if (orientation_dim.dim === 'vertical'){
+              $('#inside_external_frame').addClass(orientation_dim.classv1);
+              $('#inside_video_frame').addClass(orientation_dim.classv2);
+          }else{
+              $('#inside_external_frame').addClass(orientation_dim.classh1);
+              $('#inside_video_frame').addClass(orientation_dim.classh2);
+          }
+      }
+
       function check_orientation() {
+          let dim_old = orientation_dim.dim;
           if (inside_parent.width() > inside_parent.height()) {
             if (orientation_dim.dim === 'vertical' || orientation_dim.dim === 'unset'){
                 $('#inside_video_frame, #inside_external_frame')
                     .addClass('inside_frame_horizontal')
-                    .addClass('half_width')
-                    .removeClass('inside_frame_vertical')
-                    //.css('height','100%')
-                    .removeClass('half_height');
-                orientation_dim.dim = 'horizontal'
+                    .removeClass('inside_frame_vertical');
+                orientation_dim.dim = 'horizontal';
+                update_layout();
             }
           } else {
               if (orientation_dim.dim === 'horizontal' || orientation_dim.dim === 'unset'){
                   $('#inside_video_frame, #inside_external_frame')
                       .addClass('inside_frame_vertical')
-                      .addClass('half_height')
-                      .removeClass('inside_frame_horizontal')
-                      //.css('width','100%')
-                      .removeClass('half_width');
-
-                  orientation_dim.dim = 'vertical'
+                      .removeClass('inside_frame_horizontal');
+                  orientation_dim.dim = 'vertical';
+                  update_layout();
               }
           }
       }
@@ -98,8 +134,15 @@
       });
 
       $(document).ready(function () {
+          set_screen_split_layout(2, true);
           check_orientation();
           cache_parent_dim();
+          for (let i=1;i<=3;i++){
+              $('#neelz_btn_split_'+i).click((function(_i){
+                return function () {
+                  set_screen_split_layout(_i);
+              }})(i));
+          }
       });
 
     </script>
