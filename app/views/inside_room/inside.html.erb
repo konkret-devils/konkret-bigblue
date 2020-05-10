@@ -77,7 +77,7 @@
       var inside_video_frame = $('#inside_video_frame');
       var inside_external_frame = $("#inside_external_frame");
 
-      inside_external_frame.resizable({grid: [50,50]});
+      inside_external_frame.resizable({grid: [50,50], ghost: true});
       inside_external_frame.resize(function () {
         if (orientation_dim.dim === 'vertical'){
             inside_video_frame.height(orientation_dim.parent_height-inside_external_frame.height());
