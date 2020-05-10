@@ -311,6 +311,10 @@ element {
   height: 100%;
 }
 
+#client_viewport {
+  overflow: hidden;
+}
+
 .half_height{
   height: 50%;
 }

@@ -95,13 +95,6 @@
       $(window).resize(function(){
           check_orientation();
           cache_parent_dim();
-          if (orientation_dim.dim === 'vertical') {
-              inside_video_frame.height(orientation_dim.parent_height - inside_external_frame.height());
-              //inside_external_frame.width(orientation_dim.parent_width);
-          }else{
-              inside_video_frame.width(orientation_dim.parent_width - inside_external_frame.width());
-              //inside_external_frame.height(orientation_dim.parent_height);
-          }
       });
 
       $(document).ready(function () {
