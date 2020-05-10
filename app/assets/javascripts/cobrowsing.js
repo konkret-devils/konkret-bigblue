@@ -54,7 +54,7 @@ $(document).on("turbolinks:load", function(){
 var startCoBrowsing = function(url,readonly){
   $('#glass_layer').css('opacity','0.75')
       .css('pointer-events','all');
-  $('#external_viewport').attr('src','#');
+  $('#external_viewport').attr('src','');
   let show_vp = function () {
     $('#glass_layer').css('opacity','0.0');
     if (!readonly){
