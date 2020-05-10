@@ -52,11 +52,11 @@ $(document).on("turbolinks:load", function(){
 });
 
 var startCoBrowsing = function(url,readonly){
-  $('#glass_layer').css('opacity','0.65')
+  $('#glass_layer').css('opacity','0.75')
       .css('pointer-events','all');
   $('#external_viewport').attr('src','#');
   let show_vp = function () {
-    $('#glass_layer').attr('opacity','0.0');
+    $('#glass_layer').css('opacity','0.0');
     if (!readonly){
       $('#glass_layer').css('pointer-events','none');
     }

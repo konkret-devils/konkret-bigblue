@@ -21,7 +21,7 @@
             <% unless @is_moderator %>
               <div id="glass_layer"></div>
             <% end %>
-            <iframe title="Fragebogen" id="external_viewport" src="<%= @is_moderator ? session['neelz_url_interviewer'] : session['neelz_url_proband'] %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
+            <iframe title="Fragebogen" id="external_viewport" src="<%= @is_moderator ? session['neelz_url_interviewer'] : '#' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
 
             </iframe>
 
