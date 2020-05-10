@@ -286,23 +286,23 @@ element {
 #inside_external_frame{
   position:relative;
   background-color:#A2A;
+  overflow: hidden;
 }
 #inside_video_frame{
   position:relative;
   background-color:#9FA;
+  overflow: hidden;
 }
 .inside_frame_vertical{
   max-height: 100%;
   min-height: 25%;
   width:100%;
-  overflow-y: auto;
 }
 .inside_frame_horizontal{
   max-width: 100%;
   min-width: 25%;
   float: left;
   height:100%;
-  overflow-x: auto;
 }
 
 #external_viewport,
@@ -313,6 +313,10 @@ element {
 
 #client_viewport {
   overflow: hidden;
+}
+
+#external_viewport {
+  overflow: auto;
 }
 
 .half_height{
