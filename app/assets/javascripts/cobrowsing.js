@@ -19,8 +19,10 @@ $(document).on("turbolinks:load", function(){
   let body = $("body"),
              controller = body.data('controller'),
              action = body.data('action');
-  if(controller === "inside_room" && action === "inside"){
-    let bg = $('.background');
+  let bg = $('.background'),
+      is_moderator = bg.attr('is_moderator') === 'yes';
+  if(controller === "inside_room" && action === "inside" && !is_moderator){
+
     App.waiting = App.cable.subscriptions.create({
       channel: "CoBrowsingChannel",
       roomuid: bg.attr("room"),
@@ -42,13 +44,26 @@ $(document).on("turbolinks:load", function(){
       received: function(data){
         console.log(data);
         if(data.action === "share"){
-          startCoBrowsing("https://www.konkret-mafo.de");
+          startCoBrowsing(data.url,data.readonly==='1');
         }
       }
     });
   }
 });
 
-var startCoBrowsing = function(url){
-  alert(url);
+var startCoBrowsing = function(url,readonly){
+  $('#glass_layer').css('opacity','0.65')
+      .css('pointer-events','all');
+  $('#external_viewport').attr('src','#');
+  let show_vp = function () {
+    $('#glass_layer').attr('opacity','0.0');
+    if (!readonly){
+      $('#glass_layer').css('pointer-events','none');
+    }
+  };
+  let set_url_vp = function () {
+    $('#external_viewport').attr('src',url);
+    setTimeout(show_vp,3000);
+  };
+  setTimeout(set_url_vp, 500);
 };

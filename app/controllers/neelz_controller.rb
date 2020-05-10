@@ -32,7 +32,7 @@ class NeelzController < ApplicationController
     session['neelz_interviewer_personal_nr'] = params[:interviewer_personal_nr]
     session['neelz_interviewer_name'] = params[:interviewer_name]
     session['__join_name'] = params[:interviewer_name]
-    session['neelz_proband_readonly'] = true if params[:proband_readonly]
+    session['neelz_proband_readonly'] = params[:proband_readonly].present? ? 1 : 0
     session['neelz_name_of_study'] = params[:studie_name]
     @neelz_room = get_room
     session['neelz_room_uid'] = @neelz_room.uid
@@ -57,6 +57,8 @@ class NeelzController < ApplicationController
     session['neelz_proband_qvid'] = qvid_proband_encoded
     session['neelz_interviewer_browses'] = @neelz_room.get_attendee_pw[12].to_i(10)
     session['neelz_proband_co_browses'] = @neelz_room.get_attendee_pw[13].to_i(10)
+    session['neelz_proband_readonly'] = @neelz_room.get_moderator_pw[12].to_i(10)
+    session['neelz_url_proband'] = @neelz_room.get_moderator_pw[13..-1]
     session['__join_name'] = @neelz_room.get_attendee_pw[14..-1]
     cookies.encrypted[:greenlight_name] = session['__join_name']
     session['is_moderator'] = false
@@ -85,6 +87,7 @@ class NeelzController < ApplicationController
     session['neelz_proband_name'] = @neelz_proband_name
     session['neelz_proband_email'] = @neelz_proband_email
     @room.set_attendee_pw(@room.get_attendee_pw[0..11] + (session['neelz_interviewer_browses'].to_s(10)) + (session['neelz_proband_co_browses'].to_s(10)) + @neelz_proband_name)
+    @room.set_moderator_pw(@room.get_moderator_pw[0..11] + (session['neelz_proband_readonly'].to_s(10)) + (session['neelz_proband_co_browses']==1 ? session['neelz_url_proband'] : ''))
     @room.save
     @neelz_proband_access_url = proband_access_url
     @neelz_room_access_code = session[:access_code]
@@ -94,6 +97,15 @@ class NeelzController < ApplicationController
                                    @neelz_room_access_code,@neelz_interviewer_name,
                                    @neelz_proband_name,@neelz_name_of_study)
     redirect_to '/'+@room.uid
+  end
+
+  # POST /neelz/share
+  def share
+    @cache_expire = 5.seconds
+    @neelz_room = get_room
+    return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
+    session['neelz_url_proband'] = @neelz_room.get_moderator_pw[13..-1]
+    NotifyCoBrowsingJob.set(wait: 1.seconds).perform_later(@neelz_room)
   end
 
   private

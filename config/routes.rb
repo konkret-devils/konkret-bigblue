@@ -92,6 +92,7 @@ Rails.application.routes.draw do
                                            :cs], as: :neelz_gate
     post '/waiting', to: 'neelz#waiting', as: :neelz_waiting
     get '/cgate/:proband_qvid', to: 'neelz#cgate', as: :neelz_cgate
+    post '/share', to: 'neelz#share', as: :neelz_share
   end
 
   # User resources.

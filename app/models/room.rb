@@ -85,8 +85,8 @@ class Room < ApplicationRecord
     self.uid && self.uid[0..10] == 'kon-survey-'
   end
 
-  def notify_co_browsing
-    ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "share", url: "#{uid}"})
+  def notify_co_browsing_share
+    ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "share", url: "#{get_proband_url}", readonly: "#{get_proband_readonly}"})
   end
 
   def get_attendee_pw
@@ -99,6 +99,18 @@ class Room < ApplicationRecord
 
   def set_attendee_pw(password)
     self.attendee_pw = password
+  end
+
+  def set_moderator_pw(password)
+    self.moderator_pw = password
+  end
+
+  def get_proband_url
+    get_moderator_pw[13..-1]
+  end
+
+  def get_proband_readonly
+    get_moderator_pw[12]
   end
 
   # Generates a uid for the room and BigBlueButton.
