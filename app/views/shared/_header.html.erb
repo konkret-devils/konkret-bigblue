@@ -24,36 +24,40 @@
         <% if params[:controller] == "neelz" %>
           NEELZ
         <% elsif (params[:controller] == "inside_room" || (params[:controller] == "rooms" && params[:action] == "show")) && session["is_neelz_room"] %>
-          <% if session['is_moderator'] %>
-            <div class="neelz_co_browsing_div">
-              <div class="neelz_header_section_headline">CO-BROWSING</div>
+
+          <% if params[:controller] == "inside_room" %>
+
+            <% if session['is_moderator'] %>
+              <div class="neelz_co_browsing_div">
+                <div class="neelz_header_section_headline">Co-Browsing</div>
+                <div class="neelz_header_section">
+                  <span class="neelz-button-toggle btn btn-primary" id="neelz_btn_toggle_share">
+                    <i class="fas fa-eye-slash"></i>
+                  </span>
+                  <span class="neelz-button-toggle btn btn-primary" id="neelz_btn_refresh_share">
+                    <i class="fas fa-sync"></i>
+                  </span>
+                </div>
+              </div>
+            <% else %>
+
+            <% end %>
+
+            <div class="neelz_screen_split_div">
+              <div class="neelz_header_section_headline">Bildschirm-Aufteilung</div>
               <div class="neelz_header_section">
-                <span class="btn btn-primary neelz-button-toggle" id="neelz_btn_toggle_share">
-                  <i class="fas fa-eye-slash"></i>
+                <span class="neelz-button-toggle btn btn-primary" id="neelz_btn_split_1">
+                  <b>1:2</b>
                 </span>
-                <span class="btn btn-primary neelz-button-toggle" id="neelz_btn_refresh_share">
-                  <i class="fas fa-sync"></i>
+                <span class="neelz-button-toggle btn btn-primary" id="neelz_btn_split_2">
+                  <b>1:1</b>
+                </span>
+                <span class="neelz-button-toggle btn btn-primary" id="neelz_btn_split_3">
+                  <b>2:1</b>
                 </span>
               </div>
             </div>
-          <% else %>
-
           <% end %>
-
-          <div class="neelz_screen_split_div">
-            <div class="neelz_header_section_headline">BILDSCHIRM-AUFTEILUNG</div>
-            <div class="neelz_header_section">
-              <span class="btn btn-primary neelz-button-toggle" id="neelz_btn_split_1">
-                <b>1:2</b>
-              </span>
-              <span class="btn btn-primary neelz-button-toggle" id="neelz_btn_split_2">
-                <b>1:1</b>
-              </span>
-              <span class="btn btn-primary neelz-button-toggle" id="neelz_btn_split_3">
-                <b>2:1</b>
-              </span>
-            </div>
-          </div>
         <% else %>
           <% if current_user %>
 
