@@ -36,6 +36,22 @@
                   $('#external_viewport').attr('src','').attr('src',external_url);
                   setTimeout(show_external_url, 1000);
               }
+
+              var co_browsing = {active: false};
+
+              function toggle_co_browsing_share(){
+                  if (co_browsing.active){
+                      co_browsing.active = false;
+                      $('#neelz_share_icon').removeClass('fa-eye').addClass('fa-eye-slash');
+                  }else{
+                      $.post( "/neelz/share", function( data ) {
+                          co_browsing.active = true;
+                          $('#neelz_share_icon').removeClass('fa-eye-slash').addClass('fa-eye');
+                      });
+                  }
+              }
+
+              $('#neelz_btn_toggle_share').click(toggle_co_browsing_share);
             </script>
         </div>
 
