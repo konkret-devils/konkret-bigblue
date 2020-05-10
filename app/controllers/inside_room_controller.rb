@@ -8,8 +8,6 @@ class InsideRoomController < ApplicationController
     @current_room_inside = session['current_room_inside']
     @is_neelz_room = session['is_neelz_room']
     @is_moderator = @is_neelz_room && session['is_moderator'] && session['moderator_for'] == @current_room_inside
-
-    CoBrowsingChannel.
   end
 
 end
