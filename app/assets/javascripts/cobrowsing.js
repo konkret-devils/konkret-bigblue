@@ -65,14 +65,14 @@ var startCoBrowsing = function(url,readonly){
     $('#curtain_layer').animate(
         {
           opacity: 0.0
-        },2000,
+        },1500,
         function () {
         }
     );
   };
   let set_url_vp = function () {
     $('#external_viewport').attr('src',url);
-    setTimeout(show_vp,2000);
+    setTimeout(show_vp,1000);
   };
 
   $('.glass_layer').css('pointer-events', 'all');
@@ -83,7 +83,7 @@ var startCoBrowsing = function(url,readonly){
       }, 250,
       function () { //complete
         $('#external_viewport').attr('src','');
-        setTimeout(set_url_vp, 1000);
+        setTimeout(set_url_vp, 250);
       }
   );
 };
