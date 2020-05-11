@@ -44,44 +44,27 @@ $(document).on("turbolinks:load", function(){
       received: function(data){
         console.log(data);
         if(data.action === "share"){
-          startCoBrowsing(data.url,data.readonly==='1', true);
+          startCoBrowsing(data.url,data.readonly==='1');
         }
       }
     });
   }
 });
 
-var startCoBrowsing = function(url,readonly, wormhole){
-  let resizeFrameAndGlassLayers = function(){
-      //assume iframe content has loaded now
-      let iframe = document.getElementById('external_viewport'),
-          /*glassLayerFull = document.getElementById('glass_layer_full'),
-          glassLayerLeft = document.getElementById('glass_layer_left'),
-          glassLayerTop = document.getElementById('glass_layer_top'),
-          glassLayerRight = document.getElementById('glass_layer_right'),
-          glassLayerBottom = z-index: 101;*/
-          externalContainer = document.getElementById('inside_external_container'),
-          heightFrameContent = iframe.contentWindow.document.body.scrollHeight + 'px',
-          widthFrameContent = iframe.contentWindow.document.body.scrollWidth + 'px';
-      externalContainer.style.height = heightFrameContent;
-      externalContainer.style.width = widthFrameContent;
-  };
+var startCoBrowsing = function(url,readonly){
+
   let show_vp = function () {
     $('#curtain_layer').animate(
         {
           opacity: 0.0
-        },3500,
+        },2000,
         function () {
-          resizeFrameAndGlassLayers();
-          if (!readonly){
-            $('.glass_layer').css('pointer-events','none');
-          }
         }
     );
   };
   let set_url_vp = function () {
     $('#external_viewport').attr('src',url);
-    setTimeout(show_vp,3500);
+    setTimeout(show_vp,2000);
   };
 
   $('.glass_layer').css('pointer-events', 'all');
@@ -92,7 +75,7 @@ var startCoBrowsing = function(url,readonly, wormhole){
       }, 1000,
       function () { //complete
         $('#external_viewport').attr('src','');
-        setTimeout(set_url_vp, 500);
+        setTimeout(set_url_vp, 1000);
       }
   );
 };

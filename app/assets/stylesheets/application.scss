@@ -285,11 +285,7 @@ element {
 }
 #inside_external_frame{
   position:relative;
-  background-color:#A2A;
   overflow: auto;
-}
-
-#inside_external_container{
 }
 
 #inside_video_frame{
@@ -306,44 +302,8 @@ element {
   background-position: center;
   opacity: 1.0;
   z-index: 110;
+  pointer-events: none;
 }
-
-.glass_layer{
-  opacity: 0.0;
-  position: absolute;
-}
-
-#glass_layer_full{
-  width: 100%;
-  height: 100%;
-  z-index: 101;
-}
-
-#glass_layer_left{
-  width: 33%;
-  height: 100%;
-  left: 0;
-  z-index: 102;
-}
-#glass_layer_right{
-  width: 33%;
-  height: 100%;
-  right: 0;
-  z-index: 103;
-}
-#glass_layer_top{
-  width: 100%;
-  height: 33%;
-  top: 0;
-  z-index: 104;
-}
-#glass_layer_bottom{
-  width: 100%;
-  height: 33%;
-  bottom: 0;
-  z-index: 105;
-}
-
 
 .inside_frame_vertical{
   max-height: 100%;
