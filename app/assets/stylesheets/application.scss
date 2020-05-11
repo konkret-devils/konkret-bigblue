@@ -285,13 +285,13 @@ element {
 }
 #inside_external_frame{
   position:relative;
-  overflow: auto;
+  border: none;
 }
 
 #inside_video_frame{
   position:relative;
-  background-color:#9FA;
   overflow: hidden;
+  border: none;
 }
 #curtain_layer{
   position: absolute;
@@ -356,6 +356,14 @@ element {
   padding: 0;
   vertical-align: top;
   border: 0 !important;
+}
+
+.fa-eye:before{
+  color: greenyellow;
+}
+
+.fa-eye-slash:before{
+  color: darkorange;
 }
 
 .neelz-button-toggle.neelz_screen_split_btn_down {

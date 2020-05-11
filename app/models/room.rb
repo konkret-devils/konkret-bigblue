@@ -89,6 +89,14 @@ class Room < ApplicationRecord
     ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "share", url: "#{get_proband_url}", readonly: "#{get_proband_readonly}"})
   end
 
+  def notify_co_browsing_unshare
+    ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "unshare"})
+  end
+
+  def notify_co_browsing_refresh
+    ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "refresh"})
+  end
+
   def get_attendee_pw
     self.attendee_pw
   end

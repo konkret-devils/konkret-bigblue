@@ -43,17 +43,30 @@
 
               function toggle_co_browsing_share(){
                   if (co_browsing.active){
-                      co_browsing.active = false;
-                      $('#neelz_share_icon').removeClass('fa-eye').addClass('fa-eye-slash');
+                      $.post( "/neelz/unshare", function( data ) {
+                          co_browsing.active = false;
+                          $('#neelz_share_icon').removeClass('fa-eye').addClass('fa-eye-slash');
+                          $('.fa-sync:before').css('color','gray');
+                      });
                   }else{
                       $.post( "/neelz/share", function( data ) {
                           co_browsing.active = true;
                           $('#neelz_share_icon').removeClass('fa-eye-slash').addClass('fa-eye');
+                          $('.fa-sync:before').css('color','white');
+                      });
+                  }
+              }
+
+              function refresh_co_browsing(){
+                  if (co_browsing.active){
+                      $.post( "/neelz/refresh", function( data ) {
+
                       });
                   }
               }
 
               $('#neelz_btn_toggle_share').click(toggle_co_browsing_share);
+              $('#neelz_btn_refresh_share').click(refresh_co_browsing);
             </script>
         </div>
 

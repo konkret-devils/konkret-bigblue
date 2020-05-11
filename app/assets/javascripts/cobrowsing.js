@@ -45,6 +45,14 @@ $(document).on("turbolinks:load", function(){
         console.log(data);
         if(data.action === "share"){
           startCoBrowsing(data.url,data.readonly==='1');
+        }else{
+          if (data.action === "unshare"){
+            stopCoBrowsing();
+          }else{
+            if (data.action === "refresh"){
+              refreshCoBrowsing();
+            }
+          }
         }
       }
     });
@@ -72,10 +80,27 @@ var startCoBrowsing = function(url,readonly){
   $('#curtain_layer').animate(
       {
         opacity: 1.0
-      }, 1000,
+      }, 250,
       function () { //complete
         $('#external_viewport').attr('src','');
         setTimeout(set_url_vp, 1000);
       }
   );
+};
+
+var stopCoBrowsing = function(){
+
+  $('#curtain_layer').animate(
+      {
+        opacity: 1.0
+      }, 1000,
+      function () { //complete
+        $('#external_viewport').attr('src','');
+      }
+  );
+
+};
+
+var refreshCoBrowsing = function () {
+  startCoBrowsing($('#external_viewport').attr('src'),true);
 };
