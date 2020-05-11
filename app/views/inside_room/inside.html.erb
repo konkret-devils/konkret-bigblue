@@ -24,7 +24,7 @@
 
             <% end %>
 
-            <iframe title="Fragebogen" id="external_viewport" src="<%= @is_moderator ? session['neelz_url_interviewer'] : '#' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
+            <iframe title="Fragebogen" id="external_viewport"  <% unless @is_moderator %> sandbox="allow-scripts allow-same-origin" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '#' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
             </iframe>
 
             <script type="text/javascript">
