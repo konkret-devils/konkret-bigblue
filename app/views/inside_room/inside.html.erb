@@ -24,7 +24,7 @@
 
             <% end %>
 
-            <iframe title="Fragebogen" id="external_viewport"  <% unless @is_moderator %> sandbox="allow-scripts allow-same-origin" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '#' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
+            <iframe title="Fragebogen" id="external_viewport"  <% unless @is_moderator %> sandbox="allow-same-origin" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '#' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
             </iframe>
 
             <script type="text/javascript">
@@ -129,8 +129,7 @@
       }
 
       function check_orientation() {
-          let dim_old = orientation_dim.dim;
-          if (inside_parent.width() > inside_parent.height()) {
+          if (inside_parent.width() >= 1800 && inside_parent.width() > inside_parent.height()) {
             if (orientation_dim.dim === 'vertical' || orientation_dim.dim === 'unset'){
                 $('#inside_video_frame, #inside_external_frame')
                     .addClass('inside_frame_horizontal')
