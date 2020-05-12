@@ -167,12 +167,10 @@
 
           <% if @is_moderator %>
 
-            let externalVP1 = document.getElementById('external_viewport_1'),
-                externalVP2 = document.getElementById('external_viewport_2');
+            let externalVP1 = document.getElementById('external_viewport_1');
 
             window.addEventListener("blur", function() {
-                if (document.activeElement === externalVP1
-                    || document.activeElement === externalVP2) {
+                if (co_browsing.active && document.activeElement === externalVP1) {
                   refresh_co_browsing();
                 }
             });
