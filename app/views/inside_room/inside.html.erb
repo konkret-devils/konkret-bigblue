@@ -21,25 +21,21 @@
 
             <% unless @is_moderator %>
               <div id="curtain_layer"></div>
-
+              <div id="inside_external_frame_iframe_container">
+                <iframe title="Fragebogen" id="external_viewport_2"  <% unless @is_moderator %> sandbox="allow-same-origin" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '#' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
+                </iframe>
             <% end %>
 
             <iframe title="Fragebogen" id="external_viewport"  <% unless @is_moderator %> sandbox="allow-same-origin" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '#' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
             </iframe>
 
-            <script type="text/javascript">
-              function show_external_url(){
-                  $('#external_viewport').css('display','inherit');
-              }
-              function hide_external_url(){
-                  $('#external_viewport').attr('src','').css('display','none');
-              }
-              function load_external_url(external_url){
-                  $('#external_viewport').attr('src','').attr('src',external_url);
-                  setTimeout(show_external_url, 1000);
-              }
+            <% unless @is_moderator %>
+              </div> <!-- end div inside_external_frame_iframe_container -->
+            <% end %>
 
-              var co_browsing = {active: false};
+            <script type="text/javascript">
+
+              let co_browsing = {active: false};
 
               function toggle_co_browsing_share(){
                   if (co_browsing.active){
@@ -129,7 +125,7 @@
       }
 
       function check_orientation() {
-          if (inside_parent.width() >= 1900 && inside_parent.width() > inside_parent.height()) {
+          if (inside_parent.width() >= 1945 && inside_parent.width() > inside_parent.height()) {
             if (orientation_dim.dim === 'vertical' || orientation_dim.dim === 'unset'){
                 $('#inside_video_frame, #inside_external_frame')
                     .addClass('inside_frame_horizontal')
