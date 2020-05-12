@@ -105,7 +105,7 @@ class NeelzController < ApplicationController
     @neelz_room = get_room
     return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
     session['neelz_url_proband'] = @neelz_room.get_moderator_pw[13..-1]
-    NotifyCoBrowsingJob.set(wait: 1.seconds).perform_later(@neelz_room)
+    NotifyCoBrowsingJob.set(wait: 0.seconds).perform_later(@neelz_room)
   end
 
   # POST /neelz/unshare
@@ -113,7 +113,7 @@ class NeelzController < ApplicationController
     @cache_expire = 5.seconds
     @neelz_room = get_room
     return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
-    NotifyCoBrowsingUnshareJob.set(wait: 1.seconds).perform_later(@neelz_room)
+    NotifyCoBrowsingUnshareJob.set(wait: 0.seconds).perform_later(@neelz_room)
   end
 
   # POST /neelz/refresh
@@ -121,7 +121,7 @@ class NeelzController < ApplicationController
     @cache_expire = 5.seconds
     @neelz_room = get_room
     return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
-    NotifyCoBrowsingRefreshJob.set(wait: 1.seconds).perform_later(@neelz_room)
+    NotifyCoBrowsingRefreshJob.set(wait: 0.seconds).perform_later(@neelz_room)
   end
 
   private

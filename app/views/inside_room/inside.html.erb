@@ -26,7 +26,7 @@
                 </iframe>
             <% end %>
 
-            <iframe title="Fragebogen" <% unless @is_moderator %> class="inside_attendee_external_iframe" <% end %>id="external_viewport"  <% unless @is_moderator %> sandbox="allow-same-origin allow-scripts" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
+            <iframe title="Fragebogen" <% unless @is_moderator %> class="inside_attendee_external_iframe" <% end %>id="external_viewport_1"  <% unless @is_moderator %> sandbox="allow-same-origin allow-scripts" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
             </iframe>
 
             <% unless @is_moderator %>
@@ -164,6 +164,20 @@
                   set_screen_split_layout(_i);
               }})(i));
           }
+
+          <% if @is_moderator %>
+
+            let externalVP1 = document.getElementById('external_viewport_1'),
+                externalVP2 = document.getElementById('external_viewport_2');
+
+            window.addEventListener("blur", function() {
+                if (document.activeElement === externalVP1
+                    || document.activeElement === externalVP2) {
+                  refresh_co_browsing();
+                }
+            });
+
+          <% end %>
       });
 
     </script>

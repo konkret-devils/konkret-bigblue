@@ -50,7 +50,7 @@ $(document).on("turbolinks:load", function(){
             stopCoBrowsing();
           }else{
             if (data.action === "refresh"){
-              refreshCoBrowsing();
+              processRefreshOffer();
             }
           }
         }
@@ -59,7 +59,15 @@ $(document).on("turbolinks:load", function(){
   }
 });
 
-var startCoBrowsing = function(url,readonly){
+let neelz_iFrames = [null, null];
+
+let coBrowsingState = {
+  blocked: false,
+  refreshRequired: false,
+  activeIFrame: 0
+};
+
+let startCoBrowsing = function(url,readonly){
 
   let show_vp = function () {
     $('#curtain_layer').animate(
@@ -88,7 +96,7 @@ var startCoBrowsing = function(url,readonly){
   );
 };
 
-var stopCoBrowsing = function(){
+let stopCoBrowsing = function(){
 
   $('#curtain_layer').animate(
       {
@@ -101,6 +109,51 @@ var stopCoBrowsing = function(){
 
 };
 
-var refreshCoBrowsing = function () {
-  startCoBrowsing($('#external_viewport').attr('src'),true);
+let refreshCoBrowsing = function () {
+  let src;
+  if (coBrowsingState.activeIFrame === 0){
+      src = neelz_iFrames[0].attr('src');
+      neelz_iFrames[1].attr('src', '').attr('src', src);
+      neelz_iFrames[1].css('pointer-events','all');
+      neelz_iFrames[1].animate(
+          {opacity: 1.0}, 650,
+          function () {
+            coBrowsingState.activeIFrame = 1;
+          }
+      );
+  }else{
+    src = neelz_iFrames[1].attr('src');
+    neelz_iFrames[0].attr('src', '').attr('src', src);
+    neelz_iFrames[1].css('pointer-events','none');
+    neelz_iFrames[1].animate(
+        {opacity: 0.0}, 650,
+        function () {
+          coBrowsingState.activeIFrame = 0;
+        }
+    );
+  }
+  coBrowsingState.refreshRequired = false;
+  coBrowsingState.blocked = true;
 };
+
+let processRefreshOffer = function () {
+  if (coBrowsingState.blocked){
+    coBrowsingState.refreshRequired = true;
+  }else{
+    refreshCoBrowsing();
+  }
+};
+
+let refreshJob = function(){
+  coBrowsingState.blocked = false;
+  if (coBrowsingState.refreshRequired){
+    refreshCoBrowsing();
+  }
+};
+
+
+$(document).ready(function () {
+  neelz_iFrames[0] = $('#external_viewport_1');
+  neelz_iFrames[1] = $('#external_viewport_2');
+  setInterval(refreshJob, 3000);
+});
