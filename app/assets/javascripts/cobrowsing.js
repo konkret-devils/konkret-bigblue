@@ -118,7 +118,7 @@ let refreshCoBrowsing = function () {
       neelz_iFrames[1].attr('src', '').attr('src', src);
       neelz_iFrames[1].css('pointer-events', 'all');
       neelz_iFrames[1].animate(
-          {opacity: 1.0}, 650,
+          {opacity: 1.0}, 250,
           function () {
             coBrowsingState.activeIFrame = 1;
           }
@@ -128,7 +128,7 @@ let refreshCoBrowsing = function () {
       neelz_iFrames[0].attr('src', '').attr('src', src);
       neelz_iFrames[1].css('pointer-events', 'none');
       neelz_iFrames[1].animate(
-          {opacity: 0.0}, 650,
+          {opacity: 0.0}, 250,
           function () {
             coBrowsingState.activeIFrame = 0;
           }
@@ -152,9 +152,7 @@ let processRefreshOffer = function () {
 let refreshJob = function(){
   if (coBrowsingState.active) {
     coBrowsingState.blocked = false;
-    if (coBrowsingState.refreshRequired) {
-      refreshCoBrowsing();
-    }
+    refreshCoBrowsing();
   }
 };
 

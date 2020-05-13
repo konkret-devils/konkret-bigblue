@@ -19,9 +19,7 @@
     <div id="inside_parent">
         <div id="inside_external_frame" style="display: block;">
 
-            <% if @is_moderator %>
-              <div id="click_detection_layer"></div>
-            <% else %>
+            <% unless @is_moderator %>
               <div id="curtain_layer"></div>
               <div id="inside_external_frame_iframe_container">
                 <iframe title="Fragebogen" class="inside_attendee_external_iframe" id="external_viewport_2"  <% unless @is_moderator %> sandbox="allow-same-origin allow-scripts" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
@@ -166,21 +164,6 @@
                   set_screen_split_layout(_i);
               }})(i));
           }
-
-          <% if @is_moderator %>
-
-            const click_detector = document.getElementById('click_detection_layer');
-
-            const restoreClickDetector = function(){
-                click_detector.style.pointerEvents = 'all';
-            };
-
-            click_detector.addEventListener('mousedown', ev => {
-                click_detector.style.pointerEvents = 'none';
-                setTimeout(restoreClickDetector, 250);
-                refresh_co_browsing();
-            });
-          <% end %>
       });
 
     </script>
