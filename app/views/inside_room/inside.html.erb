@@ -90,24 +90,49 @@
 
       function set_screen_split_layout(layout,no_update){
           switch (layout) {
+            case 1:
+                orientation_dim.classh1 = 'zero_width';
+                orientation_dim.classh2 = 'full_width';
+                orientation_dim.classv1 = 'zero_height';
+                orientation_dim.classv2 = 'full_height';
+                break;
             case 2:
+                orientation_dim.classh1 = 'one_quarter_width';
+                orientation_dim.classh2 = 'three_quarter_width';
+                orientation_dim.classv1 = 'one_quarter_height';
+                orientation_dim.classv2 = 'three_quarter_height';
+                break;
+            case 4:
                 orientation_dim.classh1 = 'half_width';
                 orientation_dim.classh2 = 'half_width';
                 orientation_dim.classv1 = 'half_height';
                 orientation_dim.classv2 = 'half_height';
                 break;
-            case 1:
+            case 3:
                 orientation_dim.classh1 = 'one_third_width';
                 orientation_dim.classh2 = 'two_thirds_width';
                 orientation_dim.classv1 = 'one_third_height';
                 orientation_dim.classv2 = 'two_thirds_height';
                 break;
-            case 3:
+            case 5:
                 orientation_dim.classh2 = 'one_third_width';
                 orientation_dim.classh1 = 'two_thirds_width';
                 orientation_dim.classv2 = 'one_third_height';
                 orientation_dim.classv1 = 'two_thirds_height';
                 break;
+            case 6:
+                orientation_dim.classh2 = 'one_quarter_width';
+                orientation_dim.classh1 = 'three_quarter_width';
+                orientation_dim.classv2 = 'one_quarter_height';
+                orientation_dim.classv1 = 'three_quarter_height';
+                break;
+            case 7:
+                orientation_dim.classh2 = 'zero_width';
+                orientation_dim.classh1 = 'full_width';
+                orientation_dim.classv2 = 'zero_height';
+                orientation_dim.classv1 = 'full_height';
+                break;
+
           }
           if (!no_update) update_layout();
           $('.neelz-button-toggle').removeClass('neelz_screen_split_btn_down');
@@ -159,10 +184,10 @@
       });
 
       $(document).ready(function () {
-          set_screen_split_layout(3, true);
+          set_screen_split_layout(5, true);
           check_orientation();
           cache_parent_dim();
-          for (let i=1;i<=3;i++){
+          for (let i=1;i<=7;i++){
               $('#neelz_btn_split_'+i).click((function(_i){
                 return function () {
                   set_screen_split_layout(_i);
