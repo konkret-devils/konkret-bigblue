@@ -116,29 +116,31 @@ let stopCoBrowsing = function(){
 
 };
 
+function toggle_iframes_1(){
+  $('#external_viewport_2')
+      .css('opacity','1.0')
+      .css('pointer-events', 'all');
+}
+
+function toggle_iframes_2(){
+  $('#external_viewport_2')
+      .css('opacity','0.0')
+      .css('pointer-events', 'none');
+  ;
+}
+
 let refreshCoBrowsing = function () {
   if (coBrowsingState.active) {
     if (coBrowsingState.activeIFrame === 0) {
       $('#external_viewport_2')
           .attr('src', '')
           .attr('src', coBrowsingState.url)
-          .css('pointer-events', 'all')
-          .animate(
-            {opacity: 1.0}, 1000,
-            function () {
-              coBrowsingState.activeIFrame = 1;
-            }
-      );
+       setTimeout(toggle_iframes_1, 2500);
     } else {
-      $('#external_viewport_1').attr('src', '').attr('src', coBrowsingState.url);
-      $('#external_viewport_2')
-          .css('pointer-events', 'none')
-          .animate(
-            {opacity: 0.0}, 1000,
-            function () {
-              coBrowsingState.activeIFrame = 0;
-            }
-      );
+      $('#external_viewport_1')
+          .attr('src', '')
+          .attr('src', coBrowsingState.url);
+      setTimeout(toggle_iframes_2, 2500);
     }
     coBrowsingState.refreshRequired = false;
     coBrowsingState.blocked = false;
