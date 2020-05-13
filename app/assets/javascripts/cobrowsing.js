@@ -192,7 +192,5 @@ $(document).ready(function () {
       $(this).scrollTop(scrollState.top);
     }
   });
-  $('.document').bind("DOMSubtreeModified", function(){
-    $('#inside_external_frame_iframe_container').scrollTop(scrollState.top);
-  });
+
 });
