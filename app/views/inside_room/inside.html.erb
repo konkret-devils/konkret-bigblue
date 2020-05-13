@@ -188,7 +188,11 @@
       });
 
       $(document).ready(function () {
-          set_screen_split_layout(5, true);
+          <% if @is_moderator %>
+            set_screen_split_layout(5, true);
+          <% else %>
+            set_screen_split_layout(1, true);
+          <% end %>
           check_orientation();
           cache_parent_dim();
           for (let i=1;i<=7;i++){
