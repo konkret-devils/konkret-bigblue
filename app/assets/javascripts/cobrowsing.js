@@ -190,10 +190,16 @@ $(document).ready(function () {
   neelz_iFrames[1] = $('#external_viewport_2');
   setInterval(refreshJob, 7500);
   $('#inside_external_frame_iframe_container').scroll(function () {
-    scrollState.top = $(this).scrollTop();
-    console.log('scrollTop',scrollState.top);
+    let st = $(this).scrollTop();
+    if (st > 0 || scrollState.top <= 5) {
+      scrollState.top = st;
+      console.log('scrollTop', scrollState.top);
+    }else{
+      $(this).scrollTop(scrollState.top);
+    }
   });
   $('.document').bind("DOMSubtreeModified", function(){
     $('#inside_external_frame_iframe_container').scrollTop(scrollState.top);
+    console.log('DOM change');
   });
 });
