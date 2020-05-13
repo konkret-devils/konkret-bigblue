@@ -196,13 +196,13 @@ $(document).ready(function () {
   const infc = document.getElementById('inside_external_frame_iframe_container');
   infc.addEventListener('scroll',function () {
     let st = infc.scrollTop;
-    console.log('st',st, scrollState.top);
+    //console.log('st',st, scrollState.top);
     if (Math.abs(scrollState.top-st) < 250) {
       scrollState.top = st;
     }else{
       infc.scrollTop = scrollState.top;
     }
-    console.log('st2',infc.scrollTop, scrollState.top);
+    //console.log('st2',infc.scrollTop, scrollState.top);
   });
 
 });
