@@ -197,7 +197,7 @@ $(document).ready(function () {
   infc.addEventListener('scroll',function () {
     let st = infc.scrollTop;
     console.log('st',st, scrollState.top);
-    if (st > 0 || scrollState.top <= 45) {
+    if (Math.abs(scrollState.top-st) < 40) {
       scrollState.top = st;
     }else{
       infc.scrollTop = scrollState.top;
