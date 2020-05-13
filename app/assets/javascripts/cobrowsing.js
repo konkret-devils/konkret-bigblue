@@ -183,13 +183,24 @@ $(document).ready(function () {
   neelz_iFrames[0] = $('#external_viewport_1');
   neelz_iFrames[1] = $('#external_viewport_2');
   setInterval(refreshJob, 6500);
-  $('#inside_external_frame_iframe_container').scroll(function () {
+  /*$('#inside_external_frame_iframe_container').scroll(function () {
     let st = $(this).scrollTop();
     console.log('st',st);
     if (st > 0 || scrollState.top <= 5) {
       scrollState.top = st;
     }else{
       $(this).scrollTop(scrollState.top);
+    }
+  });*/
+
+  const infc = document.getElementById('inside_external_frame_iframe_container');
+  infc.addEventListener('scroll',function () {
+    let st = infc.scrollTop;
+    console.log('st',st);
+    if (st > 0 || scrollState.top <= 5) {
+      scrollState.top = st;
+    }else{
+      infc.scrollTop = scrollState.top;
     }
   });
 
