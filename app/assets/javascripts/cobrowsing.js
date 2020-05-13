@@ -182,7 +182,7 @@ let scrollState = {
 $(document).ready(function () {
   neelz_iFrames[0] = $('#external_viewport_1');
   neelz_iFrames[1] = $('#external_viewport_2');
-  setInterval(refreshJob, 7500);
+  setInterval(refreshJob, 6500);
   $('#inside_external_frame_iframe_container').scroll(function () {
     let st = $(this).scrollTop();
     console.log('st',st);
