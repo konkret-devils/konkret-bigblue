@@ -137,11 +137,13 @@ let refreshCoBrowsing = function () {
           .attr('src', '')
           .attr('src', coBrowsingState.url)
        setTimeout(toggle_iframes_1, 2500);
+      coBrowsingState.activeIFrame = 1;
     } else {
       $('#external_viewport_1')
           .attr('src', '')
           .attr('src', coBrowsingState.url);
       setTimeout(toggle_iframes_2, 2500);
+      coBrowsingState.activeIFrame = 0;
     }
     coBrowsingState.refreshRequired = false;
     coBrowsingState.blocked = false;
