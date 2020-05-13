@@ -95,6 +95,7 @@ Rails.application.routes.draw do
     post '/share', to: 'neelz#share', as: :neelz_share
     post '/unshare', to: 'neelz#unshare', as: :neelz_unshare
     post '/refresh', to: 'neelz#refresh', as: :neelz_refresh
+    get '/thank_you/:qvid', to: 'neelz#thank_you', as: :neelz_thank_you
   end
 
   # User resources.

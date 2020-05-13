@@ -97,6 +97,10 @@ class Room < ApplicationRecord
     ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "refresh"})
   end
 
+  def notify_co_browsing_thank_you
+    ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "thank_you"})
+  end
+
   def get_attendee_pw
     self.attendee_pw
   end

@@ -124,6 +124,14 @@ class NeelzController < ApplicationController
     NotifyCoBrowsingRefreshJob.set(wait: 0.seconds).perform_later(@neelz_room)
   end
 
+  # GET /neelz/thank_you/:qvid
+  def thank_you
+    session['neelz_qvid'] = decode_proband_qvid(params[:qvid])
+    @neelz_room = get_room
+    return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
+
+  end
+
   private
 
   def get_room
