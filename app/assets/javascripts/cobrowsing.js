@@ -65,12 +65,14 @@ let coBrowsingState = {
   blocked: false,
   refreshRequired: false,
   activeIFrame: 0,
-  active: false
+  active: false,
+  url: ''
 };
 
 let startCoBrowsing = function(url,readonly){
 
   coBrowsingState.active = true;
+  coBrowsingState.url = url;
 
   let show_vp = function () {
     $('#curtain_layer').animate(
@@ -111,11 +113,9 @@ let stopCoBrowsing = function(){
 };
 
 let refreshCoBrowsing = function () {
-  let src;
   if (coBrowsingState.active) {
     if (coBrowsingState.activeIFrame === 0) {
-      src = neelz_iFrames[0].attr('src');
-      neelz_iFrames[1].attr('src', '').attr('src', src);
+      neelz_iFrames[1].attr('src', '').attr('src', coBrowsingState.url);
       neelz_iFrames[1].css('pointer-events', 'all');
       neelz_iFrames[1].animate(
           {opacity: 1.0}, 250,
@@ -124,8 +124,7 @@ let refreshCoBrowsing = function () {
           }
       );
     } else {
-      src = neelz_iFrames[1].attr('src');
-      neelz_iFrames[0].attr('src', '').attr('src', src);
+      neelz_iFrames[0].attr('src', '').attr('src', coBrowsingState.url);
       neelz_iFrames[1].css('pointer-events', 'none');
       neelz_iFrames[1].animate(
           {opacity: 0.0}, 250,
