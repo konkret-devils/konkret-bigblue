@@ -75,9 +75,7 @@ let startCoBrowsing = function(url,readonly){
   coBrowsingState.active = true;
   coBrowsingState.url = url;
 
-  console.log('url',url);
-  console.log('CBS',coBrowsingState);
-
+  set_screen_split_layout(5);
 
   let show_vp = function () {
     $('#curtain_layer').animate(
@@ -107,11 +105,13 @@ let startCoBrowsing = function(url,readonly){
 let stopCoBrowsing = function(){
   coBrowsingState.active = false;
 
+
   $('#curtain_layer').animate(
       {
         opacity: 1.0
       }, 1000,
       function () { //complete
+        set_screen_split_layout(1);
       }
   );
 
@@ -120,21 +120,15 @@ let stopCoBrowsing = function(){
 function toggle_iframes_1(){
   $('#external_viewport_2')
       .css('pointer-events', 'all')
-      .animate({opacity: 1.0}, 700, function () {
-        //$('#inside_external_frame_iframe_container').scrollTop(coBrowsingState.scrollTop);
-      });
-  $('#external_viewport_1').animate({opacity: 0.0}, 2750, function () {
-    //$('#inside_external_frame_iframe_container').scrollTop(coBrowsingState.scrollTop);
-  });
-  //$('#inside_external_frame_iframe_container').scrollTop(coBrowsingState.scrollTop);
+      .animate({opacity: 1.0}, 350);
+  $('#external_viewport_1').animate({opacity: 0.0}, 1375);
 }
 
 function toggle_iframes_2(){
   $('#external_viewport_2')
       .css('pointer-events', 'none')
-      .animate({opacity: 0.0}, 2750, function () {
-      });
-  $('#external_viewport_1').animate({opacity: 1.0}, 700, function () {
+      .animate({opacity: 0.0}, 1375);
+  $('#external_viewport_1').animate({opacity: 1.0}, 350, function () {
   });
 }
 
@@ -144,13 +138,13 @@ let refreshCoBrowsing = function () {
       $('#external_viewport_2')
           .attr('src', '')
           .attr('src', coBrowsingState.url);
-      setTimeout(toggle_iframes_1, 2500);
+      setTimeout(toggle_iframes_1, 2000);
       coBrowsingState.activeIFrame = 1;
     } else {
       $('#external_viewport_1')
           .attr('src', '')
           .attr('src', coBrowsingState.url);
-      setTimeout(toggle_iframes_2, 2500);
+      setTimeout(toggle_iframes_2, 2000);
       coBrowsingState.activeIFrame = 0;
     }
     coBrowsingState.refreshRequired = false;
@@ -167,20 +161,3 @@ let processRefreshOffer = function () {
     }
   }
 };
-
-let refreshJob = function(){
-  if (coBrowsingState.active) {
-    coBrowsingState.blocked = false;
-    refreshCoBrowsing();
-  }
-};
-
-let scrollState = {
-  top: 0
-};
-
-$(document).ready(function () {
-  neelz_iFrames[0] = $('#external_viewport_1');
-  neelz_iFrames[1] = $('#external_viewport_2')
-
-});
