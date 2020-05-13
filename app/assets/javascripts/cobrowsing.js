@@ -133,29 +133,23 @@ function toggle_iframes_2(){
   $('#external_viewport_2')
       .css('pointer-events', 'none')
       .animate({opacity: 0.0}, 2750, function () {
-        //$('#inside_external_frame_iframe_container').scrollTop(coBrowsingState.scrollTop);
       });
   $('#external_viewport_1').animate({opacity: 1.0}, 700, function () {
-    //$('#inside_external_frame_iframe_container').scrollTop(coBrowsingState.scrollTop);
   });
-  //$('#inside_external_frame_iframe_container').scrollTop(coBrowsingState.scrollTop);
 }
 
 let refreshCoBrowsing = function () {
   if (coBrowsingState.active) {
-    //coBrowsingState.scrollTop = $('#inside_external_frame_iframe_container').scrollTop();
     if (coBrowsingState.activeIFrame === 0) {
       $('#external_viewport_2')
           .attr('src', '')
           .attr('src', coBrowsingState.url);
-      //$('#inside_external_frame_iframe_container').scrollTop(coBrowsingState.scrollTop);
       setTimeout(toggle_iframes_1, 2500);
       coBrowsingState.activeIFrame = 1;
     } else {
       $('#external_viewport_1')
           .attr('src', '')
           .attr('src', coBrowsingState.url);
-      //$('#inside_external_frame_iframe_container').scrollTop(coBrowsingState.scrollTop);
       setTimeout(toggle_iframes_2, 2500);
       coBrowsingState.activeIFrame = 0;
     }
@@ -193,13 +187,11 @@ $(document).ready(function () {
     let st = $(this).scrollTop();
     if (st > 0 || scrollState.top <= 5) {
       scrollState.top = st;
-      console.log('scrollTop', scrollState.top);
     }else{
       $(this).scrollTop(scrollState.top);
     }
   });
   $('.document').bind("DOMSubtreeModified", function(){
     $('#inside_external_frame_iframe_container').scrollTop(scrollState.top);
-    console.log('DOM change');
   });
 });
