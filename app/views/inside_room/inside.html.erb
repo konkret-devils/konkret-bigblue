@@ -143,7 +143,11 @@
           $('#inside_video_frame, #inside_external_frame')
               .removeClass('half_width').removeClass('half_height')
               .removeClass('one_third_width').removeClass('one_third_height')
-              .removeClass('two_thirds_width').removeClass('two_thirds_height');
+              .removeClass('two_thirds_width').removeClass('two_thirds_height')
+              .removeClass('one_quarter_width').removeClass('one_quarter_height')
+              .removeClass('three_quarter_width').removeClass('three_quarter_height')
+              .removeClass('zero_width').removeClass('zero_height')
+              .removeClass('full_width').removeClass('full_height');
           if (orientation_dim.dim === 'vertical'){
               $('#inside_external_frame').addClass(orientation_dim.classv1);
               $('#inside_video_frame').addClass(orientation_dim.classv2);
