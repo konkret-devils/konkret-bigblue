@@ -119,7 +119,7 @@ let stopCoBrowsing = function(){
 function toggle_iframes_1(){
   $('#external_viewport_2')
       .css('pointer-events', 'all')
-      .animate({opacity: 1.0}, 1800);
+      .animate({opacity: 1.0}, 2150);
   $('#external_viewport_1').animate({opacity: 0.0}, 2750);
 }
 
@@ -127,7 +127,7 @@ function toggle_iframes_2(){
   $('#external_viewport_2')
       .css('pointer-events', 'none')
       .animate({opacity: 0.0}, 2750);
-  $('#external_viewport_1').animate({opacity: 1.0}, 1800);
+  $('#external_viewport_1').animate({opacity: 1.0}, 2150);
 }
 
 let refreshCoBrowsing = function () {
