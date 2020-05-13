@@ -185,6 +185,7 @@ $(document).ready(function () {
   setInterval(refreshJob, 7500);
   $('#inside_external_frame_iframe_container').scroll(function () {
     let st = $(this).scrollTop();
+    console.log('st',st);
     if (st > 0 || scrollState.top <= 5) {
       scrollState.top = st;
     }else{
