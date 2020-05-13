@@ -74,6 +74,11 @@ let startCoBrowsing = function(url,readonly){
   coBrowsingState.active = true;
   coBrowsingState.url = url;
 
+  console.log('url',url);
+  console.log('CBS',coBrowsingState);
+  console.log('NEELZ_IFRAMES',neelz_iFrames);
+
+
   let show_vp = function () {
     $('#curtain_layer').animate(
         {
