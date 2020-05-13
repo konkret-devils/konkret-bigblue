@@ -171,6 +171,7 @@
                 iframeMouseOver : true
             };
             window.addEventListener('blur',function(){
+                console.log('blur!');
                 if(refreshScreenConf.iframeMouseOver){
                     console.log('Wow! Iframe Click!');
                     refresh_co_browsing();
@@ -178,9 +179,11 @@
             });
 
             document.getElementById('inside_external_frame').addEventListener('mouseover',function(){
+                console.log('mouseover');
                 refreshScreenConf.iframeMouseOver = true;
             });
             document.getElementById('inside_external_frame').addEventListener('mouseout',function(){
+                console.log('mouseout');
                 refreshScreenConf.iframeMouseOver = false;
             });
 
