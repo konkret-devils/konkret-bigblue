@@ -76,7 +76,6 @@ let startCoBrowsing = function(url,readonly){
 
   console.log('url',url);
   console.log('CBS',coBrowsingState);
-  console.log('NEELZ_IFRAMES',neelz_iFrames);
 
 
   let show_vp = function () {
@@ -89,7 +88,7 @@ let startCoBrowsing = function(url,readonly){
     );
   };
   let set_url_vp = function () {
-    neelz_iFrames[coBrowsingState.activeIFrame].attr('src',url);
+    $('#external_viewport_'+(coBrowsingState.activeIFrame+1)).attr('src',url);
     setTimeout(show_vp,1000);
   };
 
@@ -98,7 +97,7 @@ let startCoBrowsing = function(url,readonly){
         opacity: 1.0
       }, 250,
       function () { //complete
-        neelz_iFrames[coBrowsingState.activeIFrame].attr('src','');
+        $('#external_viewport_'+(coBrowsingState.activeIFrame+1)).attr('src','');
         setTimeout(set_url_vp, 250);
       }
   );
@@ -120,26 +119,29 @@ let stopCoBrowsing = function(){
 let refreshCoBrowsing = function () {
   if (coBrowsingState.active) {
     if (coBrowsingState.activeIFrame === 0) {
-      neelz_iFrames[1].attr('src', '').attr('src', coBrowsingState.url);
-      neelz_iFrames[1].css('pointer-events', 'all');
-      neelz_iFrames[1].animate(
-          {opacity: 1.0}, 1000,
-          function () {
-            coBrowsingState.activeIFrame = 1;
-          }
+      $('#external_viewport_2')
+          .attr('src', '')
+          .attr('src', coBrowsingState.url)
+          .css('pointer-events', 'all')
+          .animate(
+            {opacity: 1.0}, 1000,
+            function () {
+              coBrowsingState.activeIFrame = 1;
+            }
       );
     } else {
-      neelz_iFrames[0].attr('src', '').attr('src', coBrowsingState.url);
-      neelz_iFrames[1].css('pointer-events', 'none');
-      neelz_iFrames[1].animate(
-          {opacity: 0.0}, 1000,
-          function () {
-            coBrowsingState.activeIFrame = 0;
-          }
+      $('#external_viewport_1').attr('src', '').attr('src', coBrowsingState.url);
+      $('#external_viewport_2')
+          .css('pointer-events', 'none')
+          .animate(
+            {opacity: 0.0}, 1000,
+            function () {
+              coBrowsingState.activeIFrame = 0;
+            }
       );
     }
     coBrowsingState.refreshRequired = false;
-    coBrowsingState.blocked = true;
+    coBrowsingState.blocked = false;
   }
 };
 
