@@ -118,15 +118,16 @@ let stopCoBrowsing = function(){
 
 function toggle_iframes_1(){
   $('#external_viewport_2')
-      .css('opacity','1.0')
-      .css('pointer-events', 'all');
+      .css('pointer-events', 'all')
+      .animate({opacity: 1.0}, 2000);
+  $('#external_viewport_1').animate({opacity: 0.0}, 2000);
 }
 
 function toggle_iframes_2(){
   $('#external_viewport_2')
-      .css('opacity','0.0')
-      .css('pointer-events', 'none');
-  ;
+      .css('pointer-events', 'none')
+      .animate({opacity: 0.0}, 2000);
+  $('#external_viewport_1').animate({opacity: 1.0}, 2000);
 }
 
 let refreshCoBrowsing = function () {
@@ -168,5 +169,5 @@ let refreshJob = function(){
 $(document).ready(function () {
   neelz_iFrames[0] = $('#external_viewport_1');
   neelz_iFrames[1] = $('#external_viewport_2');
-  setInterval(refreshJob, 5000);
+  setInterval(refreshJob, 7500);
 });
