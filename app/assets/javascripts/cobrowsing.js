@@ -146,15 +146,15 @@ let refreshCoBrowsing = function () {
     //coBrowsingState.scrollTop = $('#inside_external_frame_iframe_container').scrollTop();
     if (coBrowsingState.activeIFrame === 0) {
       $('#external_viewport_2')
-          .attr('src', '')
-          .attr('src', coBrowsingState.url);
+          //.attr('src', '')
+          //.attr('src', coBrowsingState.url);
       //$('#inside_external_frame_iframe_container').scrollTop(coBrowsingState.scrollTop);
       setTimeout(toggle_iframes_1, 2500);
       coBrowsingState.activeIFrame = 1;
     } else {
       $('#external_viewport_1')
-          .attr('src', '')
-          .attr('src', coBrowsingState.url);
+          //.attr('src', '')
+          //.attr('src', coBrowsingState.url);
       //$('#inside_external_frame_iframe_container').scrollTop(coBrowsingState.scrollTop);
       setTimeout(toggle_iframes_2, 2500);
       coBrowsingState.activeIFrame = 0;
