@@ -1,0 +1,50 @@
+/* BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+*
+* Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
+*
+* This program is free software; you can redistribute it and/or modify it under the
+* terms of the GNU Lesser General Public License as published by the Free Software
+* Foundation; either version 3.0 of the License, or (at your option) any later
+* version.
+*
+* BigBlueButton is distributed in the hope that it will be useful, but WITHOUT ANY
+* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+* PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public License along
+* with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
+*/
+// Declare all variables here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$background-image-landing-page: url('https://bigblue.konkret-mafo.cloud/bg-landing-earth.gif');
+
+$logo-url: url('https://bigblue.konkret-mafo.cloud/logo.png');
+$logo-with-text-url: url('https://bigblue.konkret-mafo.cloud/logo_with_text.png');
+
+$background-color: #94948F;
+$background-color-wrapper: white;
+$error-background-color: #EFE6E6;
+$header-background-color: black;
+$footer-background-color: $header-background-color;
+$button-color-blue: #467FCF;
+
+$cookies-banner-color: white;
+$cookies-banner-background-color: #467FCF;
+$cookies-agree-button-color: inherit;
+$cookies-agree-button-background-color: green;
+
+$main-text-color: white;
+$main-text-text-shadow: 8px 6px 5px black;
+$main-text-font-weight: bold;
+
+$header-height: 46px;
+$footer-height: 40px;
+
+$client-viewport-side-border: 8px solid $header-background-color;
+
+$width-logo: 125px;
+
+
+

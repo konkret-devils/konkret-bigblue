@@ -59,8 +59,6 @@ $(document).on("turbolinks:load", function(){
   }
 });
 
-let neelz_iFrames = [null, null];
-
 let coBrowsingState = {
   blocked: false,
   refreshRequired: false,
@@ -133,21 +131,6 @@ function toggle_iframes_2(){
 let refreshCoBrowsing = function () {
   if (coBrowsingState.active) {
     startCoBrowsing(coBrowsingState.url,true);
-    /*if (coBrowsingState.activeIFrame === 0) {
-      $('#external_viewport_2')
-          .attr('src', '')
-          .attr('src', coBrowsingState.url);
-      setTimeout(toggle_iframes_1, 2000);
-      coBrowsingState.activeIFrame = 1;
-    } else {
-      $('#external_viewport_1')
-          .attr('src', '')
-          .attr('src', coBrowsingState.url);
-      setTimeout(toggle_iframes_2, 2000);
-      coBrowsingState.activeIFrame = 0;
-    }
-    coBrowsingState.refreshRequired = false;
-    coBrowsingState.blocked = false; */
   }
 };
 
