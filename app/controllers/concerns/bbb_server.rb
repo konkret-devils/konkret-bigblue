@@ -56,6 +56,8 @@ module BbbServer
     join_opts[:join_via_html5] = true
     join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
 
+    join_opts["userdata-bbb_show_participants_on_login"] = false if room.is_neelz_room?
+
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
   end
 
@@ -71,7 +73,8 @@ module BbbServer
     join_opts[:userID] = uid if uid
     join_opts[:join_via_html5] = true
     join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
-    #join_opts[:redirect] = "FALSE"
+
+    join_opts["userdata-bbb_show_participants_on_login"] = false if room.is_neelz_room?
 
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
 
