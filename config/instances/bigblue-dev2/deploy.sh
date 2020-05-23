@@ -1,7 +1,7 @@
 #!/bin/bash
 
-INSTANCE_NAME="bigblue-dev"
-CONTAINER_NAME="bigblue-dev"
+INSTANCE_NAME="bigblue-dev2"
+CONTAINER_NAME="bigblue-dev2"
 RELEASE_NAME="release-v2"
 DEPLOY_ROOT_DIR="/opt/grandbleu"
 
