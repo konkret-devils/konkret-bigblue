@@ -28,7 +28,7 @@ class NeelzController < ApplicationController
     @cache_expire = 10.seconds
     session['neelz_qvid'] = params[:qvid].to_i(10)
     session['neelz_url_interviewer'] = params[:url_interviewer] if params[:url_interviewer]
-    session['neelz_url_proband'] = params[:url_proband] if params[:url_proband]
+    session['neelz_url_proband'] = params[:url_proband].present? ? params[:url_proband] : ''
     session['neelz_interviewer_personal_nr'] = params[:interviewer_personal_nr]
     session['neelz_interviewer_name'] = params[:interviewer_name]
     session['__join_name'] = params[:interviewer_name]

@@ -74,6 +74,10 @@ let startCoBrowsing = function(url,readonly){
     return;
   }
 
+  if (!url || url.trim() === ''){
+    return;
+  }
+
   coBrowsingState.url = url;
   coBrowsingState.active = true;
 
