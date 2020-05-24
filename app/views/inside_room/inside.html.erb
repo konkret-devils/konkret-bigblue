@@ -22,18 +22,12 @@
             <% unless @is_moderator %>
               <div id="curtain_layer"></div>
               <div id="inside_external_frame_iframe_container">
-                <!-- <div class="inside_external_frame_container"> -->
-                  <!-- <iframe title="Fragebogen" class="inside_attendee_external_iframe" id="external_viewport_2"  <% unless @is_moderator %> sandbox="allow-same-origin allow-scripts" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
-                  </iframe> -->
-                <!-- </div>
-                <div class="inside_external_frame_container"> -->
             <% end %>
 
-            <iframe title="Fragebogen" <% unless @is_moderator %> class="inside_attendee_external_iframe" <% end %>id="external_viewport_1"  <% unless @is_moderator %> sandbox="allow-same-origin allow-scripts" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
+            <iframe title="Fragebogen" <% unless @is_moderator %> class="inside_attendee_external_iframe" <% end %>id="external_viewport_1"  <% unless @is_moderator || !@proband_readonly %> sandbox="allow-same-origin allow-scripts" <% end %> src="<%= @is_moderator ? session['neelz_url_interviewer'] : '' %>" allowfullscreen allow="autoplay *; fullscreen *; display-capture *; geolocation *; microphone *; camera *; midi *; encrypted-media *; vr *;" width="100%" height="100%" importance="high">
             </iframe>
 
             <% unless @is_moderator %>
-              <!-- </div> -->
               </div> <!-- end div inside_external_frame_iframe_container -->
             <% end %>
 
@@ -41,18 +35,26 @@
 
               let co_browsing = {active: false};
 
+              function co_browsing_state_changed(activated){
+                  if (activated) {
+                      co_browsing.active = true;
+                      $('#neelz_share_icon').removeClass('fa-eye-slash').addClass('fa-eye');
+                      $('.fa-sync:before').css('color', 'white');
+                  }else{
+                      co_browsing.active = false;
+                      $('#neelz_share_icon').removeClass('fa-eye').addClass('fa-eye-slash');
+                      $('.fa-sync:before').css('color','gray');
+                  }
+              }
+
               function toggle_co_browsing_share(){
                   if (co_browsing.active){
                       $.post( "/neelz/unshare", function( data ) {
-                          co_browsing.active = false;
-                          $('#neelz_share_icon').removeClass('fa-eye').addClass('fa-eye-slash');
-                          $('.fa-sync:before').css('color','gray');
+                          co_browsing_state_changed(false);
                       });
-                  }else{
-                      $.post( "/neelz/share", function( data ) {
-                          co_browsing.active = true;
-                          $('#neelz_share_icon').removeClass('fa-eye-slash').addClass('fa-eye');
-                          $('.fa-sync:before').css('color','white');
+                  }else {
+                      $.post("/neelz/share", function (data) {
+                          co_browsing_state_changed(true);
                       });
                   }
               }
@@ -64,6 +66,21 @@
                       });
                   }
               }
+
+              <% if @is_moderator && !@proband_readonly %>
+
+                window.addEventListener("message", function(event) {
+                    if (event.origin != '<%= Rails.configuration.neelz_i_share_base_url %>') {
+                        return;
+                    }
+                    let posting = $.post('/neelz/i_share', JSON.parse(event.data));
+                    posting.done(function (data) {
+                        co_browsing_state_changed(true);
+                    });
+                });
+
+              <% end %>
+
 
               $('#neelz_btn_toggle_share').click(toggle_co_browsing_share);
               $('#neelz_btn_refresh_share').click(refresh_co_browsing);
@@ -83,10 +100,10 @@
     </div>
 
     <script type="text/javascript">
-      var orientation_dim = {dim: 'unset', parent_height: 0, parent_width: 0, classh1: 'unset', classh2: 'unset',classv1: 'unset', classv2: 'unset'};
-      var inside_parent = $("#inside_parent");
-      var inside_video_frame = $('#inside_video_frame');
-      var inside_external_frame = $("#inside_external_frame");
+      let orientation_dim = {dim: 'unset', parent_height: 0, parent_width: 0, classh1: 'unset', classh2: 'unset',classv1: 'unset', classv2: 'unset'};
+      let inside_parent = $("#inside_parent");
+      let inside_video_frame = $('#inside_video_frame');
+      let inside_external_frame = $("#inside_external_frame");
 
       function set_screen_split_layout(layout,no_update){
           switch (layout) {
@@ -177,14 +194,8 @@
           }
       }
 
-      function cache_parent_dim(){
-          orientation_dim.parent_width = inside_parent.width();
-          orientation_dim.parent_height = inside_parent.height();
-      }
-
       $(window).resize(function(){
           check_orientation();
-          cache_parent_dim();
       });
 
       $(document).ready(function () {
@@ -194,7 +205,6 @@
             set_screen_split_layout(1, true);
           <% end %>
           check_orientation();
-          cache_parent_dim();
           for (let i=1;i<=7;i++){
               $('#neelz_btn_split_'+i).click((function(_i){
                 return function () {

@@ -70,8 +70,12 @@ let coBrowsingState = {
 
 let startCoBrowsing = function(url,readonly){
 
-  coBrowsingState.active = true;
+  if (!readonly && url === coBrowsingState.url && coBrowsingState.active){
+    return;
+  }
+
   coBrowsingState.url = url;
+  coBrowsingState.active = true;
 
   set_screen_split_layout(7);
 
@@ -79,14 +83,14 @@ let startCoBrowsing = function(url,readonly){
     $('#curtain_layer').animate(
         {
           opacity: 0.0
-        },1500,
+        },500,
         function () {
         }
     ).css('pointer-events','none');
   };
   let set_url_vp = function () {
     $('#external_viewport_1').attr('src',url);
-    setTimeout(show_vp,1000);
+    setTimeout(show_vp,500);
   };
 
   $('#curtain_layer').animate(
@@ -95,38 +99,24 @@ let startCoBrowsing = function(url,readonly){
       }, 500,
       function () { //complete
         $('#external_viewport_1').attr('src','');
-        setTimeout(set_url_vp, 250);
+        setTimeout(set_url_vp, 100);
       }
   ).css('pointer-events','all');
 };
 
 let stopCoBrowsing = function(){
   coBrowsingState.active = false;
+  coBrowsingState.url = '';
   $('#curtain_layer').animate(
       {
         opacity: 1.0
-      }, 1000,
+      }, 500,
       function () { //complete
         set_screen_split_layout(1);
       }
   ).css('pointer-events','all');
 
 };
-
-function toggle_iframes_1(){
-  $('#external_viewport_2')
-      .css('pointer-events', 'all')
-      .animate({opacity: 1.0}, 700);
-  $('#external_viewport_1').animate({opacity: 0.0}, 2750);
-}
-
-function toggle_iframes_2(){
-  $('#external_viewport_2')
-      .css('pointer-events', 'none')
-      .animate({opacity: 0.0}, 2750);
-  $('#external_viewport_1').animate({opacity: 1.0}, 700, function () {
-  });
-}
 
 let refreshCoBrowsing = function () {
   if (coBrowsingState.active) {
@@ -136,10 +126,6 @@ let refreshCoBrowsing = function () {
 
 let processRefreshOffer = function () {
   if (coBrowsingState.active) {
-    if (coBrowsingState.blocked) {
-      coBrowsingState.refreshRequired = true;
-    } else {
-      refreshCoBrowsing();
-    }
+    refreshCoBrowsing();
   }
 };

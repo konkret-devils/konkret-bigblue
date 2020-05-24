@@ -207,5 +207,11 @@ module Greenlight
       ''
     end
 
+    config.neelz_i_share_base_url = if ENV['NEELZ_I_SHARE_BASE_URL'].present?
+      ENV['NEELZ_I_SHARE_BASE_URL']
+    else
+      ''
+    end
+
   end
 end

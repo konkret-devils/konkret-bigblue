@@ -43,7 +43,7 @@ class NeelzController < ApplicationController
     session['moderator_for'] = @neelz_room.uid
     cookies.encrypted[:greenlight_name] = session['__join_name']
     session['neelz_interviewer_browses'] = params[:url_interviewer].present? ? 1 : 0
-    session['neelz_proband_co_browses'] = (session['neelz_interviewer_browses']==1 && params[:url_proband].present?) ? 1 : 0
+    session['neelz_proband_co_browses'] = (session['neelz_interviewer_browses']==1 && (params[:url_proband].present?) || session['neelz_proband_readonly']==0) ? 1 : 0
     redirect_to '/neelz'
   end
 
@@ -105,6 +105,23 @@ class NeelzController < ApplicationController
     @neelz_room = get_room
     return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
     session['neelz_url_proband'] = @neelz_room.get_moderator_pw[13..-1]
+    NotifyCoBrowsingJob.set(wait: 0.seconds).perform_later(@neelz_room)
+  end
+
+  # POST /neelz/i_share
+  def i_share
+    @cache_expire = 5.seconds
+    @neelz_room = get_room
+    return redirect_to('/', alert: 'Raum nicht auffindbar') unless @neelz_room
+    login = params[:l]
+    password = params[:c]
+    proband_url_new = "#{Rails.configuration.neelz_i_share_base_url}/i_cb/?login=#{login}&password=#{password}&send=1"
+    proband_url = @neelz_room.get_moderator_pw[13..-1]
+    unless proband_url == proband_url_new
+      @neelz_room.set_proband_url(proband_url_new)
+      session['neelz_url_proband'] = proband_url_new
+      @neelz_room.save
+    end
     NotifyCoBrowsingJob.set(wait: 0.seconds).perform_later(@neelz_room)
   end
 

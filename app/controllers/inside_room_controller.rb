@@ -12,6 +12,7 @@ class InsideRoomController < ApplicationController
     @interviewer_browses = @is_neelz_room && session['neelz_interviewer_browses'] == 1
     @proband_co_browses = @is_neelz_room && session['neelz_proband_co_browses'] == 1
     @user_browses = @is_moderator && @interviewer_browses || @proband_co_browses
+    @proband_readonly = @is_neelz_room && session['neelz_proband_readonly'] == 1
   end
 
 end
