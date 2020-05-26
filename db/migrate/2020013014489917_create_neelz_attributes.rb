@@ -19,7 +19,7 @@
 class CreateNeelzAttributes < ActiveRecord::Migration[5.0]
   def change
     create_table "neelz_attributes", force: :cascade do |t|
-      t.integer "room_id", null: false
+      t.integer "neelz_room_id", null: false
       t.integer "qvid", null: false
       t.string "interviewer_name"
       t.integer "interviewer_personal_nr"
@@ -39,7 +39,7 @@ class CreateNeelzAttributes < ActiveRecord::Migration[5.0]
       t.boolean "always_record", default: false
       t.boolean "allow_start_stop_record", default: true
       t.datetime "updated_at", null: false
-      t.index ["room_id"], name: "index_neelz_attributes_on_room_id", unique: true
+      t.index ["neelz_room_id"], name: "index_neelz_attributes_on_room_id", unique: true
       t.index ["qvid"], name: "index_neelz_attributes_on_qvid"
     end
   end

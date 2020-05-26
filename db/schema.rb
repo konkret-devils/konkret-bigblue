@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 2020_01_30_144841) do
   end
 
   create_table "neelz_attributes", force: :cascade do |t|
-    t.string "room_id", null: false
+    t.string "neelz_room_id", null: false
     t.integer "qvid", null: false
     t.string "interviewer_name"
     t.integer "interviewer_personal_nr"
@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(version: 2020_01_30_144841) do
     t.boolean "always_record", default: false
     t.boolean "allow_start_stop_record", default: true
     t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_neelz_attributes_on_room_id", unique: true
+    t.index ["neelz_room_id"], name: "index_neelz_attributes_on_room_id", unique: true
     t.index ["qvid"], name: "index_neelz_attributes_on_qvid"
   end
 
