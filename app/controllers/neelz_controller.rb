@@ -179,6 +179,9 @@ class NeelzController < ApplicationController
     room.set_proband_browses(session['neelz_proband_co_browses']===1)
     room.set_updated_at(DateTime.now)
     room.save
+
+    room2 = NeelzRoom.find_by(uid: room_uid)
+    logger.info('room2 PA = '+room2.proband_alias)
     room
   end
 
