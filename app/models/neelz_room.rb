@@ -43,6 +43,18 @@ class NeelzRoom < Room
     ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "thank_you"})
   end
 
+  def qvid
+    neelz_attributes.qvid
+  end
+
+  def set_qvid(qvid_nr)
+    neelz_attributes.qvid = qvid_nr
+  end
+
+  def set_updated_at(date_now)
+    neelz_attributes.updated_at = date_now
+  end
+
   def proband_url
     neelz_attributes.proband_url
   end

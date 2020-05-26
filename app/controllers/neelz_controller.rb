@@ -15,6 +15,7 @@
 #
 # You should have received a copy of the GNU Lesser General Public License along
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
+require 'date'
 
 class NeelzController < ApplicationController
   include Pagy::Backend
@@ -172,6 +173,11 @@ class NeelzController < ApplicationController
     room.access_code = rand(10000...99999).to_s
     room.room_settings = create_room_settings_string
     room.setup
+    room.set_qvid(qvid)
+    room.set_proband_alias(@neelz_proband_name)
+    room.set_interviewer_browses(session['neelz_interviewer_browses']===1)
+    room.set_proband_browses(session['neelz_proband_co_browses']===1)
+    room.set_updated_at(DateTime.now)
     room.save
     room
   end
@@ -194,6 +200,10 @@ class NeelzController < ApplicationController
   def qvid_proband_encoded
     val = (session['neelz_qvid'] + 117) * 3 + 213
     'k' + val.to_s(24)
+  end
+
+  def qvid
+    session['neelz_qvid']
   end
 
   def decode_proband_qvid(proband_qvid)
