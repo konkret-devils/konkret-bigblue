@@ -44,6 +44,7 @@ class NeelzController < ApplicationController
     cookies.encrypted[:greenlight_name] = session['__join_name']
     session['neelz_interviewer_browses'] = params[:url_interviewer].present? ? 1 : 0
     session['neelz_proband_co_browses'] = (session['neelz_interviewer_browses']==1 && (params[:url_proband].present?) || session['neelz_proband_readonly']==0) ? 1 : 0
+
     redirect_to '/neelz'
   end
 
@@ -164,7 +165,8 @@ class NeelzController < ApplicationController
 
   def create_room(owner)
     room_uid = 'kon-survey-' + qvid_interviewer_encoded
-    room = Room.new(name: session['neelz_name_of_study'] + ' - Interview #' + qvid_proband_encoded)
+    room = NeelzRoom.new(name: session['neelz_name_of_study'] + ' - Interview #' + qvid_proband_encoded)
+    room.init_new
     room.uid = room_uid
     room.owner = owner
     room.access_code = rand(10000...99999).to_s
