@@ -174,7 +174,7 @@ class NeelzController < ApplicationController
     room.room_settings = create_room_settings_string
     room.setup
     room.set_qvid(qvid)
-    room.set_proband_alias(@neelz_proband_name)
+    room.set_proband_alias('Heinar Storch')
     room.set_interviewer_browses(session['neelz_interviewer_browses']===1)
     room.set_proband_browses(session['neelz_proband_co_browses']===1)
     room.set_updated_at(DateTime.now)
