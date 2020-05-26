@@ -152,6 +152,10 @@ ActiveRecord::Schema.define(version: 2020_01_30_144841) do
     t.integer "proband_screen_split_mode_on_login"
     t.integer "proband_screen_split_mode_on_share"
     t.integer "external_frame_min_width"
+    t.boolean "show_participants_on_login", default: true
+    t.boolean "show_chat_on_login", default: true
+    t.boolean "always_record", default: false
+    t.boolean "allow_start_stop_record", default: true
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_neelz_attributes_on_room_id", unique: true
     t.index ["qvid"], name: "index_neelz_attributes_on_qvid"
