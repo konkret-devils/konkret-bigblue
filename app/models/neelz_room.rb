@@ -22,6 +22,7 @@ class NeelzRoom < Room
 
   def init_new
     self.neelz_attributes = NeelzAttributes.new
+    self.neelz_attributes.room = self
   end
 
   def notify_co_browsing_share
