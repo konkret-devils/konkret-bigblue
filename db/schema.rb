@@ -136,4 +136,25 @@ ActiveRecord::Schema.define(version: 2020_01_30_144841) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  create_table "neelz_attributes", force: :cascade do |t|
+    t.integer "room_id", null: false
+    t.integer "qvid", null: false
+    t.string "interviewer_name"
+    t.integer "interviewer_personal_nr"
+    t.string "proband_alias", null: false
+    t.boolean "interviewer_browses", null: false
+    t.boolean "proband_browses", null: false
+    t.string "interviewer_url"
+    t.string "proband_url"
+    t.boolean "proband_readonly"
+    t.boolean "co_browsing_externally_triggered"
+    t.integer "interviewer_screen_split_mode_on_login"
+    t.integer "proband_screen_split_mode_on_login"
+    t.integer "proband_screen_split_mode_on_share"
+    t.integer "external_frame_min_width"
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_neelz_attributes_on_room_id", unique: true
+    t.index ["qvid"], name: "index_neelz_attributes_on_qvid"
+  end
+
 end
