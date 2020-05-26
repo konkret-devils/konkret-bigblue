@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 2020_01_30_144841) do
   end
 
   create_table "neelz_attributes", force: :cascade do |t|
-    t.string "neelz_room_id", null: false
+    t.integer "neelz_room_id", null: false
     t.integer "qvid", null: false
     t.string "interviewer_name"
     t.integer "interviewer_personal_nr"
