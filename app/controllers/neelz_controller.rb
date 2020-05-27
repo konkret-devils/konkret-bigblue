@@ -96,7 +96,7 @@ class NeelzController < ApplicationController
     send_neelz_participation_email(@neelz_proband_email,@neelz_proband_access_url,
                                    @neelz_room_access_code,@neelz_interviewer_name,
                                    @neelz_proband_name,@neelz_name_of_study)
-    redirect_to '/'+@room.uid
+    redirect_to '/'+@neelz_room.uid
   end
 
   # POST /neelz/share
