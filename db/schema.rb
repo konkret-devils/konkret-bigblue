@@ -139,26 +139,26 @@ ActiveRecord::Schema.define(version: 2020_01_30_144841) do
   create_table "neelz_attributes", force: :cascade do |t|
     t.integer "neelz_room_id", null: false
     t.integer "qvid", null: false
+    t.string "name_of_study", null: false
     t.string "interviewer_name"
-    t.integer "interviewer_personal_nr"
-    t.string "proband_alias", null: false
-    t.boolean "interviewer_browses", null: false
-    t.boolean "proband_browses", null: false
+    t.string "proband_alias"
+    t.boolean "interviewer_browses", default: true
+    t.boolean "proband_browses", default: true
     t.string "interviewer_url"
     t.string "proband_url"
-    t.boolean "proband_readonly"
-    t.boolean "co_browsing_externally_triggered"
-    t.integer "interviewer_screen_split_mode_on_login"
-    t.integer "proband_screen_split_mode_on_login"
-    t.integer "proband_screen_split_mode_on_share"
-    t.integer "external_frame_min_width"
+    t.boolean "proband_readonly", default: false
+    t.boolean "co_browsing_externally_triggered", default: false
+    t.integer "interviewer_screen_split_mode_on_login", default: 5
+    t.integer "proband_screen_split_mode_on_login", default: 1
+    t.integer "proband_screen_split_mode_on_share", default: 5
+    t.integer "external_frame_min_width", default: 1024
     t.boolean "show_participants_on_login", default: true
-    t.boolean "show_chat_on_login", default: true
+    t.boolean "show_chat_on_login", default: false
     t.boolean "always_record", default: false
     t.boolean "allow_start_stop_record", default: true
     t.datetime "updated_at", null: false
     t.index ["neelz_room_id"], name: "index_neelz_attributes_on_room_id", unique: true
-    t.index ["qvid"], name: "index_neelz_attributes_on_qvid"
+    t.index ["qvid"], name: "index_neelz_attributes_on_qvid", unique: true
   end
 
 end

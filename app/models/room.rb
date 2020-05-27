@@ -81,103 +81,12 @@ class Room < ApplicationRecord
     ActionCable.server.broadcast("#{self.uid}_waiting_channel", action: "started")
   end
 
-  def is_neelz_room?
-    self.uid && self.uid[0..10] == 'kon-survey-'
-  end
-
-  def notify_co_browsing_share
-    ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "share", url: "#{get_proband_url}", readonly: "#{proband_readonly? ? '1' : '0'}"})
-  end
-
-  def notify_co_browsing_unshare
-    ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "unshare"})
-  end
-
-  def notify_co_browsing_refresh
-    ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "refresh"})
-  end
-
-  def notify_co_browsing_thank_you
-    ActionCable.server.broadcast("#{self.uid}_co_browsing_channel", {action: "thank_you"})
-  end
-
-  def get_attendee_pw
-    self.attendee_pw
-  end
-
-  def get_moderator_pw
-    self.moderator_pw
-  end
-
-  def set_attendee_pw(password)
-    self.attendee_pw = password
-  end
-
-  def set_moderator_pw(password)
-    self.moderator_pw = password
-  end
-
-  def get_proband_url
-    get_moderator_pw[13..-1]
-  end
-
-  def proband_readonly?
-    get_moderator_pw[12].to_i(10) == 1
-  end
-
-  def set_proband_url(url)
-    set_moderator_pw(get_moderator_pw[0..12]+url)
-  end
-
-  def set_proband_readonly(readonly)
-    if readonly
-      ro = '1'
-    else
-      ro = '0'
-    end
-    set_moderator_pw(get_moderator_pw[0..11] + ro + get_moderator_pw[13..-1])
-  end
-
-  def interviewer_browses?
-    get_attendee_pw[12].to_i(10) == 1
-  end
-
-  def proband_co_browses?
-    get_attendee_pw[13].to_i(10) == 1
-  end
-
-  def set_interviewer_browses(i_browses)
-    if i_browses
-      ib = '1'
-    else
-      ib = '0'
-    end
-    set_attendee_pw(get_attendee_pw[0..11] + ib + get_attendee_pw[13..-1])
-  end
-
-  def set_proband_co_browses(c_co_browses)
-    if c_co_browses
-      cb = '1'
-    else
-      cb = '0'
-    end
-    set_attendee_pw(get_attendee_pw[0..12] + cb + get_attendee_pw[14..-1])
-  end
-
-  def get_proband_name
-    get_attendee_pw[14..-1]
-  end
-
-  def set_proband_name(name)
-    set_attendee_pw(get_attendee_pw[0..13] + name)
-  end
-
   # Generates a uid for the room and BigBlueButton.
   def setup
-    self.uid = random_room_uid unless self.uid
+    self.uid = random_room_uid
     self.bbb_id = Digest::SHA1.hexdigest(Rails.application.secrets[:secret_key_base] + Time.now.to_i.to_s).to_s
-    self.moderator_pw = RandomPassword.generate(length: 12) unless self.moderator_pw
-    self.attendee_pw = RandomPassword.generate(length: 12) unless self.attendee_pw
+    self.moderator_pw = RandomPassword.generate(length: 12)
+    self.attendee_pw = RandomPassword.generate(length: 12)
   end
 
   private
