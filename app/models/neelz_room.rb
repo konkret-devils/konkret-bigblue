@@ -242,6 +242,17 @@ class NeelzRoom < Room
     end
   end
 
+  def self.is_neelz_room?(room)
+    !!NeelzAttributes.find_by(neelz_room_id: room.id)
+  end
+
+  def self.convert_to_neelz_room(room)
+    neelz_attr = NeelzAttributes.find_by(neelz_room_id: room.id)
+    if neelz_attr
+      NeelzRoom.find_by(id: neelz_attr.neelz_room_id)
+    end
+  end
+
   private
 
   def self.create_room(owner, name_of_study, qvid)
