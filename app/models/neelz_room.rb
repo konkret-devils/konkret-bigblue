@@ -31,7 +31,7 @@ class NeelzRoom < Room
   end
 
   def save
-    super.save
+    super
     self.neelz_attributes.save
   end
 
