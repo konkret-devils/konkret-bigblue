@@ -227,7 +227,7 @@ class NeelzRoom < Room
     if neelz_user
       neelz_attr = NeelzAttributes.find_by(qvid: qvid)
       if neelz_attr
-        neelz_room = neelz_attr.room
+        neelz_room = NeelzRoom.find_by(id: neelz_attr.neelz_room_id)
       else
         neelz_room = self.create_room(neelz_user, name_of_study, qvid)
       end
