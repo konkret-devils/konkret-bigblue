@@ -49,35 +49,36 @@ class NeelzController < ApplicationController
     @neelz_room.set_always_record(params[:always_record].to_i(10) === 1) if params[:always_record].present?
     @neelz_room.set_allow_start_stop_record(params[:allow_start_stop_record].to_i(10) === 1) if params[:allow_start_stop_record].present?
     @neelz_room.save
-    session['neelz_qvid'] = @qvid
-    session['neelz_join_name'] = cookies.encrypted[:greenlight_name] = @neelz_room.interviewer_name
-    session['neelz_role'] = 'interviewer'
-    session['neelz_interviewer_for'] = @neelz_room.uid
+    session[:neelz_qvid] = @qvid
+    session[:neelz_join_name] = cookies.encrypted[:greenlight_name] = @neelz_room.interviewer_name
+    session[:neelz_role] = 'interviewer'
+    session[:neelz_interviewer_for] = @neelz_room.uid
+    session[:access_code] = @neelz_room.access_code
     redirect_to '/neelz'
   end
 
   # GET /neelz/cgate/:proband_qvid
   def cgate
     @cache_expire = 10.seconds
-    @qvid = session['neelz_qvid'] = NeelzRoom.decode_proband_qvid(params[:proband_qvid])
+    @qvid = session[:neelz_qvid] = NeelzRoom.decode_proband_qvid(params[:proband_qvid])
     @neelz_room = NeelzRoom.get_room(qvid: @qvid)
     return redirect_to('/', alert: 'invalid request') unless @neelz_room
-    session['neelz_join_name'] = cookies.encrypted[:greenlight_name] = @neelz_room.proband_alias
-    session['neelz_role'] = 'proband'
+    session[:neelz_join_name] = cookies.encrypted[:greenlight_name] = @neelz_room.proband_alias
+    session[:neelz_role] = 'proband'
     redirect_to '/'+@neelz_room.uid
   end
 
   # GET /neelz
   def preform
     @cache_expire = 10.seconds
-    @neelz_room = NeelzRoom.get_room(qvid: session['neelz_qvid'])
+    @neelz_room = NeelzRoom.get_room(qvid: session[:neelz_qvid])
     return redirect_to('/', alert: 'invalid request') unless @neelz_room
     @neelz_interviewer_name = @neelz_room.interviewer_name
     @neelz_name_of_study = @neelz_room.name_of_study
     @neelz_proband_access_url = @neelz_room.proband_access_url
     @neelz_room_access_code = @neelz_room.access_code
     @neelz_proband_name = @neelz_room.proband_alias || ''
-    @neelz_proband_email = session['neelz_proband_email'] || ''
+    @neelz_proband_email = session[:neelz_proband_email] || ''
   end
 
   # POST /neelz/waiting
@@ -85,7 +86,7 @@ class NeelzController < ApplicationController
     @cache_expire = 10.seconds
     @neelz_proband_name = params[:session][:name_proband]
     @neelz_proband_email = params[:session][:email_proband]
-    @neelz_room = NeelzRoom.get_room(qvid: session['neelz_qvid'])
+    @neelz_room = NeelzRoom.get_room(qvid: session[:neelz_qvid])
     return redirect_to '/neelz' unless @neelz_room
     @neelz_room.set_proband_alias(@neelz_proband_name)
     @neelz_room.save
@@ -102,7 +103,7 @@ class NeelzController < ApplicationController
   # POST /neelz/share
   def share
     @cache_expire = 5.seconds
-    @neelz_room = NeelzRoom.get_room(qvid: session['neelz_qvid'])
+    @neelz_room = NeelzRoom.get_room(qvid: session[:neelz_qvid])
     return redirect_to('/', alert: 'invalid request') unless @neelz_room
     NotifyCoBrowsingJob.set(wait: 0.seconds).perform_later(@neelz_room)
   end
@@ -110,7 +111,7 @@ class NeelzController < ApplicationController
   # POST /neelz/i_share
   def i_share
     @cache_expire = 5.seconds
-    @neelz_room = NeelzRoom.get_room(qvid: session['neelz_qvid'])
+    @neelz_room = NeelzRoom.get_room(qvid: session[:neelz_qvid])
     return redirect_to('/', alert: 'invalid request') unless @neelz_room
     login = params[:l]
     password = params[:c]
@@ -126,7 +127,7 @@ class NeelzController < ApplicationController
   # POST /neelz/unshare
   def unshare
     @cache_expire = 5.seconds
-    @neelz_room = NeelzRoom.get_room(qvid: session['neelz_qvid'])
+    @neelz_room = NeelzRoom.get_room(qvid: session[:neelz_qvid])
     return redirect_to('/', alert: 'invalid request') unless @neelz_room
     NotifyCoBrowsingUnshareJob.set(wait: 0.seconds).perform_later(@neelz_room)
   end
@@ -134,15 +135,15 @@ class NeelzController < ApplicationController
   # POST /neelz/refresh
   def refresh
     @cache_expire = 5.seconds
-    @neelz_room = NeelzRoom.get_room(qvid: session['neelz_qvid'])
+    @neelz_room = NeelzRoom.get_room(qvid: session[:neelz_qvid])
     return redirect_to('/', alert: 'invalid request') unless @neelz_room
     NotifyCoBrowsingRefreshJob.set(wait: 0.seconds).perform_later(@neelz_room)
   end
 
   # GET /neelz/thank_you/:qvid @TODO: implement
   def thank_you
-    session['neelz_qvid'] = decode_proband_qvid(params[:qvid])
-    @neelz_room = NeelzRoom.get_room(qvid: session['neelz_qvid'])
+    session[:neelz_qvid] = decode_proband_qvid(params[:qvid])
+    @neelz_room = NeelzRoom.get_room(qvid: session[:neelz_qvid])
     return redirect_to('/', alert: 'invalid_request') unless @neelz_room
 
   end
