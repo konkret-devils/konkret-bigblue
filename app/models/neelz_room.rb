@@ -240,7 +240,7 @@ class NeelzRoom < Room
   private
 
   def self.create_room(owner, name_of_study, qvid)
-    room = NeelzRoom.new('tmp_name')
+    room = NeelzRoom.new(name: 'tmp_name')
     room.setup
     room.init_new(name_of_study, qvid)
     room.owner = owner
