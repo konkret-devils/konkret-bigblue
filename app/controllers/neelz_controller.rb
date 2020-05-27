@@ -90,6 +90,7 @@ class NeelzController < ApplicationController
     return redirect_to '/neelz' unless @neelz_room
     @neelz_room.set_proband_alias(@neelz_proband_name)
     @neelz_room.save
+    @neelz_room.neelz_attributes.save
     @neelz_proband_access_url = @neelz_room.proband_access_url
     @neelz_room_access_code = @neelz_room.access_code
     @neelz_interviewer_name = @neelz_room.interviewer_name
