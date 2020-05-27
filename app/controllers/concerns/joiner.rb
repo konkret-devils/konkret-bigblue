@@ -52,10 +52,10 @@ module Joiner
   def join_room(opts)
     room_settings = JSON.parse(@room[:room_settings])
 
-    if room_running?(@room.bbb_id) || @room.owned_by?(current_user) || room_settings["anyoneCanStart"] || session["is_moderator"]
+    if room_running?(@room.bbb_id) || @room.owned_by?(current_user) || room_settings["anyoneCanStart"] || session[:neelz_role] === 'interviewer'
 
       # Determine if the user needs to join as a moderator.
-      opts[:user_is_moderator] = @room.owned_by?(current_user) || room_settings["joinModerator"] || session["is_moderator"]
+      opts[:user_is_moderator] = @room.owned_by?(current_user) || room_settings["joinModerator"] || session[:neelz_role] === 'interviewer'
 
       opts[:require_moderator_approval] = room_settings["requireModeratorApproval"]
       opts[:mute_on_start] = room_settings["muteOnStart"]
@@ -71,7 +71,7 @@ module Joiner
 
       session['target_url_client'] = bbb_url_returned
       session['current_room_inside'] = @room.uid
-      session['is_neelz_room'] = @room.is_neelz_room?
+      session['is_neelz_room'] = NeelzRoom.is_neelz_room?(@room)
 
       redirect_to '/inside'
 

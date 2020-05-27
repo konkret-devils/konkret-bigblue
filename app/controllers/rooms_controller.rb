@@ -169,7 +169,7 @@ class RoomsController < ApplicationController
 
       session['target_url_client'] = bbb_url
       session['current_room_inside'] = @room.uid
-      session['is_neelz_room'] = @room.is_neelz_room?
+      session['is_neelz_room'] = NeelzRoom.is_neelz_room?(@room)
 
       redirect_to '/inside'
 
