@@ -30,6 +30,11 @@ class NeelzRoom < Room
     set_updated_at(DateTime.now)
   end
 
+  def save
+    super.save
+    self.neelz_attributes.save
+  end
+
   #ActionCable methods:
 
   def notify_co_browsing_share
