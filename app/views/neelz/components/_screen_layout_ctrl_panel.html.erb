@@ -98,7 +98,10 @@
                   break;
 
           }
-          if (!no_update) update_layout();
+          if (!no_update) {
+              update_layout();
+              check_orientation();
+          }
           $('.neelz-button-toggle').removeClass('neelz_screen_split_btn_down');
           $('#neelz_btn_split_'+layout).addClass('neelz_screen_split_btn_down');
       }
