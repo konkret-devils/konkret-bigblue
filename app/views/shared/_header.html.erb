@@ -36,7 +36,7 @@
 
         <% if current_user %>
 
-          <% unless params[:controller] == "neelz" || (params[:controller] == "rooms" && params[:action] == "show" && @is_neelz_room) %>
+          <% unless params[:controller] == "neelz" %>
 
               <% if current_user.has_role? :super_admin %>
                 <% admins_page = params[:controller] == "admins" && params[:action] == "index" ? "active" : "" %>
@@ -110,12 +110,14 @@
           <% end %>
         <% else %>
             <% allow_greenlight_accounts = allow_greenlight_accounts? %>
-            <% if allow_greenlight_accounts %>
-              <%= link_to tra("login"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
-            <% elsif Rails.configuration.loadbalanced_configuration %>
-              <%= link_to tra("login"), omniauth_login_url(:bn_launcher), :class => "btn btn-outline-primary mx-2 sign-in-button" %>
-            <% else %>
-              <%= link_to tra("login"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+            <% unless params[:controller] == "rooms" && params[:action] == "show" && @is_neelz_room %>
+              <% if allow_greenlight_accounts %>
+                <%= link_to tra("login"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+              <% elsif Rails.configuration.loadbalanced_configuration %>
+                <%= link_to tra("login"), omniauth_login_url(:bn_launcher), :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+              <% else %>
+                <%= link_to tra("login"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
+              <% end %>
             <% end %>
         <% end %>
       </div>
