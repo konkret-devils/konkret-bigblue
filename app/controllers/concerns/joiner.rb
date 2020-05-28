@@ -61,10 +61,10 @@ module Joiner
       opts[:mute_on_start] = room_settings["muteOnStart"]
 
       if current_user
-        join_response = join_meeting(@room, current_user.name, opts, current_user.uid)
+        join_response = join_path(@room, current_user.name, opts, current_user.uid)
       else
         join_name = params[:join_name] || params[@room.invite_path][:join_name]
-        join_response = join_meeting(@room, join_name, opts)
+        join_response = join_path(@room, join_name, opts)
       end
 
       bbb_url_returned = join_response #[:url]

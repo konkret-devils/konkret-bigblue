@@ -56,24 +56,6 @@ module BbbServer
     join_opts[:join_via_html5] = true
     join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
 
-    join_opts["userdata-bbb_show_public_chat_on_login"] = false if room.is_neelz_room?
-
-    bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
-  end
-
-  def join_meeting(room, name, options, uid = nil)
-    # Create the meeting, even if it's running
-    start_session(room, options)
-
-    # Determine the password to use when joining.
-    password = options[:user_is_moderator] ? room.moderator_pw : room.attendee_pw
-
-    # Generate the join URL.
-    join_opts = {}
-    join_opts[:userID] = uid if uid
-    join_opts[:join_via_html5] = true
-    join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
-
     if NeelzRoom.is_neelz_room?(room)
       neelz_room = NeelzRoom.convert_to_neelz_room(room)
       join_opts["userdata-bbb_show_participants_on_login"] = neelz_room.show_participants_on_login?
@@ -81,7 +63,6 @@ module BbbServer
     end
 
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
-
   end
 
   # Creates a meeting on the BigBlueButton server.
