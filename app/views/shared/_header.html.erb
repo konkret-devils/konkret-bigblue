@@ -110,7 +110,7 @@
           <% end %>
         <% else %>
             <% allow_greenlight_accounts = allow_greenlight_accounts? %>
-            <% unless params[:controller] == "rooms" && params[:action] == "show" && @is_neelz_room %>
+            <% unless params[:controller] == "neelz" || (params[:controller] == "rooms" && params[:action] == "show" && @is_neelz_room) %>
               <% if allow_greenlight_accounts %>
                 <%= link_to tra("login"), signin_path, :class => "btn btn-outline-primary mx-2 sign-in-button" %>
               <% elsif Rails.configuration.loadbalanced_configuration %>
