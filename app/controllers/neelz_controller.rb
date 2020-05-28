@@ -148,4 +148,39 @@ class NeelzController < ApplicationController
 
   end
 
+  # GET /neelz/i_inside
+  def i_inside
+    @cache_expire = 10.seconds
+    return redirect_to('/', alert: 'invalid request') unless session[:target_url_client].present?
+    return redirect_to('/', alert: 'invalid request') unless session[:neelz_qvid].present?
+    return redirect_to('/', alert: 'invalid request') unless session[:neelz_role] == 'interviewer'
+    room = NeelzRoom.get_room(qvid: session[:neelz_qvid])
+    if room && NeelzRoom.is_neelz_room?(room)
+      @neelz_room = NeelzRoom.convert_to_neelz_room(room)
+      @target_url_client = session[:target_url_client]
+      @user_browses = @neelz_room.interviewer_browses?
+      @neelz_role = 'interviewer'
+    else
+      redirect_to('/', alert: 'invalid_request')
+    end
+  end
+
+  # GET /neelz/p_inside
+  def p_inside
+    @cache_expire = 10.seconds
+    return redirect_to('/', alert: 'invalid request') unless session[:target_url_client].present?
+    return redirect_to('/', alert: 'invalid request') unless session[:neelz_qvid].present?
+    return redirect_to('/', alert: 'invalid request') unless session[:neelz_role] == 'proband'
+    room = NeelzRoom.get_room(qvid: session[:neelz_qvid])
+    if room && NeelzRoom.is_neelz_room?(room)
+      @neelz_room = NeelzRoom.convert_to_neelz_room(room)
+      @target_url_client = session[:target_url_client]
+      @user_browses = @neelz_room.proband_browses?
+      @neelz_role = 'proband'
+    else
+      redirect_to('/', alert: 'invalid_request')
+    end
+  end
+
+
 end

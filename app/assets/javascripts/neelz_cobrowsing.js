@@ -19,9 +19,86 @@ $(document).on("turbolinks:load", function(){
   let body = $("body"),
              controller = body.data('controller'),
              action = body.data('action');
+
   let bg = $('.background'),
       is_moderator = bg.attr('is_moderator') === 'yes';
-  if(controller === "inside_room" && action === "inside" && !is_moderator){
+
+  if(controller === "neelz" && action === "p_inside" && !is_moderator){
+
+    let coBrowsingState = {
+      blocked: false,
+      refreshRequired: false,
+      activeIFrame: 0,
+      active: false,
+      url: '',
+      scrollTop: 0
+    };
+
+    let startCoBrowsing = function(url,readonly){
+
+      if (!readonly && url === coBrowsingState.url && coBrowsingState.active){
+        return;
+      }
+
+      if (!url || url.trim() === ''){
+        return;
+      }
+
+      coBrowsingState.url = url;
+      coBrowsingState.active = true;
+
+      set_screen_split_layout(7);
+
+      let show_vp = function () {
+        $('#curtain_layer').animate(
+            {
+              opacity: 0.0
+            },500,
+            function () {
+            }
+        ).css('pointer-events','none');
+      };
+      let set_url_vp = function () {
+        $('#external_viewport_1').attr('src',url);
+        setTimeout(show_vp,500);
+      };
+
+      $('#curtain_layer').animate(
+          {
+            opacity: 1.0
+          }, 500,
+          function () { //complete
+            $('#external_viewport_1').attr('src','');
+            setTimeout(set_url_vp, 100);
+          }
+      ).css('pointer-events','all');
+    };
+
+    let stopCoBrowsing = function(){
+      coBrowsingState.active = false;
+      coBrowsingState.url = '';
+      $('#curtain_layer').animate(
+          {
+            opacity: 1.0
+          }, 500,
+          function () { //complete
+            set_screen_split_layout(1);
+          }
+      ).css('pointer-events','all');
+
+    };
+
+    let refreshCoBrowsing = function () {
+      if (coBrowsingState.active) {
+        startCoBrowsing(coBrowsingState.url,true);
+      }
+    };
+
+    let processRefreshOffer = function () {
+      if (coBrowsingState.active) {
+        refreshCoBrowsing();
+      }
+    };
 
     App.waiting = App.cable.subscriptions.create({
       channel: "CoBrowsingChannel",
@@ -59,77 +136,3 @@ $(document).on("turbolinks:load", function(){
   }
 });
 
-let coBrowsingState = {
-  blocked: false,
-  refreshRequired: false,
-  activeIFrame: 0,
-  active: false,
-  url: '',
-  scrollTop: 0
-};
-
-let startCoBrowsing = function(url,readonly){
-
-  if (!readonly && url === coBrowsingState.url && coBrowsingState.active){
-    return;
-  }
-
-  if (!url || url.trim() === ''){
-    return;
-  }
-
-  coBrowsingState.url = url;
-  coBrowsingState.active = true;
-
-  set_screen_split_layout(7);
-
-  let show_vp = function () {
-    $('#curtain_layer').animate(
-        {
-          opacity: 0.0
-        },500,
-        function () {
-        }
-    ).css('pointer-events','none');
-  };
-  let set_url_vp = function () {
-    $('#external_viewport_1').attr('src',url);
-    setTimeout(show_vp,500);
-  };
-
-  $('#curtain_layer').animate(
-      {
-        opacity: 1.0
-      }, 500,
-      function () { //complete
-        $('#external_viewport_1').attr('src','');
-        setTimeout(set_url_vp, 100);
-      }
-  ).css('pointer-events','all');
-};
-
-let stopCoBrowsing = function(){
-  coBrowsingState.active = false;
-  coBrowsingState.url = '';
-  $('#curtain_layer').animate(
-      {
-        opacity: 1.0
-      }, 500,
-      function () { //complete
-        set_screen_split_layout(1);
-      }
-  ).css('pointer-events','all');
-
-};
-
-let refreshCoBrowsing = function () {
-  if (coBrowsingState.active) {
-    startCoBrowsing(coBrowsingState.url,true);
-  }
-};
-
-let processRefreshOffer = function () {
-  if (coBrowsingState.active) {
-    refreshCoBrowsing();
-  }
-};

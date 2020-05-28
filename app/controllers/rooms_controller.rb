@@ -76,13 +76,15 @@ class RoomsController < ApplicationController
         @user_list = shared_user_list if shared_access_allowed
 
         @pagy, @recordings = pagy_array(recs)
+
+        @is_neelz_room = false
       else
         # Render view for users that cant create rooms
         @recent_rooms = Room.where(id: cookies.encrypted["#{current_user.uid}_recently_joined_rooms"])
         render :cant_create_rooms
       end
     else
-      session[:is_neelz_room] = NeelzRoom.is_neelz_room?(@room)
+      session[:is_neelz_room] = @is_neelz_room =  NeelzRoom.is_neelz_room?(@room)
       return redirect_to root_path, flash: { alert: tra("room.invalid_provider") } if incorrect_user_domain
 
       show_user_join
@@ -168,8 +170,19 @@ class RoomsController < ApplicationController
       bbb_url = join_path(@room, current_user.name, opts, current_user.uid)
 
       session['target_url_client'] = bbb_url
-      session['current_room_inside'] = @room.uid
-      session['is_neelz_room'] = NeelzRoom.is_neelz_room?(@room)
+      #session['current_room_inside'] = @room.uid
+      #session['is_neelz_room'] = NeelzRoom.is_neelz_room?(@room)
+
+      if NeelzRoom.is_neelz_room?(@room)
+        #neelz_room = NeelzRoom.convert_to_neelz_room(@room)
+        if session[:neelz_role] == 'interviewer'
+          redirect_to '/neelz/i_inside'
+        elsif session[:neelz_role] == 'proband'
+          redirect_to '/neelz/p_inside'
+        else
+          redirect_to('/', alert: 'invalid request')
+        end
+      end
 
       redirect_to '/inside'
 

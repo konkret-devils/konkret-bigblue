@@ -97,6 +97,8 @@ Rails.application.routes.draw do
     post '/refresh', to: 'neelz#refresh', as: :neelz_refresh
     post '/i_share', to: "neelz#i_share", as: :neelz_i_share
     get '/thank_you/:qvid', to: 'neelz#thank_you', as: :neelz_thank_you
+    get '/i_inside', to: 'neelz#i_inside', as: :neelz_i_inside
+    get '/p_inside', to: 'neelz#p_inside', as: :neelz_p_inside
   end
 
   # User resources.
