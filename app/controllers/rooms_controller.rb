@@ -170,8 +170,6 @@ class RoomsController < ApplicationController
       bbb_url = join_path(@room, current_user.name, opts, current_user.uid)
 
       session['target_url_client'] = bbb_url
-      #session['current_room_inside'] = @room.uid
-      #session['is_neelz_room'] = NeelzRoom.is_neelz_room?(@room)
 
       redirect_url = '/inside'
 
@@ -198,6 +196,12 @@ class RoomsController < ApplicationController
     # Delay 5 seconds to allow for server start, although the request will retry until it succeeds.
 
     NotifyUserWaitingJob.set(wait: 5.seconds).perform_later(@room)
+  end
+
+  # GET /inside
+  def inside
+    @cache_expire = 10.seconds
+    @target_url_client = session['target_url_client']
   end
 
   # POST /:room_uid/update_settings

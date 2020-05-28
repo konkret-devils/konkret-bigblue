@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   # Redirect to terms page
   match '/terms', to: 'users#terms', via: [:get, :post]
 
-  get '/inside', to: 'inside_room#inside', as: :inside
+  get '/inside', to: 'rooms#inside', as: :inside
 
   # Admin resouces
   resources :admins, only: [:index]
