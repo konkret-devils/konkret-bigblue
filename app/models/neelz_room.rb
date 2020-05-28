@@ -72,7 +72,7 @@ class NeelzRoom < Room
 
   def set_qvid(qvid_nr)
     neelz_attributes.qvid = qvid_nr
-    self.uid = 'kon-survey-' + qvid_interviewer_encoded
+    set_uid('kon-survey-' + qvid_interviewer_encoded)
   end
 
   def qvid_interviewer_encoded
