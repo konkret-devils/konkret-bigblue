@@ -73,18 +73,20 @@ module Joiner
       #session['current_room_inside'] = @room.uid
       #session['is_neelz_room'] = NeelzRoom.is_neelz_room?(@room)
 
+      redirect_url = '/inside'
+
       if NeelzRoom.is_neelz_room?(@room)
         #neelz_room = NeelzRoom.convert_to_neelz_room(@room)
         if session[:neelz_role] == 'interviewer'
-          redirect_to '/neelz/i_inside'
+          redirect_url = '/neelz/i_inside'
         elsif session[:neelz_role] == 'proband'
-          redirect_to '/neelz/p_inside'
+          redirect_url = '/neelz/p_inside'
         else
-          redirect_to('/', alert: 'invalid request')
+          return redirect_to('/', alert: 'invalid request')
         end
       end
 
-      redirect_to '/inside'
+      redirect_to redirect_url
 
       NotifyUserWaitingJob.set(wait: 5.seconds).perform_later(@room)
 
