@@ -61,7 +61,7 @@
         }
     }
 
-    <% if @neelz_room.co_browsing_externally_triggered? %>
+    <% if neelz_room.co_browsing_externally_triggered? %>
 
         window.addEventListener("message", function(event) {
             if (event.origin !== '<%= Rails.configuration.neelz_i_share_base_url %>') {

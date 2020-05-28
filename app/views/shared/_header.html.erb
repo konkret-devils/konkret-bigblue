@@ -26,11 +26,11 @@
 
           <% if params[:action] == "i_inside" && @neelz_room.interviewer_browses? && @neelz_room.proband_browses? %>
 
-            <% render "neelz/components/co_browsing_ctrl_panel" %>
+            <%= render "neelz/components/co_browsing_ctrl_panel", neelz_room: @neelz_room, neelz_role: @neelz_role %>
 
           <% end %>
 
-          <% render "neelz/components/screen_layout_ctrl_panel" %>
+          <%= render "neelz/components/screen_layout_ctrl_panel", neelz_room: @neelz_room, neelz_role: @neelz_role %>
 
         <% end %>
 

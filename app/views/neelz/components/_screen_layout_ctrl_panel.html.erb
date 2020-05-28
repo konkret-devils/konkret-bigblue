@@ -122,7 +122,7 @@
       }
 
       function check_orientation() {
-          if ((inside_parent.width() * orientation_dim.size_external  >= <%= @neelz_room.external_frame_min_width %>)
+          if ((inside_parent.width() * orientation_dim.size_external  >= <%= neelz_room.external_frame_min_width %>)
               && (inside_parent.width() > inside_parent.height())) {
               if (orientation_dim.dim === 'vertical' || orientation_dim.dim === 'unset'){
                   $('#inside_video_frame, #inside_external_frame')
@@ -152,10 +152,10 @@
           inside_video_frame = $('#inside_video_frame');
           inside_external_frame = $("#inside_external_frame");
 
-          <% if @neelz_role == 'interviewer' %>
-            set_screen_split_layout(<%= @neelz_room.interviewer_screen_split_mode_on_login %>, true);
-          <% elsif @neelz_role == 'proband' %>
-            set_screen_split_layout(<%= @neelz_room.proband_screen_split_mode_on_login %>, true);
+          <% if neelz_role == 'interviewer' %>
+            set_screen_split_layout(<%= neelz_room.interviewer_screen_split_mode_on_login %>, true);
+          <% elsif neelz_role == 'proband' %>
+            set_screen_split_layout(<%= neelz_room.proband_screen_split_mode_on_login %>, true);
           <% end %>
 
           check_orientation();
