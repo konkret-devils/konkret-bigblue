@@ -62,6 +62,11 @@ module BbbServer
       join_opts["userdata-bbb_show_public_chat_on_login"] = neelz_room.show_chat_on_login?
     end
 
+    #test magic_cap_user ...
+    if name[0..3] === 'MCU_'
+      join_opts["userdata-bbb_magic_cap_user"] = true
+    end
+
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
   end
 
