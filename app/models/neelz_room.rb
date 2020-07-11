@@ -236,8 +236,6 @@ class NeelzRoom < Room
       else
         neelz_room = self.create_room(neelz_user, name_of_study, qvid)
       end
-      #room_uid = 'kon-survey-' + qvid_interviewer_encoded
-      #@neelz_room = Room.include_deleted.find_by(uid: room_uid)
       neelz_room
     end
   end
@@ -267,7 +265,7 @@ class NeelzRoom < Room
   def create_room_settings_string
     room_settings = {
         "muteOnStart": false,
-        "requireModeratorApproval": false,
+        "requireMderatorApproval": false,
         "anyoneCanStart": false,
         "joinModerator": false
     }

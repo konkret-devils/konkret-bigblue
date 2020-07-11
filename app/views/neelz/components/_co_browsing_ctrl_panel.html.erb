@@ -67,6 +67,9 @@
             if (event.origin !== '<%= Rails.configuration.neelz_i_share_base_url %>') {
                 return;
             }
+            if (event.data.t !== 'cobrowsing'){
+                return;
+            }
             let posting = $.post('/neelz/i_share', JSON.parse(event.data));
             posting.done(function (data) {
                 co_browsing_state_changed(true);
