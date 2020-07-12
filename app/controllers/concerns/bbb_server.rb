@@ -65,9 +65,11 @@ module BbbServer
     #test magic_cap_user ...
     if name[0..3] === 'MCU_'
       join_opts["userdata-bbb_magic_cap_user"] = true
-      join_opts["userdata-bbb_magic_cap_user_visible_for_moderators"] = true
       if name[4..7] === 'MOD_'
         password = room.moderator_pw
+        join_opts["userdata-bbb_magic_cap_user_visible_for_herself"] = true
+      else
+        join_opts["userdata-bbb_magic_cap_user_visible_for_moderators"] = true
       end
     end
 
