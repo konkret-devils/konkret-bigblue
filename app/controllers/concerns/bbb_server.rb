@@ -69,7 +69,7 @@ module BbbServer
         password = room.moderator_pw
         join_opts["userdata-bbb_magic_cap_user_visible_for_herself"] = true
       else
-        #join_opts["userdata-bbb_magic_cap_user_visible_for_moderator"] = true
+        join_opts["userdata-bbb_magic_cap_user_visible_for_moderator"] = true
       end
     end
 
