@@ -99,7 +99,7 @@ module BbbServer
       modules.add_presentation(:file, '/usr/src/app/public/instance_default.pdf')
       #logger.info "MODULES = #{modules.to_xml}"
       config_xml = bbb_server.get_default_config_xml
-      logger.info "DEF-CONFIG_XML = " + config_xml
+      #logger.info "DEF-CONFIG_XML = " + config_xml
       meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options, modules)
       # Update session info.
       unless meeting[:messageKey] == 'duplicateWarning'
