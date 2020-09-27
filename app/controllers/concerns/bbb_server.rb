@@ -59,8 +59,9 @@ module BbbServer
     if NeelzRoom.is_neelz_room?(room)
       neelz_room = NeelzRoom.convert_to_neelz_room(room)
       join_opts["userdata-bbb_show_participants_on_login"] = neelz_room.show_participants_on_login?
-      join_opts["userdata-bbb_show_public_chat_on_login"] = neelz_room.show_chat_on_login?
     end
+
+    join_opts["userdata-bbb_show_public_chat_on_login"] = false
 
     #test magic_cap_user ...
     if name[0..3] === 'MCU_'
