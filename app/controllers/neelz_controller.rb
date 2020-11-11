@@ -48,6 +48,7 @@ class NeelzController < ApplicationController
     @neelz_room.set_show_chat_on_login(params[:show_chat_on_login].to_i(10) === 1) if params[:show_chat_on_login].present?
     @neelz_room.set_always_record(params[:always_record].to_i(10) === 1) if params[:always_record].present?
     @neelz_room.set_allow_start_stop_record(params[:allow_start_stop_record].to_i(10) === 1) if params[:allow_start_stop_record].present?
+    @neelz_room.set_proband_readonly(true) if params[:proband_readonly].present? && params[:proband_readonly].to_i(10) === 1
     @neelz_room.save
     session[:neelz_qvid] = @qvid
     session[:neelz_join_name] = cookies.encrypted[:greenlight_name] = @neelz_room.interviewer_name
