@@ -55,3 +55,4 @@ coverage*
 /vendor/bundle/ruby/2.6.0/bundler/gems/omniauth-bn-office365-d6640b37b5df/omniauth-bn-office365.gemspec
 /vendor/bundle/ruby/2.6.0/bundler/gems/tabler-rubygem-4c16e6dc930f/tabler.gemspec
 !/Gemfile.lock
+/vendor/

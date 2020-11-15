@@ -59,20 +59,22 @@ module BbbServer
     if NeelzRoom.is_neelz_room?(room)
       neelz_room = NeelzRoom.convert_to_neelz_room(room)
       join_opts["userdata-bbb_show_participants_on_login"] = neelz_room.show_participants_on_login?
+      join_opts["userdata-bbb_auto_swap_layout"]   = true
+      join_opts["userdata-bbb_hide_presentation"] = true
     end
 
     join_opts["userdata-bbb_show_public_chat_on_login"] = false
 
     #test magic_cap_user ...
-    if name[0..3] === 'MCU_'
-      join_opts["userdata-bbb_magic_cap_user"] = true
-      if name[4..7] === 'MOD_'
-        password = room.moderator_pw
-        join_opts["userdata-bbb_magic_cap_user_visible_for_herself"] = true
-      else
-        join_opts["userdata-bbb_magic_cap_user_visible_for_moderator"] = true
-      end
-    end
+    #if name[0..3] === 'MCU_'
+    #  join_opts["userdata-bbb_magic_cap_user"] = true
+    #  if name[4..7] === 'MOD_'
+    #   password = room.moderator_pw
+    #   join_opts["userdata-bbb_magic_cap_user_visible_for_herself"] = true
+    #  else
+    #    join_opts["userdata-bbb_magic_cap_user_visible_for_moderator"] = true
+    #  end
+    #end
 
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
   end
