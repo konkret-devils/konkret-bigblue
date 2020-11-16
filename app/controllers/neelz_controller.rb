@@ -95,9 +95,11 @@ class NeelzController < ApplicationController
     @neelz_room_access_code = @neelz_room.access_code
     @neelz_interviewer_name = @neelz_room.interviewer_name
     @neelz_name_of_study = @neelz_room.name_of_study
-    send_neelz_participation_email(@neelz_proband_email,@neelz_proband_access_url,
-                                   @neelz_room_access_code,@neelz_interviewer_name,
-                                   @neelz_proband_name,@neelz_name_of_study)
+    if (@neelz_proband_email.length >= 7) && (@neelz_proband_email.include? "@")
+      send_neelz_participation_email(@neelz_proband_email,@neelz_proband_access_url,
+                                     @neelz_room_access_code,@neelz_interviewer_name,
+                                     @neelz_proband_name,@neelz_name_of_study)
+    end
     redirect_to '/'+@neelz_room.uid
   end
 
