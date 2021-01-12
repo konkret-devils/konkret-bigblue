@@ -65,7 +65,7 @@ module BbbServer
 
     join_opts["userdata-bbb_show_public_chat_on_login"] = false
 
-    test magic_cap_user ...
+    ##test magic_cap_user ...
     if name[0..3] === 'MCU_'
      join_opts["userdata-bbb_magic_cap_user"] = true
      if name[4..7] === 'MOD_'
