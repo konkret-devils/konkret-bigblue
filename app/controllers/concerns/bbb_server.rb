@@ -63,13 +63,14 @@ module BbbServer
       join_opts["userdata-bbb_hide_presentation"] = true
     end
 
-    join_opts["userdata-bbb_auto_share_webcam"] = true
-    join_opts["userdata-bbb_skip_video_preview"] = true
-    join_opts["userdata-bbb_auto_join_audio"] = true
-    join_opts["userdata-bbb_skip_check_audio"] = true
-    join_opts["userdata-bbb_listen_only_mode"] = false
+    #join_opts["userdata-bbb_auto_share_webcam"] = true
+    #join_opts["userdata-bbb_skip_video_preview"] = true
+    #join_opts["userdata-bbb_auto_join_audio"] = true
+    #join_opts["userdata-bbb_skip_check_audio"] = true
+    #join_opts["userdata-bbb_listen_only_mode"] = false
 
-    join_opts["userdata-bbb_show_public_chat_on_login"] = false
+    #join_opts["userdata-bbb_show_participants_on_login"] = false
+    #join_opts["userdata-bbb_show_public_chat_on_login"] = false
 
     ##test magic_cap_user ...
     if name[0..3] === 'MCU_'
