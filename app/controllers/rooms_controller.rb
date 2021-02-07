@@ -171,7 +171,7 @@ class RoomsController < ApplicationController
 
       session['target_url_client'] = bbb_url
 
-      redirect_url = '/inside'
+      redirect_url = bbb_url #'/inside'
 
       if NeelzRoom.is_neelz_room?(@room)
         #neelz_room = NeelzRoom.convert_to_neelz_room(@room)
