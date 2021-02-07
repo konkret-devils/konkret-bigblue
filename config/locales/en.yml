@@ -227,7 +227,7 @@ en:
     designs: Custom Designs
     authentication: User Authentication
   footer:
-    powered_by: konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020.
+    powered_by: konkret Institut für innovative Markt- und Meinungsforschung Bremen GmbH, Team DEVILS, 2020-21.
   forgot_password:
     subtitle: Forgot Password
     email: Email
@@ -258,7 +258,7 @@ en:
       start: Start searching...
   landing:
     about: "%{href} is a simple front-end for your BigBlueButton open-source web conferencing server. You can create your own rooms to host sessions, or join others using a short and convenient link."
-    welcome: "Welcome to konkret bigBLUE."
+    welcome: "Welcome to konkret bigBLUEv3."
     video: "Watch our tutorial on using %{instance_name}"
     upgrade: Show me how to upgrade to 2.0!
     version: "We've released a new version of %{instance_name}, but your database isn't compatible."
