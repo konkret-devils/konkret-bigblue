@@ -62,17 +62,9 @@ module BbbServer
       join_opts["userdata-bbb_auto_swap_layout"]   = true
       join_opts["userdata-bbb_hide_presentation"] = true
     else
-      join_opts["userdata-bbb_display_branding_area="] = true
+      join_opts["userdata-bbb_display_branding_area"] = true
+      join_opts["userdata-bbb_custom_style_url"] = 'https://konkret-mafo.cloud/konkret/bbb-html5.css'
     end
-
-    #join_opts["userdata-bbb_auto_share_webcam"] = true
-    #join_opts["userdata-bbb_skip_video_preview"] = true
-    #join_opts["userdata-bbb_auto_join_audio"] = true
-    #join_opts["userdata-bbb_skip_check_audio"] = true
-    #join_opts["userdata-bbb_listen_only_mode"] = false
-
-    #join_opts["userdata-bbb_show_participants_on_login"] = false
-    #join_opts["userdata-bbb_show_public_chat_on_login"] = false
 
     ##test magic_cap_user ...
     if name[0..3] === 'MCU_'
@@ -93,7 +85,7 @@ module BbbServer
     create_options = {
       record: options[:meeting_recorded].to_s,
       logoutURL: options[:meeting_logout_url] || '',
-      logo:'https://bigblue.konkret-mafo.cloud/logo_with_text.png',
+      logo: NeelzRoom.is_neelz_room?(room) ? 'https://bigblue.konkret-mafo.cloud/logo_with_text.png' : '' ,
       moderatorPW: room.moderator_pw,
       attendeePW: room.attendee_pw,
       moderatorOnlyMessage: options[:moderator_message],
