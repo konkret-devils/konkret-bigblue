@@ -61,6 +61,8 @@ module BbbServer
       join_opts["userdata-bbb_show_participants_on_login"] = neelz_room.show_participants_on_login?
       join_opts["userdata-bbb_auto_swap_layout"]   = true
       join_opts["userdata-bbb_hide_presentation"] = true
+    else
+      join_opts["userdata-bbb_display_branding_area="] = true
     end
 
     #join_opts["userdata-bbb_auto_share_webcam"] = true
@@ -91,6 +93,7 @@ module BbbServer
     create_options = {
       record: options[:meeting_recorded].to_s,
       logoutURL: options[:meeting_logout_url] || '',
+      logo:'https://bigblue.konkret-mafo.cloud/logo_with_text.png',
       moderatorPW: room.moderator_pw,
       attendeePW: room.attendee_pw,
       moderatorOnlyMessage: options[:moderator_message],
