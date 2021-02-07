@@ -85,7 +85,7 @@ module BbbServer
     create_options = {
       record: options[:meeting_recorded].to_s,
       logoutURL: options[:meeting_logout_url] || '',
-      logo: NeelzRoom.is_neelz_room?(room) ? 'https://bigblue.konkret-mafo.cloud/logo_with_text.png' : '' ,
+      logo: NeelzRoom.is_neelz_room?(room) ? '' : 'https://bigblue.konkret-mafo.cloud/logo_with_text.png' ,
       moderatorPW: room.moderator_pw,
       attendeePW: room.attendee_pw,
       moderatorOnlyMessage: options[:moderator_message],
