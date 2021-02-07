@@ -258,7 +258,7 @@ en:
       start: Start searching...
   landing:
     about: "%{href} is a simple front-end for your BigBlueButton open-source web conferencing server. You can create your own rooms to host sessions, or join others using a short and convenient link."
-    welcome: "Welcome to %{instance_name}."
+    welcome: "Welcome to konkret bigBLUE."
     video: "Watch our tutorial on using %{instance_name}"
     upgrade: Show me how to upgrade to 2.0!
     version: "We've released a new version of %{instance_name}, but your database isn't compatible."
