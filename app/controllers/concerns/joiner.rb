@@ -73,7 +73,7 @@ module Joiner
       #session['current_room_inside'] = @room.uid
       #session['is_neelz_room'] = NeelzRoom.is_neelz_room?(@room)
 
-      redirect_url = '/inside'
+      redirect_url = bbb_url_returned #'/inside'
 
       if NeelzRoom.is_neelz_room?(@room)
         #neelz_room = NeelzRoom.convert_to_neelz_room(@room)
