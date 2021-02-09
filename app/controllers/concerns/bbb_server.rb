@@ -17,6 +17,7 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
 require 'bigbluebutton_api'
+require 'json'
 
 module BbbServer
   extend ActiveSupport::Concern
@@ -63,7 +64,7 @@ module BbbServer
       join_opts["userdata-bbb_hide_presentation"] = true
     else
       join_opts["userdata-bbb_display_branding_area"] = true
-      join_opts["userdata-bbb_custom_style_url"] = 'https://konkret-mafo.cloud/konkret/bbb-html5.css'
+      join_opts["userdata-bbb_custom_style_url"] = "https://konkret-mafo.cloud/konkret/bbb-html5.css".to_json
     end
 
     ##test magic_cap_user ...
@@ -85,7 +86,7 @@ module BbbServer
     create_options = {
       record: options[:meeting_recorded].to_s,
       logoutURL: options[:meeting_logout_url] || '',
-      logo: NeelzRoom.is_neelz_room?(room) ? '' : 'https://konkret-mafo.cloud/konkret/logo_with_text2.png' ,
+      logo: NeelzRoom.is_neelz_room?(room) ? '' : "https://konkret-mafo.cloud/konkret/logo_with_text2.png".to_json ,
       moderatorPW: room.moderator_pw,
       attendeePW: room.attendee_pw,
       moderatorOnlyMessage: options[:moderator_message],
@@ -103,7 +104,7 @@ module BbbServer
       modules = BigBlueButton::BigBlueButtonModules.new
       modules.add_presentation(:file, '/usr/src/app/public/instance_default.pdf')
       #logger.info "MODULES = #{modules.to_xml}"
-      config_xml = bbb_server.get_default_config_xml
+      #config_xml = bbb_server.get_default_config_xml
       #logger.info "DEF-CONFIG_XML = " + config_xml
       meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options, modules)
       # Update session info.
