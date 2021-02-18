@@ -213,5 +213,11 @@ module Greenlight
       ''
     end
 
+    config.mcu_prefix = if ENV['MCU_PREFIX'].present?
+      ENV['MCU_PREFIX']
+    else
+      'MCU_'
+    end
+
   end
 end

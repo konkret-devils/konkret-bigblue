@@ -68,9 +68,10 @@ module BbbServer
     end
 
     ##test magic_cap_user ...
-    if name[0..3] === 'MCU_'
+    mcu_prefix = Rails.configuration.mcu_prefix
+    if name[0..(mcu_prefix.length-1)] === mcu_prefix
      join_opts["userdata-bbb_magic_cap_user"] = true
-     if name[4..7] === 'MOD_'
+     if name[(mcu_prefix.length)..(mcu_prefix.length+3)] === 'MOD_'
       password = room.moderator_pw
       join_opts["userdata-bbb_magic_cap_user_visible_for_herself"] = true
      else
