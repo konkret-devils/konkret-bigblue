@@ -49,13 +49,13 @@ module BbbServer
     start_session(room, options)
 
     # Determine the password to use when joining.
-    password = options[:user_is_moderator] ? room.moderator_pw : room.attendee_pw
+    password = options[:user_is_moderator] || uid ? room.moderator_pw : room.attendee_pw
 
     # Generate the join URL.
     join_opts = {}
     join_opts[:userID] = uid if uid
     join_opts[:join_via_html5] = true
-    join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
+    join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator] && !uid
 
     if NeelzRoom.is_neelz_room?(room)
       neelz_room = NeelzRoom.convert_to_neelz_room(room)
