@@ -64,7 +64,6 @@ module BbbServer
       join_opts["userdata-bbb_hide_presentation"] = true
     else
       join_opts["userdata-bbb_display_branding_area"] = true
-      #@TODO introduce env variable for css url constant below
       join_opts["userdata-bbb_custom_style_url"] = Rails.configuration.html5_client_custom_css_url.to_json
     end
 
@@ -92,7 +91,6 @@ module BbbServer
     create_options = {
       record: options[:meeting_recorded].to_s,
       logoutURL: options[:meeting_logout_url] || '',
-      #@TODO introduce env variable for logo image url constant below
       logo: NeelzRoom.is_neelz_room?(room) ? '' : Rails.configuration.html5_client_branding_logo_url.to_json,
       moderatorPW: room.moderator_pw,
       attendeePW: room.attendee_pw,
