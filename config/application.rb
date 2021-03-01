@@ -195,6 +195,18 @@ module Greenlight
     # Default admin password
     config.admin_password_default = ENV['ADMIN_PASSWORD'] || 'administrator'
 
+    config.html5_client_custom_css_url = if ENV['HTML5_CLIENT_CUSTOM_CSS_URL'].present?
+      ENV['HTML5_CLIENT_CUSTOM_CSS_URL']
+    else
+      'https://konkret-mafo.cloud/konkret/bbb-html5.css'
+    end
+
+    config.html5_client_branding_logo_url = if ENV['HTML5_CLIENT_BRANDING_LOGO_URL'].present?
+      ENV['HTML5_CLIENT_BRANDING_LOGO_URL']
+    else
+      'https://konkret-mafo.cloud/konkret/logo_with_text2.png'
+    end
+
     config.neelz_email = if ENV['NEELZ_EMAIL'].present?
        ENV['NEELZ_EMAIL']
      else
@@ -217,6 +229,12 @@ module Greenlight
       ENV['MCU_PREFIX']
     else
       'MCU_'
+    end
+
+    config.mcu_prefix_mod = if ENV['MCU_PREFIX_MOD'].present?
+      ENV['MCU_PREFIX_MOD']
+    else
+      'MOD_'
     end
 
   end

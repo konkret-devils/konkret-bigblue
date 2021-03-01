@@ -65,14 +65,14 @@ module BbbServer
     else
       join_opts["userdata-bbb_display_branding_area"] = true
       #@TODO introduce env variable for css url constant below
-      join_opts["userdata-bbb_custom_style_url"] = "https://konkret-mafo.cloud/konkret/bbb-html5.css".to_json
+      join_opts["userdata-bbb_custom_style_url"] = Rails.configuration.html5_client_custom_css_url.to_json
     end
 
     ##test magic_cap_user ...
     mcu_prefix = Rails.configuration.mcu_prefix
     if name[0..(mcu_prefix.length-1)] === mcu_prefix
      join_opts["userdata-bbb_magic_cap_user"] = true
-     if name[(mcu_prefix.length)..(mcu_prefix.length+3)] === 'MOD_'
+     if name[(mcu_prefix.length)..(mcu_prefix.length+3)] === Rails.configuration.mcu_prefix_mod
       password = room.moderator_pw
       join_opts["userdata-bbb_magic_cap_user_visible_for_herself"] = true
      else
@@ -93,7 +93,7 @@ module BbbServer
       record: options[:meeting_recorded].to_s,
       logoutURL: options[:meeting_logout_url] || '',
       #@TODO introduce env variable for logo image url constant below
-      logo: NeelzRoom.is_neelz_room?(room) ? '' : "https://konkret-mafo.cloud/konkret/logo_with_text2.png".to_json ,
+      logo: NeelzRoom.is_neelz_room?(room) ? '' : Rails.configuration.html5_client_branding_logo_url.to_json,
       moderatorPW: room.moderator_pw,
       attendeePW: room.attendee_pw,
       moderatorOnlyMessage: options[:moderator_message],
