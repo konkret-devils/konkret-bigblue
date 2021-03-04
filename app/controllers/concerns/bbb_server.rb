@@ -76,10 +76,10 @@ module BbbServer
       join_opts["userdata-bbb_magic_cap_user_visible_for_herself"] = true
      else
        join_opts["userdata-bbb_magic_cap_user_visible_for_moderator"] = true
-       join_opts["userdata-bbb_enable_video"] = false
-       join_opts["userdata-bbb_force_listen_only"] = true
-       join_opts["userdata-bbb_shortcuts"] = '%5B%5D'
-       join_opts["userdata-bbb_auto_swap_layout"] = false
+       #join_opts["userdata-bbb_enable_video"] = false
+       #join_opts["userdata-bbb_force_listen_only"] = true
+       #join_opts["userdata-bbb_shortcuts"] = '%5B%5D'
+       #join_opts["userdata-bbb_auto_swap_layout"] = false
      end
     end
 
