@@ -56,6 +56,7 @@ module BbbServer
     join_opts[:userID] = uid if uid
     join_opts[:join_via_html5] = true
     join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator] && !uid
+    join_opts["userdata-bbb_force_restore_presentation_on_new_events"] = true
 
     if NeelzRoom.is_neelz_room?(room)
       neelz_room = NeelzRoom.convert_to_neelz_room(room)
@@ -80,7 +81,7 @@ module BbbServer
        join_opts["userdata-bbb_force_listen_only"] = true
        join_opts["userdata-bbb_custom_style_url"] = 'https://bbb.konkret-mafo.cloud/css/mcu_custom_style.css'
        join_opts["userdata-bbb_shortcuts"] = '%5B%5D'
-       #join_opts["userdata-bbb_auto_swap_layout"] = false
+       join_opts["userdata-bbb_enable_screen_sharing"] = false
      end
     end
 
