@@ -78,7 +78,8 @@ module BbbServer
        join_opts["userdata-bbb_magic_cap_user_visible_for_moderator"] = true
        #join_opts["userdata-bbb_enable_video"] = false
        join_opts["userdata-bbb_force_listen_only"] = true
-       #join_opts["userdata-bbb_shortcuts"] = '%5B%5D'
+       join_opts["userdata-bbb_custom_style_url"] = 'button%5Bdata-test%3D%22joinVideo%22%5D%20%7Bdisplay%3A%20none%3B%7D'
+       join_opts["userdata-bbb_shortcuts"] = '%5B%5D'
        #join_opts["userdata-bbb_auto_swap_layout"] = false
      end
     end
