@@ -60,7 +60,7 @@ module BbbServer
     if NeelzRoom.is_neelz_room?(room)
       neelz_room = NeelzRoom.convert_to_neelz_room(room)
       join_opts["userdata-bbb_show_participants_on_login"] = neelz_room.show_participants_on_login?
-      join_opts["userdata-bbb_auto_swap_layout"]   = true
+      join_opts["userdata-bbb_auto_swap_layout"] = true
       join_opts["userdata-bbb_hide_presentation"] = true
     else
       join_opts["userdata-bbb_display_branding_area"] = true
@@ -77,9 +77,9 @@ module BbbServer
      else
        join_opts["userdata-bbb_magic_cap_user_visible_for_moderator"] = true
        join_opts["userdata-bbb_enable_video"] = false
-       join_opts["userdata-bbb_enable_screen_sharing"] = false
        join_opts["userdata-bbb_force_listen_only"] = true
        join_opts["userdata-bbb_shortcuts"] = '%5B%5D'
+       join_opts["userdata-bbb_auto_swap_layout"] = false
      end
     end
 
