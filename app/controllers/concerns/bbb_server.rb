@@ -92,7 +92,8 @@ module BbbServer
   # Creates a meeting on the BigBlueButton server.
   def start_session(room, options = {})
     create_options = {
-      record: true.to_s,
+      record: NeelzRoom.is_neelz_room?(room) ? false.to_s : true.to_s,
+      allowStartStopRecording: NeelzRoom.is_neelz_room?(room) ? false.to_s : true.to_s,
       logoutURL: options[:meeting_logout_url] || '',
       logo: NeelzRoom.is_neelz_room?(room) ? '' : Rails.configuration.html5_client_branding_logo_url.to_json,
       moderatorPW: room.moderator_pw,
