@@ -30,6 +30,9 @@
       </div>
     <% end %>
   <% else %>
+    <% if Rails.configuration.warn_participants_not_to_provide_fullname %>
+      <h2><%= tra("room.warn_fullname") %></h2>
+    <% end %>
     <%= form_for room_path(@room), method: :post do |f| %>
       <div class="input-group">
         <%= f.hidden_field(:search, :value => params[:search])%>

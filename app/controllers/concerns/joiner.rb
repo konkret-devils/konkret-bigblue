@@ -64,6 +64,12 @@ module Joiner
         join_response = join_path(@room, current_user.name, opts, current_user.uid)
       else
         join_name = params[:join_name] || params[@room.invite_path][:join_name]
+        join_name = join_name.strip
+        if Rails.configuration.warn_participants_not_to_provide_fullname
+          if join_name.include? ' '
+            join_name = join_name[0..(join_name.index(' ')-1)]
+          end
+        end
         join_response = join_path(@room, join_name, opts)
       end
 

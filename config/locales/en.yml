@@ -472,6 +472,7 @@ en:
       success: Room deleted successfully
       fail: Failed to delete room (%{error})
     enter_the_access_code: Enter the room's access code
+    warn_fullname: For reasons of privacy please do not enter your fullname.
     invalid_provider: You have entered an invalid url. Please check the url and try again.
     invited: You have been invited to join
     invite_participants: Invite Participants

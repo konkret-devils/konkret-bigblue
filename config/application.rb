@@ -237,5 +237,11 @@ module Greenlight
       'MOD_'
     end
 
+    config.warn_participants_not_to_provide_fullname = if ENV['FULLNAME_WARN'].present?
+      ENV['FULLNAME_WARN'] == "true"
+    else
+      false
+    end
+
   end
 end
